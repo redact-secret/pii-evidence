@@ -73,7 +73,9 @@ same. See `docs/methodology/schemas.md`. `npm run fixtures:materialize` writes t
 untracked, ignored `fixtures/materialized/`, which is never committed. `npm run snapshot:build -- --date YYYY-MM-DD` assembles
 `snapshots/<id>/`; released snapshots (`snapshots/released.json`) are immutable and CI
 also runs `npm run snapshot:verify -- --base origin/main`. The consumer contract is
-`docs/methodology/consumer-contract.md`. A formatting command does not exist yet; report
+`docs/methodology/consumer-contract.md`; what `pii-eval` does with a released snapshot, and what the first public
+measurement does and does not authorize, is `docs/methodology/pii-eval-handoff.md` (the consumer's loader and mapping
+live in `pii-eval`; nothing here may depend on them, and a released snapshot is never edited to suit a consumer). A formatting command does not exist yet; report
 that fact rather than inventing one, and add new steps to `npm run check` when they land. Verify that new fixtures trace to an
 authored case, reviewed contract, or documented generation rule and that no
 scanner-specific support status entered the canonical model.
