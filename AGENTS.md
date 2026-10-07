@@ -43,6 +43,12 @@ another PII/PHI scanner or evaluator?
   `SECURITY.md` governs.
 - Released snapshots are immutable; a semantic correction is a new snapshot.
 - Describe project-maintained evidence as such, never as independent validation.
+- Governance docs in `docs/governance/` define the safe-data policy,
+  provenance and licensing fields, and review requirements. Every source needs
+  license, redistribution, observed-at, value-origin and evidence-class
+  metadata; protected corpus material can never be a public source. Allowlist
+  entries in `docs/governance/safe-data-allowlist.json` need a reason and a
+  source; never print or quote a matched value.
 
 ## Branches
 
@@ -57,8 +63,9 @@ another long-lived branch is introduced, update this section first.
 
 Run `npm ci` (once) and `npm run check`. `check` runs `npm run validate`
 (schema, cross-reference, duplicate-id and id-lint checks over `taxonomy/`,
-`evidence/`, `fixtures/`, `snapshots/`) and then `npm test`; CI (`verify`) runs
-the same. See `docs/methodology/schemas.md`. Generation, snapshot, and
+`evidence/`, `fixtures/`, `snapshots/`), `npm run lint:safe-data`,
+`npm run lint:provenance` (see `docs/governance/`) and then `npm test`; CI
+(`verify`) runs the same. See `docs/methodology/schemas.md`. Generation, snapshot, and
 formatting commands do not exist yet; report that fact rather than inventing
 commands, and add new steps to `npm run check` when they land. Verify that new fixtures trace to an
 authored case, reviewed contract, or documented generation rule and that no
