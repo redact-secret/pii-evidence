@@ -23,3 +23,6 @@ public/results/.*.json
 # Generated research coverage report (npm run coverage:gaps): derived from records/, never committed (#88).
 /docs/research/generated/
 .playwright-mcp/
+
+# Generated fixture projection output (npm run fixtures:materialize): derived, never committed or hand-edited.
+/fixtures/materialized/

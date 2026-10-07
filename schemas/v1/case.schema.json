@@ -80,6 +80,8 @@
       },
       "then": { "properties": { "sources": { "type": "array", "minItems": 1 } } }
     },
+    "externalRefs": { "description": "Optional pinned references to external evidence (docs/methodology/fixture-projection.md, Composition). Identity only: repository, pinned snapshot, entity id. Never copied content.", "$ref": "defs.schema.json#/$defs/externalRefs" },
+    "population": { "description": "Optional; when present it must be public.", "$ref": "defs.schema.json#/$defs/population" },
     "review": { "$ref": "defs.schema.json#/$defs/review" }
   },
   "if": { "properties": { "role": { "const": "positive" } }, "required": ["role"] },

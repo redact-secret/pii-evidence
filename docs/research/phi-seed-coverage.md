@@ -56,7 +56,7 @@ Intended shape of a future composed case, as it would be recorded once a schema 
 { "repository": "redact-secret/ner-evidence", "snapshot": "person-en-ko-beta.1-1dc0b13fe0ff", "entity": "<entity id chosen by that repository>" }
 ```
 
-The snapshot id above is the identity format used by `ner-evidence` at the time of writing (`snapshots/index.json`, content digest `1dc0b13fe0ff...`, pin the full id and digest when used). No entity id was selected and no PERSON content was read into or copied into this repository. A schema change adding a case-level `externalRefs` array belongs to a later issue.
+The snapshot id above is the identity format used by `ner-evidence` at the time of writing (`snapshots/index.json`, content digest `1dc0b13fe0ff...`, pin the full id and digest when used). No entity id was selected and no PERSON content was read into or copied into this repository. The case-level `externalRefs` field has since been added (see `docs/methodology/fixture-projection.md`); this seed case does not use it yet.
 
 ## Explicit gaps
 
@@ -66,7 +66,7 @@ The snapshot id above is the identity format used by `ner-evidence` at the time 
 - No NPI or provider identifiers (not in the taxonomy).
 - PID-3 placement and CX component layout for the HL7 v2 variant were not read; that variant is project-authored apart from the MR code.
 - Only the first 100000 characters of the FHIR Patient, Coverage, Claim and MedicationRequest pages were read.
-- No fixture projections (issue 7 owns them) and no review events; every record is `unreviewed`.
+- Fixture projections are generated from rules and not committed (see `docs/methodology/fixture-projection.md`) and no review events; every record is `unreviewed`.
 - The email and phone kind entries and their format claims are owned by the structured PII seed; this seed references them by id only and did not edit them.
 
 ## Checks run

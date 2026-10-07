@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/materialization-manifest.schema.json",
+  "title": "MaterializationManifest (v1)",
+  "description": "Describes one run of the fixture projector: generator identity, input digests, output digests and counts. Generated output, not canonical evidence. A snapshot builder binds these digests; it does not trust them without recomputing.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "id", "population", "generator", "determinism", "inputs", "outputs", "counts"],
+  "properties": {
+    "kind": { "const": "materialization-manifest" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "population": { "$ref": "defs.schema.json#/$defs/population" },
+    "generator": { "$ref": "defs.schema.json#/$defs/generator" },
+    "determinism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["randomness", "timestamps", "lineEndings", "ordering"],
+      "properties": {
+        "randomness": { "const": "none" },
+        "timestamps": { "const": "none" },
+        "lineEndings": { "const": "LF" },
+        "ordering": { "const": "case id, rule ordering, rule id; code point order" }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cases", "rules"],
+      "properties": {
+        "cases": { "$ref": "#/$defs/digestCount" },
+        "rules": { "$ref": "#/$defs/digestCount" }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fixtures", "skipped"],
+      "properties": {
+        "fixtures": { "$ref": "#/$defs/fileDigest" },
+        "skipped": { "$ref": "#/$defs/fileDigest" }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cases", "rules", "fixtures", "skipped"],
+      "properties": {
+        "cases": { "type": "integer", "minimum": 0 },
+        "rules": { "type": "integer", "minimum": 0 },
+        "fixtures": { "type": "integer", "minimum": 0 },
+        "skipped": { "type": "integer", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "digestCount": {
+      "description": "SHA-256 over the canonical (sorted-key JSON) records, sorted by id and joined with LF.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "sha256"],
+      "properties": { "count": { "type": "integer", "minimum": 0 }, "sha256": { "$ref": "defs.schema.json#/$defs/sha256" } }
+    },
+    "fileDigest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "records", "bytes", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "records": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "sha256": { "$ref": "defs.schema.json#/$defs/sha256" }
+      }
+    }
+  }
+}

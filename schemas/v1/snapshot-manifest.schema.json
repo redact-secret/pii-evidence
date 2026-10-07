@@ -18,7 +18,7 @@
       "description": "Schema version used per record kind in this snapshot.",
       "type": "object",
       "minProperties": 1,
-      "propertyNames": { "enum": ["privacy-kinds", "jurisdictions", "contexts", "source", "claim", "case", "fixture-projection", "review-event", "snapshot-manifest"] },
+      "propertyNames": { "enum": ["privacy-kinds", "jurisdictions", "contexts", "source", "claim", "case", "fixture-projection", "fixture-rule", "review-event", "snapshot-manifest"] },
       "additionalProperties": { "type": "string", "pattern": "^[0-9]+$" }
     },
     "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },

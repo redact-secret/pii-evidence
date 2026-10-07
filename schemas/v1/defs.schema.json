@@ -61,6 +61,22 @@
         "version": { "$ref": "#/$defs/version" }
       }
     },
+    "population": {
+      "description": "Evidence population. This repository is public only; protected evidence is never stored or projected here.",
+      "const": "public"
+    },
+    "externalRef": {
+      "description": "A pinned reference to evidence owned by another repository (for example PERSON evidence in ner-evidence). Identity only: repository, pinned immutable snapshot id and entity id. No names, text, spans or other content may be copied; additionalProperties is false, so an inline content field is a schema error.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "snapshot", "entity"],
+      "properties": {
+        "repository": { "description": "owner/name of the owning repository. The enum grows additively when a new owner is justified.", "enum": ["redact-secret/ner-evidence"] },
+        "snapshot": { "description": "Pinned immutable snapshot identity in that repository. Floating names such as latest or main are rejected by the validator.", "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$" },
+        "entity": { "description": "Entity id chosen by the owning repository.", "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]{0,199}$" }
+      }
+    },
+    "externalRefs": { "type": "array", "items": { "$ref": "#/$defs/externalRef" }, "minItems": 1, "uniqueItems": true },
     "uncertainty": {
       "type": "object",
       "additionalProperties": false,

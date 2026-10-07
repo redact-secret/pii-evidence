@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { forbiddenIdViolations } from "../id-rules.mjs";
+import { bannedKeyErrors, externalRefErrors, fixtureAgainstSourceErrors, ruleConsistencyErrors, rulesetErrors } from "./fixture-checks.mjs";
 
 export const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const SCHEMA_BASE = "https://github.com/redact-secret/pii-evidence/schemas";
@@ -23,6 +24,9 @@ export const KIND_SCHEMAS = {
   claim: "claim.schema.json",
   case: "case.schema.json",
   "fixture-projection": "fixture-projection.schema.json",
+  "fixture-rule": "fixture-rule.schema.json",
+  "fixture-skip": "fixture-skip.schema.json",
+  "materialization-manifest": "materialization-manifest.schema.json",
   "review-event": "review-event.schema.json",
   "snapshot-manifest": "snapshot-manifest.schema.json",
 };
@@ -205,9 +209,21 @@ function refsOf(e) {
       break;
     case "fixture-projection":
       add("/case", d.case, ["case"], "case");
+      add("/rule", d.rule, ["fixture-rule"], "fixture rule");
+      addAll("/lineage/sources", d.lineage?.sources, ["source"], "source");
+      addAll("/lineage/claims", d.lineage?.claims, ["claim"], "claim");
+      break;
+    case "fixture-rule":
+      addAll("/appliesTo/kinds", d.appliesTo.kinds, ["privacy-kind"], "privacy kind");
+      addAll("/justifiedBy", d.justifiedBy, ["case"], "justifying case");
+      addAll("/review/events", d.review.events, ["review-event"], "review event");
+      break;
+    case "fixture-skip":
+      add("/case", d.case, ["case"], "case");
+      add("/rule", d.rule, ["fixture-rule"], "fixture rule");
       break;
     case "review-event":
-      add("/subject", d.subject, ["privacy-kind", "jurisdiction", "context", "source", "claim", "case", "fixture-projection"], "subject record");
+      add("/subject", d.subject, ["privacy-kind", "jurisdiction", "context", "source", "claim", "case", "fixture-projection", "fixture-rule"], "subject record");
       break;
     default:
   }
@@ -288,6 +304,14 @@ export function validateRecords(records) {
         if (!d.input) errors.push(`${where}: expectation.span requires input.text`);
         else checkSpan(errors, where, span, Buffer.from(d.input.text, "utf8"), "expectation.span");
       }
+      for (const m of externalRefErrors(d.externalRefs)) errors.push(`${where}: ${m}`);
+    }
+    if (e.type === "fixture-rule") {
+      for (const m of ruleConsistencyErrors(d)) errors.push(`${where}: ${m}`);
+    }
+    if (e.type === "fixture-skip") {
+      const expected = fixtureId(d.case, d.rule);
+      if (d.id !== expected) errors.push(`${where}: skip id "${d.id}" must equal "<case>/<rule>" = "${expected}"`);
     }
     if (e.type === "fixture-projection") {
       const expected = fixtureId(d.case, d.rule);
@@ -301,11 +325,29 @@ export function validateRecords(records) {
         if (sha !== d.sha256) errors.push(`${where}: sha256 does not match content`);
         len = buf.length;
       }
+      const lookupTyped = (id, type) => {
+        const t = lookup(e.r.corpus, id);
+        return t && t.type === type ? t.data : undefined;
+      };
+      const srcCase = lookupTyped(d.case, "case");
+      const srcRule = lookupTyped(d.rule, "fixture-rule");
+      if (srcCase && srcRule) {
+        for (const m of fixtureAgainstSourceErrors(d, srcCase, srcRule)) errors.push(`${where}: ${m}`);
+        for (const sid of d.lineage?.sources ?? []) if (!srcCase.provenance.sources.includes(sid)) errors.push(`${where}: lineage source "${sid}" is not in the case provenance`);
+      }
+      for (const m of bannedKeyErrors(d)) errors.push(`${where}${m}`);
       d.spans.forEach((span, i) => {
         if (buf) checkSpan(errors, where, span, buf, `spans[${i}]`);
         else if (span.end <= span.start || span.end > len) errors.push(`${where}: spans[${i}] [${span.start}, ${span.end}) is empty or exceeds byteLength ${len}`);
       });
     }
+  }
+
+  // 5. ruleset: ordering keys unique per corpus
+  const rulesByCorpus = new Map();
+  for (const e of entries) if (e.type === "fixture-rule") (rulesByCorpus.get(e.r.corpus) ?? rulesByCorpus.set(e.r.corpus, []).get(e.r.corpus)).push(e);
+  for (const list of rulesByCorpus.values()) {
+    for (const m of rulesetErrors(list.map((x) => x.data))) errors.push(`${loc(list[0].r)}: ${m}`);
   }
 
   errors.sort();

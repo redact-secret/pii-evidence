@@ -1,13 +1,19 @@
 {
   "kind": "fixture-projection",
   "schemaVersion": "1",
-  "id": "email/global/basic/positive/example-domain-address/plain-text",
+  "id": "email/global/basic/positive/example-domain-address/plain-text/line",
   "case": "email/global/basic/positive/example-domain-address",
-  "rule": "plain-text",
+  "rule": "plain-text/line",
+  "ruleVersion": "1.0.0",
+  "carrier": {
+    "layout": "plain-text",
+    "variant": "line"
+  },
   "generator": {
     "name": "example-materializer",
     "version": "0.1.0"
   },
+  "population": "public",
   "sha256": "17e8185a156ed930cc283761925a59027773b44975a280ef216a12b85d7ac5dc",
   "byteLength": 26,
   "content": "contact: user@example.com\n",
@@ -17,5 +23,21 @@
       "end": 25
     }
   ],
-  "population": "public"
+  "expectation": {
+    "identity": "valid",
+    "sensitivity": "sensitive",
+    "domains": [
+      "pii"
+    ],
+    "derivedFromRule": false
+  },
+  "lineage": {
+    "evidenceClass": "standards-body",
+    "sources": [
+      "ietf-rfc-2606/reserved-names"
+    ],
+    "claims": [
+      "ietf-rfc-2606/example-domains-reserved"
+    ]
+  }
 }
