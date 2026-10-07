@@ -251,6 +251,35 @@
         "The FHIR MedicationRequest resource links a subject through a separate element, not through the identifier; no pharmacy-standard source was read, so no format is stated.",
         "Domains listed are candidates pending that determination."
       ]
+    },
+    {
+      "id": "date-of-birth/global/labeled-field",
+      "label": "Date of birth",
+      "domains": ["pii"],
+      "jurisdictions": ["global", "us"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": ["dob-fhir-r4-datatypes/date-notation", "dob-rfc3339/full-date-production"],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "public-authority",
+          "claims": ["phi-hhs-164-514-b-2-i/dates-and-ages"]
+        },
+        {
+          "context": "field-label/global/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed",
+          "claims": ["dob-fhir-r4-patient/birth-date"]
+        }
+      ],
+      "openQuestions": [
+        "A birth date is recognized by label and date notation, never by a bare date; generic date detection is out of scope for this kind.",
+        "Numeric day/month order by locale is not source-documented; the order-ambiguity case rests on project inference.",
+        "Age (including over 89), year-only birth values and other individual dates (admission, discharge, death) are not modeled; docs/research/date-of-birth.md records recommendations.",
+        "Whether a birth date alone is PHI outside a medical context is holder-dependent and unsettled."
+      ]
     }
   ]
 }
