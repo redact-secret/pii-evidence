@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/case.schema.json",
+  "title": "Case (v1)",
+  "description": "The human reasoning unit: one authored example with a scanner-neutral semantic expectation. The expectation carries no scanner, detector, support-state, threshold or score fields (additionalProperties is false).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind", "schemaVersion", "id", "title", "rationale", "role", "privacyKind", "jurisdiction",
+    "contexts", "valueOrigin", "expectation", "ambiguity", "relationships", "provenance", "review"
+  ],
+  "properties": {
+    "kind": { "const": "case" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "title": { "$ref": "defs.schema.json#/$defs/text" },
+    "rationale": { "description": "Authored reasoning: why this example matters.", "$ref": "defs.schema.json#/$defs/text" },
+    "role": { "description": "The case's own role.", "enum": ["positive", "negative", "ambiguous", "twin", "mutation", "collision", "context"] },
+    "privacyKind": { "description": "PrivacyKind id.", "$ref": "defs.schema.json#/$defs/id" },
+    "jurisdiction": { "description": "JurisdictionProfile id.", "$ref": "defs.schema.json#/$defs/id" },
+    "contexts": { "description": "ContextProfile ids bounding the occurrence; may be empty.", "$ref": "defs.schema.json#/$defs/idList" },
+    "valueOrigin": { "$ref": "defs.schema.json#/$defs/valueOrigin" },
+    "input": {
+      "description": "The synthetic/reserved text. Omit for a structural-only case (then no expectation.span).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": { "text": { "type": "string", "minLength": 1, "maxLength": 4000 } }
+    },
+    "expectation": {
+      "description": "Semantic outcome only, independent of any scanner implementation.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "sensitivity", "domains"],
+      "properties": {
+        "identity": { "$ref": "defs.schema.json#/$defs/identityState" },
+        "sensitivity": { "$ref": "defs.schema.json#/$defs/sensitivityState" },
+        "domains": { "description": "Occurrence domains (kind domains plus domains added by contexts).", "$ref": "defs.schema.json#/$defs/domains" },
+        "span": { "description": "Expected UTF-8 byte span in input.text, where applicable.", "$ref": "defs.schema.json#/$defs/byteSpan" }
+      }
+    },
+    "ambiguity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": { "enum": ["none", "ambiguous", "uncertain"] },
+        "reasons": { "$ref": "defs.schema.json#/$defs/textList" },
+        "wouldSettle": { "$ref": "defs.schema.json#/$defs/text" }
+      },
+      "if": { "properties": { "state": { "enum": ["ambiguous", "uncertain"] } }, "required": ["state"] },
+      "then": { "required": ["reasons"], "properties": { "reasons": { "type": "array", "minItems": 1 } } }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "case"],
+        "properties": {
+          "type": { "enum": ["positive", "negative", "twin", "mutation", "collision"] },
+          "case": { "description": "Id of the related Case.", "$ref": "defs.schema.json#/$defs/id" }
+        }
+      }
+    },
+    "provenance": {
+      "description": "Exact lineage: the sources and claims this case rests on. Source-backed evidence classes need at least one source.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceClass", "sources", "claims"],
+      "properties": {
+        "evidenceClass": { "$ref": "defs.schema.json#/$defs/evidenceClass" },
+        "sources": { "$ref": "defs.schema.json#/$defs/idList" },
+        "claims": { "$ref": "defs.schema.json#/$defs/idList" },
+        "inference": { "description": "Project inference, kept apart from observed fact.", "$ref": "defs.schema.json#/$defs/text" }
+      },
+      "if": {
+        "properties": { "evidenceClass": { "enum": ["public-authority", "provider-documented", "standards-body", "reference-backed", "licensed-corpus", "tool-corroborated"] } },
+        "required": ["evidenceClass"]
+      },
+      "then": { "properties": { "sources": { "type": "array", "minItems": 1 } } }
+    },
+    "review": { "$ref": "defs.schema.json#/$defs/review" }
+  },
+  "if": { "properties": { "role": { "const": "positive" } }, "required": ["role"] },
+  "then": {
+    "required": ["input"],
+    "properties": { "input": true, "expectation": { "type": "object", "required": ["span"], "properties": { "span": true } } }
+  }
+}

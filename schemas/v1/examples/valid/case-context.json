@@ -1,0 +1,51 @@
+{
+  "kind": "case",
+  "schemaVersion": "1",
+  "id": "email/global/basic/context/medical-contact-field",
+  "title": "Email in a medical context",
+  "rationale": "An ordinary email occurrence inside a stated medical setting; whether the phi domain applies is not established by a source yet.",
+  "role": "context",
+  "privacyKind": "email/global/basic",
+  "jurisdiction": "global",
+  "contexts": [
+    "medical/global/general"
+  ],
+  "valueOrigin": "reserved",
+  "input": {
+    "text": "patient contact: user@example.com"
+  },
+  "expectation": {
+    "identity": "valid",
+    "sensitivity": "context-dependent",
+    "domains": [
+      "pii",
+      "phi"
+    ],
+    "span": {
+      "start": 17,
+      "end": 33
+    }
+  },
+  "ambiguity": {
+    "state": "uncertain",
+    "reasons": [
+      "The medical-context claim for this kind is research-needed in the taxonomy."
+    ],
+    "wouldSettle": "A public-authority or provider-documented source on when medical context adds the phi domain to an email occurrence."
+  },
+  "relationships": [
+    {
+      "type": "positive",
+      "case": "email/global/basic/positive/example-domain-address"
+    }
+  ],
+  "provenance": {
+    "evidenceClass": "research-needed",
+    "sources": [],
+    "claims": []
+  },
+  "review": {
+    "state": "unreviewed",
+    "events": []
+  }
+}

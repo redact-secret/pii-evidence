@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/source.schema.json",
+  "title": "Source (v1)",
+  "description": "A public source or import with its privacy and licensing record (ARCHITECTURE.md section 9). Real customer/patient data is prohibited.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind", "schemaVersion", "id", "title", "locator", "version", "observedAt", "license",
+    "evidenceClass", "transformations", "naturallyOccurringPersonalData", "valueOrigin", "review"
+  ],
+  "properties": {
+    "kind": { "const": "source" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "title": { "$ref": "defs.schema.json#/$defs/text" },
+    "locator": { "description": "Exact source location: URL or citation string.", "$ref": "defs.schema.json#/$defs/text" },
+    "version": { "description": "Exact edition, version, revision or publication date of the source.", "$ref": "defs.schema.json#/$defs/text" },
+    "observedAt": { "$ref": "defs.schema.json#/$defs/date" },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "redistribution", "terms"],
+      "properties": {
+        "name": { "description": "SPDX id or the license name as stated by the source.", "$ref": "defs.schema.json#/$defs/text" },
+        "redistribution": { "enum": ["allowed", "restricted", "prohibited", "unknown"] },
+        "terms": { "description": "Redistribution terms in brief, including attribution requirements.", "$ref": "defs.schema.json#/$defs/text" }
+      }
+    },
+    "evidenceClass": { "$ref": "defs.schema.json#/$defs/evidenceClass" },
+    "transformations": { "description": "Transformation and minimization steps applied to the source material. Empty when none.", "$ref": "defs.schema.json#/$defs/textList" },
+    "naturallyOccurringPersonalData": { "description": "True if the source material contains personal data that occurs naturally (not synthetic or reserved).", "type": "boolean" },
+    "valueOrigin": { "$ref": "defs.schema.json#/$defs/valueOrigin" },
+    "review": { "$ref": "defs.schema.json#/$defs/review" }
+  }
+}

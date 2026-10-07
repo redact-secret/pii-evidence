@@ -1,0 +1,40 @@
+{
+  "kind": "case",
+  "schemaVersion": "1",
+  "id": "email/global/basic/twin/missing-at-sign",
+  "title": "Benign twin without the at sign",
+  "rationale": "Same label and domain text but no addr-spec structure; shows that the surrounding words alone do not establish an email.",
+  "role": "twin",
+  "privacyKind": "email/global/basic",
+  "jurisdiction": "global",
+  "contexts": [],
+  "valueOrigin": "reserved",
+  "input": {
+    "text": "contact: user.example.com"
+  },
+  "expectation": {
+    "identity": "invalid",
+    "sensitivity": "non-sensitive",
+    "domains": [
+      "pii"
+    ]
+  },
+  "ambiguity": {
+    "state": "none"
+  },
+  "relationships": [
+    {
+      "type": "twin",
+      "case": "email/global/basic/positive/example-domain-address"
+    }
+  ],
+  "provenance": {
+    "evidenceClass": "authored-baseline",
+    "sources": [],
+    "claims": []
+  },
+  "review": {
+    "state": "unreviewed",
+    "events": []
+  }
+}

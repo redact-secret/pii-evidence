@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/snapshot-manifest.schema.json",
+  "title": "SnapshotManifest (v1)",
+  "description": "Binds an immutable snapshot (ARCHITECTURE.md section 10). Consumers depend on the manifest and its content, not on source-tree layout. Released snapshots are immutable; a correction is a new snapshot.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind", "schemaVersion", "id", "population", "schemaVersions", "taxonomyVersion", "sourceManifestDigest",
+    "contentDigest", "generator", "counts", "coverage", "validation", "consumerContractVersion"
+  ],
+  "properties": {
+    "kind": { "const": "snapshot-manifest" },
+    "schemaVersion": { "const": "1" },
+    "id": { "description": "Snapshot id.", "$ref": "defs.schema.json#/$defs/id" },
+    "population": { "const": "public" },
+    "schemaVersions": {
+      "description": "Schema version used per record kind in this snapshot.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "enum": ["privacy-kinds", "jurisdictions", "contexts", "source", "claim", "case", "fixture-projection", "review-event", "snapshot-manifest"] },
+      "additionalProperties": { "type": "string", "pattern": "^[0-9]+$" }
+    },
+    "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },
+    "sourceManifestDigest": { "$ref": "defs.schema.json#/$defs/sha256" },
+    "contentDigest": { "$ref": "defs.schema.json#/$defs/sha256" },
+    "generator": { "$ref": "defs.schema.json#/$defs/generator" },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cases", "fixtures"],
+      "properties": {
+        "cases": { "type": "integer", "minimum": 0 },
+        "fixtures": { "type": "integer", "minimum": 0 },
+        "sources": { "type": "integer", "minimum": 0 },
+        "claims": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "coverage": {
+      "description": "What the snapshot covers. Descriptive only; no thresholds.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kinds", "jurisdictions", "domains"],
+      "properties": {
+        "kinds": { "$ref": "defs.schema.json#/$defs/idList" },
+        "jurisdictions": { "$ref": "defs.schema.json#/$defs/idList" },
+        "contexts": { "$ref": "defs.schema.json#/$defs/idList" },
+        "domains": { "type": "array", "items": { "$ref": "defs.schema.json#/$defs/domain" }, "uniqueItems": true },
+        "languages": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$" }, "uniqueItems": true }
+      }
+    },
+    "validation": {
+      "description": "Provenance/privacy/schema validation status at generation time.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "provenance", "privacy"],
+      "properties": {
+        "schema": { "enum": ["passed", "failed", "not-run"] },
+        "provenance": { "enum": ["passed", "failed", "not-run"] },
+        "privacy": { "enum": ["passed", "failed", "not-run"] }
+      }
+    },
+    "consumerContractVersion": { "$ref": "defs.schema.json#/$defs/version" }
+  }
+}

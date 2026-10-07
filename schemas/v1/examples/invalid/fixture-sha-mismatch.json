@@ -1,0 +1,21 @@
+{
+  "kind": "fixture-projection",
+  "schemaVersion": "1",
+  "id": "email/global/basic/positive/example-domain-address/sha-mismatch",
+  "case": "email/global/basic/positive/example-domain-address",
+  "rule": "sha-mismatch",
+  "generator": {
+    "name": "example-materializer",
+    "version": "0.1.0"
+  },
+  "sha256": "f41f3fa625ff120ddca7ef456bf66371ecea23c129f4e4c32367101edb516cf8",
+  "byteLength": 26,
+  "content": "contact: user@example.com\n",
+  "spans": [
+    {
+      "start": 9,
+      "end": 25
+    }
+  ],
+  "population": "public"
+}

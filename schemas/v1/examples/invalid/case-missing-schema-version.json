@@ -1,0 +1,43 @@
+{
+  "kind": "case",
+  "id": "email/global/basic/positive/no-version",
+  "title": "Email address on a reserved example domain",
+  "rationale": "A plain addr-spec on a reserved documentation domain is an ordinary structured email occurrence.",
+  "role": "positive",
+  "privacyKind": "email/global/basic",
+  "jurisdiction": "global",
+  "contexts": [],
+  "valueOrigin": "reserved",
+  "input": {
+    "text": "contact: user@example.com"
+  },
+  "expectation": {
+    "identity": "valid",
+    "sensitivity": "sensitive",
+    "domains": [
+      "pii"
+    ],
+    "span": {
+      "start": 9,
+      "end": 25
+    }
+  },
+  "ambiguity": {
+    "state": "none"
+  },
+  "relationships": [],
+  "provenance": {
+    "evidenceClass": "standards-body",
+    "sources": [
+      "ietf-rfc-2606/reserved-names"
+    ],
+    "claims": [
+      "ietf-rfc-2606/example-domains-reserved"
+    ],
+    "inference": "Reserved domain makes the value safe to publish; the structure follows the case rationale."
+  },
+  "review": {
+    "state": "unreviewed",
+    "events": []
+  }
+}

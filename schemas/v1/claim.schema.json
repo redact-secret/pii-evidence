@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/claim.schema.json",
+  "title": "Claim (v1)",
+  "description": "A source-backed statement. Observed fact (statement) is kept apart from project inference.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "id", "source", "statement", "location", "observedAt", "evidenceClass", "uncertainty", "review"],
+  "properties": {
+    "kind": { "const": "claim" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "source": { "description": "Source id.", "$ref": "defs.schema.json#/$defs/id" },
+    "statement": { "description": "What the source states, as observed. No project inference.", "$ref": "defs.schema.json#/$defs/text" },
+    "location": { "description": "Exact location inside the source (section, page, anchor).", "$ref": "defs.schema.json#/$defs/text" },
+    "inference": { "description": "What the project concludes from the statement. Optional; never presented as source text.", "$ref": "defs.schema.json#/$defs/text" },
+    "observedAt": { "$ref": "defs.schema.json#/$defs/date" },
+    "evidenceClass": { "$ref": "defs.schema.json#/$defs/evidenceClass" },
+    "privacyKind": { "$ref": "defs.schema.json#/$defs/id" },
+    "jurisdiction": { "$ref": "defs.schema.json#/$defs/id" },
+    "domains": { "$ref": "defs.schema.json#/$defs/domains" },
+    "uncertainty": { "$ref": "defs.schema.json#/$defs/uncertainty" },
+    "review": { "$ref": "defs.schema.json#/$defs/review" }
+  }
+}

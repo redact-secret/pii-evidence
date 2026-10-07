@@ -1,6 +1,6 @@
 # Taxonomy model
 
-The taxonomy is JSON data in `taxonomy/`. Boundary rationale: [ADR 0001](../decisions/0001-pii-phi-person-ownership-boundary.md). Schemas and validation are separate later work; the files here are the initial vocabulary.
+The taxonomy is JSON data in `taxonomy/`. Boundary rationale: [ADR 0001](../decisions/0001-pii-phi-person-ownership-boundary.md). Schemas are in `schemas/v1/` ([schemas.md](schemas.md)) and `npm run validate` checks these files; the files here are the initial vocabulary.
 
 ## Files
 
@@ -10,7 +10,7 @@ The taxonomy is JSON data in `taxonomy/`. Boundary rationale: [ADR 0001](../deci
 | `taxonomy/jurisdictions.json` | `jurisdictions` | jurisdiction profiles |
 | `taxonomy/contexts.json` | `contexts` | context profiles and the occurrence composition rules |
 
-Every file has a top-level `taxonomyVersion` (currently `0.1.0`) and a `kind` marker. A snapshot binds the taxonomy version.
+Every file has a top-level `taxonomyVersion` (currently `0.1.0`), a `kind` marker and `schemaVersion` (`"1"`, the schema in `schemas/v1/`). A snapshot binds the taxonomy version.
 
 ## Identity
 

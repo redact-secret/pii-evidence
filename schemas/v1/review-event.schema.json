@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/review-event.schema.json",
+  "title": "ReviewEvent (v1)",
+  "description": "One review decision about one record. Project-maintained review is not independent validation unless independent is true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "id", "subject", "reviewer", "reviewerKind", "independent", "decision", "at"],
+  "properties": {
+    "kind": { "const": "review-event" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "subject": { "description": "Id of the reviewed record.", "$ref": "defs.schema.json#/$defs/id" },
+    "reviewer": { "description": "Public handle of the reviewer.", "$ref": "defs.schema.json#/$defs/text" },
+    "reviewerKind": { "enum": ["human", "agent"] },
+    "independent": { "description": "True only if the reviewer is independent of the author and of project maintenance.", "type": "boolean" },
+    "decision": { "enum": ["approved", "changes-requested", "rejected", "comment"] },
+    "at": { "$ref": "defs.schema.json#/$defs/dateTime" },
+    "note": { "$ref": "defs.schema.json#/$defs/text" }
+  }
+}

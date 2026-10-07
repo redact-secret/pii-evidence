@@ -1,0 +1,21 @@
+{
+  "kind": "fixture-projection",
+  "schemaVersion": "1",
+  "id": "email/global/basic/positive/example-domain-address/protected-population",
+  "case": "email/global/basic/positive/example-domain-address",
+  "rule": "protected-population",
+  "generator": {
+    "name": "example-materializer",
+    "version": "0.1.0"
+  },
+  "sha256": "17e8185a156ed930cc283761925a59027773b44975a280ef216a12b85d7ac5dc",
+  "byteLength": 26,
+  "content": "contact: user@example.com\n",
+  "spans": [
+    {
+      "start": 9,
+      "end": 25
+    }
+  ],
+  "population": "protected"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/context-profile.schema.json",
+  "title": "ContextProfile (v1)",
+  "description": "An occurrence-level context that can add a domain to an occurrence. A context never removes a domain.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "label", "addsDomains", "applicability", "boundedBy", "evidenceClass", "openQuestions"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "label": { "$ref": "defs.schema.json#/$defs/text" },
+    "addsDomains": { "type": "array", "items": { "$ref": "defs.schema.json#/$defs/domain" }, "uniqueItems": true },
+    "applicability": { "$ref": "defs.schema.json#/$defs/text" },
+    "boundedBy": { "$ref": "defs.schema.json#/$defs/text" },
+    "evidenceClass": { "$ref": "defs.schema.json#/$defs/evidenceClass" },
+    "claims": { "description": "Ids of Claim records backing this context.", "$ref": "defs.schema.json#/$defs/idList" },
+    "openQuestions": { "$ref": "defs.schema.json#/$defs/textList" }
+  }
+}
