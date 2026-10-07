@@ -32,7 +32,14 @@
       "domains": ["pii"],
       "jurisdictions": ["global"],
       "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
-      "formatClaims": [],
+      "formatClaims": [
+        "email/rfc-5322-addr-spec",
+        "email/rfc-5322-dot-atom",
+        "email/rfc-5321-size-limits",
+        "email/rfc-2606-example-domains",
+        "email/rfc-2606-reserved-tlds",
+        "email/rfc-6761-special-use"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -42,7 +49,7 @@
         }
       ],
       "openQuestions": [
-        "Which standard defines the addr-spec boundary to model (format claims need a source)?",
+        "RFC 5322 plain dot-atom addr-spec and RFC 5321 size limits are sourced; are quoted-string, domain-literal, obsolete and internationalized (RFC 6531, not read) forms in scope?",
         "Which medical-context signals are sufficient for the phi domain to apply to an occurrence?"
       ]
     },
@@ -52,7 +59,10 @@
       "domains": ["pii"],
       "jurisdictions": ["global"],
       "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
-      "formatClaims": [],
+      "formatClaims": [
+        "phone/nanp-555-range",
+        "phone/e164-maximum-length"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -62,7 +72,7 @@
         }
       ],
       "openQuestions": [
-        "Which numbering-plan standard bounds the international form, and which national forms are separate profiles?",
+        "The E.164 recommendation text was not read (maximum length and structure unverified); which national forms are separate profiles?",
         "Which jurisdiction-specific phone profiles are needed beyond the global profile?"
       ]
     },
@@ -72,7 +82,11 @@
       "domains": ["pii"],
       "jurisdictions": ["global"],
       "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": [
+        "payment-card/iso7812-structure",
+        "payment-card/luhn-method",
+        "payment-card/stripe-test-numbers"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -83,7 +97,7 @@
       ],
       "openQuestions": [
         "Is a payment card number modeled as pii, as a separate financial domain, or both? The domain vocabulary currently has only pii and phi.",
-        "Which issuer or standards documents define length, prefix and check-digit claims?",
+        "Length, prefix and check-digit claims rest on a secondary reference to ISO/IEC 7812 (not read); which issuer or standards documents settle them, and for which networks beyond Visa, Mastercard and American Express?",
         "Under what circumstances does a payment made for health care make an occurrence phi?"
       ]
     },
@@ -93,7 +107,11 @@
       "domains": ["pii"],
       "jurisdictions": ["global"],
       "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": [
+        "iban/iban-structure",
+        "iban/iban-example",
+        "iban/registry-authority"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -103,7 +121,7 @@
         }
       ],
       "openQuestions": [
-        "Which registry and standard version define per-country structure and check digits?",
+        "Structure and check digits rest on a secondary reference; the registry (HTTP 403 when read) and ISO 13616 per-country structures are unread.",
         "Is an account number of a legal entity within scope, and does its domain differ from a personal account?",
         "Same open domain-vocabulary question as payment-card/global/basic."
       ]
@@ -114,7 +132,11 @@
       "domains": ["pii"],
       "jurisdictions": ["us"],
       "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
-      "formatClaims": [],
+      "formatClaims": [
+        "us-ssn/ssa-structure-and-unassigned",
+        "us-ssn/reference-structure",
+        "us-ssn/reference-itin-format"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -124,7 +146,7 @@
         }
       ],
       "openQuestions": [
-        "Which public-authority sources define structural validity and unissuable ranges (needed before any synthetic value is authored)?",
+        "SSA unassigned ranges were read only as search excerpts (direct fetch returned HTTP 403); direct reads of the SSA pages and the IRS ITIN publication are still needed.",
         "Which labeled-field and unlabeled forms are separate profiles?"
       ]
     },
