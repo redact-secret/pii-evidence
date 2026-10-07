@@ -105,4 +105,4 @@ Every fixture, skip and manifest has `population: "public"` (a schema constant).
 
 ## Safety
 
-Values come only from authored Cases, which are already reserved, synthetic or allowlisted. Rules add only fixed neutral text (field names, a Korean label, U+200B) and perturb existing values; they cannot create a new identifier shape. Twin and mutation rules never assert validity. `npm run lint:safe-data` covers rule files; materialized output reuses the same values.
+Values come only from authored Cases, which are already reserved, synthetic or allowlisted. Rules add only fixed neutral text (field names, a Korean label, U+200B) and perturb existing values; they cannot create a new identifier shape. Twin and mutation rules never assert validity. `npm run lint:privacy-data` covers rule files; materialized output reuses the same values.

@@ -161,6 +161,8 @@ This is a public repository. Never commit:
 
 Prefer reserved/test namespaces, documented public examples, deterministic synthetic generators, and licensed public corpora whose redistribution is reviewed.
 
+Publication checks are split by responsibility: `npm run lint:privacy-data` guards PII/PHI shapes, `npm run lint:credentials` guards credentials and private keys through the published `@redact-secret/core` package (this repository owns no credential patterns), and a gitleaks CI job is an independent second opinion. See `docs/governance/safe-data-policy.md`.
+
 ## Snapshot model
 
 Downstream consumers pin immutable snapshots. A snapshot should include:

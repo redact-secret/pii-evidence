@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Explicit exceptions for scripts/lint-safe-data.mjs. Each entry identifies one value by the SHA-256 of rule plus normalized value (the value is not repeated here) and needs a reason, a source and an observedAt date. Only reserved or documented public test values belong here. Policy: docs/governance/safe-data-policy.md. Compute a hash with: printf %s \"<value>\" | node scripts/lint-safe-data.mjs --hash <rule>",
+  "description": "Explicit exceptions for scripts/lint-safe-data.mjs (the privacy-data lint; credentials have no allowlist). Each entry identifies one value by the SHA-256 of rule plus normalized value (the value is not repeated here) and needs a reason, a source and an observedAt date. Only reserved or documented public test values belong here. Policy: docs/governance/safe-data-policy.md. Compute a hash with: printf %s \"<value>\" | node scripts/lint-safe-data.mjs --hash <rule>",
   "entries": [
     {
       "id": "card-test-visa-stripe",

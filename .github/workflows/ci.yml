@@ -24,3 +24,21 @@ jobs:
       - name: released snapshots are unchanged against the base branch
         if: github.event_name == 'pull_request'
         run: npm run snapshot:verify -- --base origin/${{ github.base_ref }}
+
+  # Independent second opinion for credentials; pii-evidence's own credential check is
+  # `npm run lint:credentials` (@redact-secret/core) inside `verify`.
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # The official gitleaks-action needs a paid GITLEAKS_LICENSE for organization repositories,
+      # so run the same upstream (MIT) release binary directly, pinned by version and checksum.
+      - name: install gitleaks 8.30.1
+        run: |
+          curl -sSfL -o gitleaks.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gitleaks.tgz" | sha256sum -c -
+          tar -xzf gitleaks.tgz gitleaks
+      - name: gitleaks (full history, matched values redacted)
+        run: ./gitleaks git --redact --verbose --no-banner .

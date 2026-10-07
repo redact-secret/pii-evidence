@@ -7,7 +7,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { hashValue, scanText, validateAllowlist } from '../scripts/lint-safe-data.mjs';
+import { RULES, hashValue, scanText, validateAllowlist } from '../scripts/lint-safe-data.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = join(ROOT, 'scripts', 'lint-safe-data.mjs');
@@ -77,24 +77,13 @@ test('iban: checksum-valid flagged, allowlist applies, broken checksum ignored',
   assert.deepEqual(rules(`acct ${iban}`, { allowlist: [entry] }), []);
 });
 
-test('private key header flagged and never allowlistable', () => {
+test('credential and private-key rules are not part of the privacy-data lint', () => {
+  assert.deepEqual(RULES, ['email', 'phone', 'card', 'ssn', 'iban']);
   const header = `-----BEGIN ${'RSA'} ${'PRIVATE'} KEY-----`;
-  assert.deepEqual(rules(header), ['private-key']);
+  assert.deepEqual(rules(header), []);
+  assert.deepEqual(rules(`k=${'AKIA'}${'ABCDEFGHIJKLMNOP'}`), []);
   const { errors } = validateAllowlist({ entries: [{ id: 'x', rule: 'private-key', sha256: 'a'.repeat(64), reason: 'r', source: 's', observedAt: '2026-01-01' }] });
-  assert.ok(errors.length > 0);
-});
-
-test('credential shapes and high-entropy tokens', () => {
-  assert.deepEqual(rules(`k=${'AKIA'}${'ABCDEFGHIJKLMNOP'}`), ['credential']);
-  // deterministic pseudo-random base62 token
-  let x = 12345;
-  const alphabet = ['abcdefghijklm', 'nopqrstuvwxyz', 'ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ', '0123456789'].join('');
-  let tok = '';
-  for (let i = 0; i < 40; i++) { x = (x * 1103515245 + 12345) % 2147483648; tok += alphabet[(x >> 8) % 62]; }
-  tok = `Aa1${tok}`;
-  assert.ok(rules(`value ${tok}`).includes('high-entropy'));
-  assert.deepEqual(rules(`digest ${'ab12cd34'.repeat(8)}`), [], 'hex digests are not secrets');
-  assert.deepEqual(rules('a-long-kebab-case-identifier-with-many-words-in-it'), []);
+  assert.ok(errors.length > 0, 'removed rules cannot be allowlisted');
 });
 
 test('findings never carry the matched value', () => {

@@ -21,7 +21,9 @@ The primary risk of this repository is accidental publication of real PII/PHI. R
    screenshots, spreadsheet tabs, EXIF/metadata).
 5. Check that values were not obtained from breach dumps, customer or patient data, logs, form
    submissions, support cases or scanner output.
-6. Check for credentials or secrets in tooling and config.
+6. Check for credentials or secrets in tooling and config. Credential detection is
+   `npm run lint:credentials` (`@redact-secret/core`); the privacy-data lint
+   (`npm run lint:privacy-data`) checks PII/PHI shapes only. Gitleaks in CI is a second opinion.
 
 ## Report
 

@@ -28,7 +28,7 @@ The build refuses (exit 1, nothing written) unless all of these pass over the in
 2. `npm run validate` semantics: schema, references, ids, lineage;
 3. `lint-provenance --public-release` semantics: every included source is `public-safe`, no structural error;
 4. fixture projection run twice (second over reversed input) byte-identical, each fixture valid against its case and rule;
-5. `lint-safe-data` over the included evidence and the published bytes;
+5. the privacy-data lint (`lint-safe-data`; PII/PHI shapes only) over the included evidence and the published bytes;
 6. neutrality: no scanner, detector, support-state, threshold or score key in any record (schemas already forbid unknown properties; the build adds an explicit key scan);
 7. the assembled directory passes `snapshot:verify` standalone checks and the tree validator as its own corpus.
 
