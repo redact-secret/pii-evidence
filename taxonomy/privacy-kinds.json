@@ -182,6 +182,7 @@
         "Which public-authority or provider-documented sources establish the health-domain role and the phi domain for this identifier?",
         "Which field labels are documented, and does the structured value have any bounded format at all?",
         "Are non-US profiles needed as separate ids?",
+        "Patient internal/external identifiers (HL7 PI, PT), account numbers and encounter or visit numbers are distinct typed roles; docs/research/clinical-record-identifiers.md recommends deferring separate kinds and records collision and ambiguous cases against this kind.",
         "Sources read state no value format (uniqueness is local to a set of medical records), so the identifier is recognized by label or type code. The label vocabulary is project-authored until a source lists labels. Holder-dependent applicability of the phi domain is not settled."
       ]
     },
