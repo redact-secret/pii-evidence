@@ -19,6 +19,9 @@ None of the schemas holds scanner behavior, detector or support state, threshold
 | `claim.schema.json` | `claim` | a source-backed statement; observed fact apart from project inference |
 | `case.schema.json` | `case` | the authored reasoning unit with a semantic expectation |
 | `fixture-projection.schema.json` | `fixture-projection` | a deterministic projection of one case, with lineage |
+| `fixture-rule.schema.json` | `fixture-rule` | a documented projection rule (carrier, template, transform, scope, expectation mode, `mustNotChange`) |
+| `fixture-skip.schema.json` | `fixture-skip` | one line of the skip report (generated) |
+| `materialization-manifest.schema.json` | `materialization-manifest` | digests and counts of one projector run (generated) |
 | `review-event.schema.json` | `review-event` | one review decision about one record |
 | `snapshot-manifest.schema.json` | `snapshot-manifest` | binds an immutable snapshot (ARCHITECTURE.md section 10) |
 
@@ -36,7 +39,9 @@ A case has an `id`, `title`, `rationale`, its own `role` (positive, negative, am
 
 ### Fixture projection
 
-The id is `<case id>/<rule id>`. It does not change when the fixture is regenerated; `generator`, `sha256`, `byteLength` and `content` may. When `content` is present the validator checks `sha256`, `byteLength` and every span. `population` is always `public`.
+The id is `<case id>/<rule id>`. It does not change when the fixture is regenerated; `generator`, `sha256`, `byteLength` and `content` may. When `content` is present the validator checks `sha256`, `byteLength` and every span. `population` is always `public`. Additive optional fields (always written by the projector): `ruleVersion`, `carrier`, `expectation`, `lineage`, `externalRefs`; when the rule resolves, the validator compares them with the Case and rule. Rules, projection, the skip report and composition are specified in `fixture-projection.md`.
+
+A case also accepts optional `externalRefs` (pinned `repository`, `snapshot`, `entity`; no copied content) and `population` (`public`), both additive to schema version 1.
 
 ## Identity
 
@@ -50,7 +55,7 @@ Ids must not embed issue or PR numbers, release or milestone names, scanner or d
 
 Each `snapshots/<id>/` directory is its own corpus: ids are unique inside it but may repeat the working tree's ids (a snapshot copies them), and references resolve inside it plus the working tree's taxonomy.
 
-Cross-references checked: case to kind, jurisdiction, contexts, sources, claims, related cases and review events; claim to source (and optional kind, jurisdiction); fixture to case; review-event subject to any record; kind to jurisdictions, base kind, context claims and claim ids; context to claim ids.
+Cross-references checked: case to kind, jurisdiction, contexts, sources, claims, related cases and review events; claim to source (and optional kind, jurisdiction); fixture to case, rule, source and claim lineage; rule to applicable kinds and justifying cases; skip to case and rule; review-event subject to any record; kind to jurisdictions, base kind, context claims and claim ids; context to claim ids.
 
 `schemas/v1/examples/valid/` and `invalid/` hold synthetic examples used by the tests. They are not evidence and are not scanned by `validate`. Values are reserved or documented-invalid only (`example.com`, no real data).
 

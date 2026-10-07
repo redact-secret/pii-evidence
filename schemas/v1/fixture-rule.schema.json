@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/fixture-rule.schema.json",
+  "title": "FixtureRule (v1)",
+  "description": "A documented, deterministic rule that projects authored Cases into fixture bytes. A rule never decides an expectation: a carrier rule copies the Case expectation; a twin or mutation rule may only assign the fixed, weakest outcome (identity not-established, sensitivity context-dependent) and the resulting fixture is flagged derivedFromRule. Semantic consistency (mode versus mustNotChange, layout versus template) is checked by scripts/lib/fixture-checks.mjs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind", "schemaVersion", "id", "title", "description", "ruleVersion", "population", "transformation", "carrier",
+    "template", "appliesTo", "expectation", "ordering", "mustNotChange", "review"
+  ],
+  "properties": {
+    "kind": { "const": "fixture-rule" },
+    "schemaVersion": { "const": "1" },
+    "id": { "description": "Rule id. Carrier rules: <layout>/<variant>. Twin and mutation rules: twin/<slug> or mutation/<slug>. Fixture ids are <case id>/<rule id>.", "$ref": "defs.schema.json#/$defs/id" },
+    "title": { "$ref": "defs.schema.json#/$defs/text" },
+    "description": { "description": "What the rule does, what it assumes, and why the assumption holds. Project inference, not independent validation.", "$ref": "defs.schema.json#/$defs/text" },
+    "ruleVersion": { "description": "Bumped whenever the rule changes the bytes or the outcome it produces.", "$ref": "defs.schema.json#/$defs/semver" },
+    "population": { "$ref": "defs.schema.json#/$defs/population" },
+    "transformation": { "description": "carrier: wrap the Case text unchanged. twin / mutation: change exactly one property of the value, then wrap.", "enum": ["carrier", "twin", "mutation"] },
+    "carrier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "variant"],
+      "properties": {
+        "layout": { "$ref": "#/$defs/layout" },
+        "variant": { "description": "Variant id within the layout.", "$ref": "defs.schema.json#/$defs/id" }
+      }
+    },
+    "template": {
+      "description": "Closed set of carrier templates implemented by the projector. head + escape(text) + tail, with spans computed from the final bytes.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["line", "json-object", "logfmt-line", "query-string", "header-line", "ini-entry", "prefixed-line"] },
+        "field": { "description": "Key, header or field name.", "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,31}$" },
+        "prefix": { "description": "Literal text placed before the Case text (prefixed-line). Must not contain control characters or digits.", "type": "string", "pattern": "^[^\\u0000-\\u001f\\u007f0-9]{1,32}$" }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "enum": ["json-object", "logfmt-line", "query-string", "header-line", "ini-entry"] } }, "required": ["type"] }, "then": { "required": ["field"], "properties": { "field": true } } },
+        { "if": { "properties": { "type": { "const": "prefixed-line" } }, "required": ["type"] }, "then": { "required": ["prefix"], "properties": { "prefix": true } } }
+      ]
+    },
+    "transform": {
+      "description": "One-property change applied to the value span for twin and mutation rules, with explicit deterministic parameters. Omitted for carrier rules.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["separator-swap", "case-change", "zero-width-insertion"] },
+        "from": { "description": "separator-swap: single ASCII punctuation character to replace.", "type": "string", "pattern": "^[-. /]$" },
+        "to": { "description": "separator-swap: replacement ASCII punctuation character.", "type": "string", "pattern": "^[-. /]$" },
+        "mode": { "description": "case-change: ASCII letters only, no locale.", "enum": ["upper", "lower"] },
+        "codepoint": { "description": "zero-width-insertion: the inserted code point.", "enum": ["U+200B", "U+200C", "U+200D", "U+2060"] },
+        "afterChars": { "description": "zero-width-insertion: insert after this many code points of the value.", "type": "integer", "minimum": 1, "maximum": 64 }
+      },
+      "allOf": [
+        { "if": { "properties": { "kind": { "const": "separator-swap" } }, "required": ["kind"] }, "then": { "required": ["from", "to"], "properties": { "from": true, "to": true } } },
+        { "if": { "properties": { "kind": { "const": "case-change" } }, "required": ["kind"] }, "then": { "required": ["mode"], "properties": { "mode": true } } },
+        { "if": { "properties": { "kind": { "const": "zero-width-insertion" } }, "required": ["kind"] }, "then": { "required": ["codepoint", "afterChars"], "properties": { "codepoint": true, "afterChars": true } } }
+      ]
+    },
+    "appliesTo": {
+      "description": "Which authored Cases are in scope. Cases in scope that cannot be projected are listed in the skip report with a reason; cases out of scope are not.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roles"],
+      "properties": {
+        "roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["positive", "negative", "ambiguous", "twin", "mutation", "collision", "context"] } },
+        "kinds": { "description": "PrivacyKind ids. Omitted means every kind.", "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/$defs/id" }, "uniqueItems": true },
+        "identities": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "defs.schema.json#/$defs/identityState" } },
+        "requiresSpan": { "description": "True when the rule needs the Case expectation.span to delimit the value.", "type": "boolean" },
+        "contexts": { "description": "none: only Cases with no contexts. any (default): no restriction.", "enum": ["any", "none"] }
+      }
+    },
+    "expectation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "basis"],
+      "properties": {
+        "mode": { "description": "copy: identity, sensitivity and domains are copied from the Case. derived: identity and sensitivity are the fixed values below, domains are copied; the fixture is flagged derivedFromRule.", "enum": ["copy", "derived"] },
+        "identity": { "description": "derived only. Only not-established is allowed: a rule cannot assert validity or invalidity.", "const": "not-established" },
+        "sensitivity": { "description": "derived only.", "const": "context-dependent" },
+        "basis": { "description": "Why this outcome follows from the rule and authored evidence alone (for copy: why the carrier does not change the Case outcome; for derived: why no stronger claim is available).", "$ref": "defs.schema.json#/$defs/text" }
+      },
+      "allOf": [
+        { "if": { "properties": { "mode": { "const": "derived" } }, "required": ["mode"] }, "then": { "required": ["identity", "sensitivity"], "properties": { "identity": true, "sensitivity": true } } },
+        { "if": { "properties": { "mode": { "const": "copy" } }, "required": ["mode"] }, "then": { "properties": { "identity": false, "sensitivity": false } } }
+      ]
+    },
+    "ordering": { "description": "Unique non-negative key. Fixtures are ordered by case id, then ordering, then rule id.", "type": "integer", "minimum": 0 },
+    "mustNotChange": {
+      "description": "What the projection must leave untouched: privacyKind, jurisdiction, contexts, domains always; identity, sensitivity and valueBytes (the bytes at the span) for copy rules. Verified on every fixture by the projector and the validator.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["privacyKind", "jurisdiction", "contexts", "domains", "identity", "sensitivity", "valueBytes", "surroundingText"] }
+    },
+    "justifiedBy": { "description": "Authored Cases that show the variant keeps the outcome (for example the multibyte-label email case).", "$ref": "defs.schema.json#/$defs/idList" },
+    "review": { "$ref": "defs.schema.json#/$defs/review" }
+  },
+  "$defs": {
+    "layout": { "enum": ["plain-text", "json", "logfmt", "form-query", "header-config", "unicode-context"] }
+  }
+}

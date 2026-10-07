@@ -1,0 +1,46 @@
+{
+  "kind": "fixture-rule",
+  "schemaVersion": "1",
+  "id": "plain-text/line",
+  "title": "Plain text line",
+  "description": "The Case text followed by one LF. The baseline carrier; every authored Case with input text is in scope, whatever its role or identity state, because the expectation is copied as authored.",
+  "ruleVersion": "1.0.0",
+  "population": "public",
+  "transformation": "carrier",
+  "carrier": {
+    "layout": "plain-text",
+    "variant": "line"
+  },
+  "template": {
+    "type": "line"
+  },
+  "appliesTo": {
+    "roles": [
+      "positive",
+      "negative",
+      "ambiguous",
+      "twin",
+      "mutation",
+      "collision",
+      "context"
+    ]
+  },
+  "expectation": {
+    "mode": "copy",
+    "basis": "Plain text line is representational only: the authored Case text, label and value bytes are carried through unchanged, so the semantic outcome stated by the Case is expected to hold. This equivalence is project inference, unreviewed; it is the rule author's assumption and is not scanner-corroborated."
+  },
+  "ordering": 10,
+  "mustNotChange": [
+    "privacyKind",
+    "jurisdiction",
+    "contexts",
+    "domains",
+    "identity",
+    "sensitivity",
+    "valueBytes"
+  ],
+  "review": {
+    "state": "unreviewed",
+    "events": []
+  }
+}

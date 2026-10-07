@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/fixture-skip.schema.json",
+  "title": "FixtureSkip (v1)",
+  "description": "One line of the machine-readable skip report: a Case that is in a rule's scope but was not projected, with the reason. Skips are never silent. The id is <case id>/<rule id>, the id the fixture would have had.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "id", "case", "rule", "reason", "detail", "generator", "population"],
+  "properties": {
+    "kind": { "const": "fixture-skip" },
+    "schemaVersion": { "const": "1" },
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "case": { "$ref": "defs.schema.json#/$defs/id" },
+    "rule": { "$ref": "defs.schema.json#/$defs/id" },
+    "reason": {
+      "enum": ["no-input", "no-span", "case-rejected", "carrier-would-alter-value", "carrier-unrepresentable", "transform-no-effect"]
+    },
+    "detail": { "description": "Human-readable explanation. Never contains the value.", "$ref": "defs.schema.json#/$defs/text" },
+    "generator": { "$ref": "defs.schema.json#/$defs/generator" },
+    "population": { "$ref": "defs.schema.json#/$defs/population" }
+  }
+}

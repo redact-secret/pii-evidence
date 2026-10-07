@@ -21,19 +21,28 @@ Fixtures are derived artifacts, never canonical evidence. Read `ARCHITECTURE.md`
 - Stable fixture IDs derived from the Case id and rule id, not from scanner, release or issue.
 - Variants (JSON, logfmt, form, Unicode/context) must keep the semantic outcome stated by the
   Case; if a variant changes the outcome, it is a different Case.
+- Rules live in `fixtures/rules/` (kind `fixture-rule`, format in
+  `docs/methodology/fixture-projection.md`). Carrier rules copy the Case expectation. Twin and
+  mutation rules may only assign identity `not-established` / sensitivity `context-dependent`,
+  flagged `derivedFromRule`; if you want a stronger outcome, author a Case.
+- Every rule records `mustNotChange`. Never copy PERSON content: reference it with
+  `externalRefs` (repository, pinned snapshot, entity id). Populations are public only.
 
 ## Steps
 
 1. Read the Case and its expectation; stop if it is unresolved (no projection for a
    `not-established` outcome unless the Case says what is asserted).
 2. Write or edit the rule under `fixtures/rules/` with its inputs, carrier, and what it must not change.
-3. Materialize with the repository's script if it exists. If it does not, report that and
-   describe the intended output instead of hand-producing bytes.
-4. Run the materialization twice and compare digests; run the check that generated output matches
-   the committed or snapshot copy, if one exists.
+3. Materialize with `npm run fixtures:materialize` (writes ignored, uncommitted `fixtures/materialized/`:
+   `fixtures.jsonl`, `skipped.jsonl`, `manifest.json`). Never hand-produce or hand-edit bytes.
+4. Run `npm run fixtures:materialize:check`: it projects twice (second run over reversed input),
+   requires byte-identical output, re-validates every fixture against its Case, rule and lineage,
+   and compares any existing on-disk output. Review `skipped.jsonl`; a new skip reason or a
+   rule that skips many cases needs an explanation.
 5. Confirm no value in the output is real ([synthetic safety](../_shared/synthetic-safety.md)).
 
 ## Output
 
-A PR-ready change set (rule, plus materialized output only if the layout commits it), and notes
-stating the rule, the determinism check actually run, and any check that does not exist yet.
+A PR-ready change set (rule files and tests; materialized output is never committed), and notes
+stating the rule, the `fixtures:materialize:check` result, the skip report delta, and any check
+that does not exist yet.

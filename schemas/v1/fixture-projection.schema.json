@@ -17,6 +17,41 @@
     "byteLength": { "type": "integer", "minimum": 1 },
     "content": { "description": "Fixture text. Optional in the record; when present the validator checks sha256 and byteLength.", "type": "string", "minLength": 1, "maxLength": 20000 },
     "spans": { "description": "Expected UTF-8 byte spans in the fixture bytes. Empty for fixtures with no expected span.", "type": "array", "items": { "$ref": "defs.schema.json#/$defs/byteSpan" } },
-    "population": { "description": "Evidence population. This repository is public only.", "const": "public" }
+    "population": { "description": "Evidence population. This repository is public only.", "const": "public" },
+    "ruleVersion": { "description": "Version of the rule that produced this fixture. Must equal the rule's ruleVersion.", "$ref": "defs.schema.json#/$defs/semver" },
+    "carrier": {
+      "description": "Carrier layout and variant, copied from the rule.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["layout", "variant"],
+      "properties": {
+        "layout": { "$ref": "fixture-rule.schema.json#/$defs/layout" },
+        "variant": { "$ref": "defs.schema.json#/$defs/id" }
+      }
+    },
+    "expectation": {
+      "description": "Semantic expectation of the fixture. Copied from the authored Case, or, when derivedFromRule is true, the fixed outcome documented in the rule. The projector invents nothing; the validator re-derives and compares. The span is in the top-level spans.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "sensitivity", "domains", "derivedFromRule"],
+      "properties": {
+        "identity": { "$ref": "defs.schema.json#/$defs/identityState" },
+        "sensitivity": { "$ref": "defs.schema.json#/$defs/sensitivityState" },
+        "domains": { "$ref": "defs.schema.json#/$defs/domains" },
+        "derivedFromRule": { "description": "True when identity and sensitivity come from the rule (twin or mutation), not from the Case.", "type": "boolean" }
+      }
+    },
+    "lineage": {
+      "description": "Source lineage copied from the Case provenance.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceClass", "sources", "claims"],
+      "properties": {
+        "evidenceClass": { "$ref": "defs.schema.json#/$defs/evidenceClass" },
+        "sources": { "$ref": "defs.schema.json#/$defs/idList" },
+        "claims": { "$ref": "defs.schema.json#/$defs/idList" }
+      }
+    },
+    "externalRefs": { "description": "Passed through untouched from the Case.", "$ref": "defs.schema.json#/$defs/externalRefs" }
   }
 }
