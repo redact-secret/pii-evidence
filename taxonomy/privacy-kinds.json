@@ -161,7 +161,29 @@
       "openQuestions": [
         "Which national and tax identifier families are worth modeling, and in which jurisdictions?",
         "This entry only reserves the concept so that jurisdiction-dependent classification is representable; it is to be split into per-jurisdiction kinds, each with its own id, once researched.",
-        "Whether a given identifier is also phi depends on jurisdiction and context and is not established."
+        "Whether a given identifier is also phi depends on jurisdiction and context and is not established.",
+        "docs/research/national-and-tax-identifiers.md records which families were researched (UK NINO added; others deferred or rejected)."
+      ]
+    },
+    {
+      "id": "uk-nino/uk/structured",
+      "label": "United Kingdom National Insurance number",
+      "domains": ["pii"],
+      "jurisdictions": ["uk"],
+      "classification": { "state": "unresolved", "evidenceClass": "public-authority" },
+      "formatClaims": ["uk-nino/format-and-prefix-rules", "uk-nino/administrative-and-temporary-numbers"],
+      "contextClaims": [
+        {
+          "context": "field-label/global/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Whether a NINO becomes phi in a medical context is not sourced; no medical context claim is made.",
+        "The label vocabulary is project-authored.",
+        "The only safe values are the documented HMRC example and never-issued prefixes; no issuable value can be published.",
+        "docs/research/national-and-tax-identifiers.md records the add/defer/reject recommendations for other jurisdictions."
       ]
     },
     {
