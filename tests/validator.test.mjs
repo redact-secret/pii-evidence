@@ -5,7 +5,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, cpSync, readFileSync, readdirSyn
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { REPO_ROOT, fixtureId, validateRecords, validateTree } from "../scripts/lib/validator.mjs";
-import { clone, exampleFiles, readExample, taxonomyRecords, validCorpus, wrap } from "./helpers.mjs";
+import { citedEvidenceRecords, clone, exampleFiles, readExample, taxonomyRecords, validCorpus, wrap } from "./helpers.mjs";
 
 const errorsOf = (extra, base = validCorpus()) => validateRecords([...base, ...extra]).errors;
 const has = (errors, text) => errors.some((e) => e.includes(text));
@@ -16,7 +16,7 @@ test("the repository tree validates", () => {
 });
 
 test("taxonomy files validate on their own", () => {
-  assert.deepEqual(validateRecords(taxonomyRecords()).errors, []);
+  assert.deepEqual(validateRecords([...taxonomyRecords(), ...citedEvidenceRecords()]).errors, []);
 });
 
 test("valid examples validate together with the taxonomy (positive)", () => {
