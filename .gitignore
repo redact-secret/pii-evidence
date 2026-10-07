@@ -1,0 +1,25 @@
+node_modules/
+.venv/
+results-output/
+*.log
+
+dist/
+public/results/*.json
+public/results/.*.json
+
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+
+# The redesigned site (web/, #547): build output and installs.
+/web/node_modules/
+/web/.next/
+/web/out/
+/web/storybook-static/
+/web/next-env.d.ts
+/web/*.tsbuildinfo
+
+.claude/worktrees
+
+# Generated research coverage report (npm run coverage:gaps): derived from records/, never committed (#88).
+/docs/research/generated/
+.playwright-mcp/
