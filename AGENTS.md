@@ -67,11 +67,14 @@ Run `npm ci` (once) and `npm run check`. `check` runs `npm run validate`
 `npm run lint:provenance` (see `docs/governance/`),
 `npm run fixtures:materialize:check` (deterministic projection: two runs
 byte-identical, every fixture matches its authored case and rule; see
-`docs/methodology/fixture-projection.md`) and then `npm test`; CI (`verify`) runs the
+`docs/methodology/fixture-projection.md`), `npm run snapshot:verify` (every snapshot
+directory and the released registry; see `docs/governance/snapshot-policy.md`) and then `npm test`; CI (`verify`) runs the
 same. See `docs/methodology/schemas.md`. `npm run fixtures:materialize` writes the
-untracked, ignored `fixtures/materialized/`, which is never committed. Snapshot and formatting
-commands do not exist yet; report that fact rather than inventing commands, and add
-new steps to `npm run check` when they land. Verify that new fixtures trace to an
+untracked, ignored `fixtures/materialized/`, which is never committed. `npm run snapshot:build -- --date YYYY-MM-DD` assembles
+`snapshots/<id>/`; released snapshots (`snapshots/released.json`) are immutable and CI
+also runs `npm run snapshot:verify -- --base origin/main`. The consumer contract is
+`docs/methodology/consumer-contract.md`. A formatting command does not exist yet; report
+that fact rather than inventing one, and add new steps to `npm run check` when they land. Verify that new fixtures trace to an
 authored case, reviewed contract, or documented generation rule and that no
 scanner-specific support status entered the canonical model.
 
@@ -83,8 +86,8 @@ Shared reference pages in [`.agents/skills/_shared/`](.agents/skills/_shared/REA
 are not skills; they summarize the rules, and `README.md`, `ARCHITECTURE.md`,
 `CONVENTIONS.md` and `SECURITY.md` win when they differ.
 
-The repository is in its initial architecture phase, so snapshot scripts may not exist yet
-(schemas, validators and the fixture materializer do exist). Skills must report a
+The repository is in its initial architecture phase (schemas, validators, the fixture
+materializer and the snapshot builder exist; a formatter does not). Skills must report a
 missing check as `not assessable` or "does not exist", never invent a command or
 a pass.
 

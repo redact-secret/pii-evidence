@@ -26,7 +26,7 @@ Status: draft, unreviewed agent work (observed 2026-10-07). Nothing here is inde
 **Needs human**
 
 - Evidence-class upgrades for kind classifications (left `research-needed` on purpose; agents do not upgrade classes).
-- Redistribution terms for the HL7 terminology page and the CMS PDF (sources are `unresolved` until read; they are cited by code or heading only).
+- Redistribution terms for the HL7 terminology page and the CMS PDF were read when the first snapshot was assembled (HL7 THO is CC0; CMS.gov states it is a public domain web site) and recorded; both sources are now `public-safe` (see `first-snapshot-coverage.md`). They are still cited by code or heading only.
 - Whether the MBI deserves its own kind (it has a source-backed format, unlike general member ids).
 
 ## Coverage
@@ -71,4 +71,4 @@ The snapshot id above is the identity format used by `ner-evidence` at the time 
 
 ## Checks run
 
-`npm ci && npm run check` (schema and reference validation, safe-data lint, provenance lint, tests). Provenance lint reports two sources as unresolved (redistribution unknown); that is expected and not hidden. No scanner was run or consulted.
+`npm ci && npm run check` (schema and reference validation, safe-data lint, provenance lint, tests). At the time of this seed the provenance lint reported two PHI sources as unresolved (redistribution unknown); that was expected and not hidden, and they were resolved later by reading their terms. No scanner was run or consulted.

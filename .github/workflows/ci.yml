@@ -13,9 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run check
+      - name: released snapshots are unchanged against the base branch
+        if: github.event_name == 'pull_request'
+        run: npm run snapshot:verify -- --base origin/${{ github.base_ref }}

@@ -174,7 +174,7 @@ Downstream consumers pin immutable snapshots. A snapshot should include:
 - provenance/privacy validation result;
 - exact consumer contract version.
 
-Released snapshots are immutable. Corrections create a new snapshot.
+Released snapshots are immutable. Corrections create a new snapshot. The first public snapshot, its consumer contract and its correction policy: `docs/methodology/consumer-contract.md`, `docs/governance/snapshot-policy.md`, `docs/research/first-snapshot-coverage.md`.
 
 ## Relationship to `pii-eval`
 

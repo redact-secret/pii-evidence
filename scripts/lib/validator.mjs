@@ -29,6 +29,7 @@ export const KIND_SCHEMAS = {
   "materialization-manifest": "materialization-manifest.schema.json",
   "review-event": "review-event.schema.json",
   "snapshot-manifest": "snapshot-manifest.schema.json",
+  "snapshot-registry": "snapshot-registry.schema.json",
 };
 
 export const SCAN_DIRS = ["taxonomy", "evidence", "fixtures", "snapshots"];
@@ -103,15 +104,31 @@ export function readRecordFile(absPath, label, corpus = "tree") {
   return { records, errors };
 }
 
-function corpusOf(rel) {
-  const m = /^snapshots\/([^/]+)\//.exec(rel);
-  return m ? `snapshot:${m[1]}` : "tree";
+/**
+ * A snapshot directory is any directory under snapshots/ that holds a manifest.json; its id is the
+ * path below snapshots/ (ids contain slashes). Everything below it is that snapshot's own corpus.
+ */
+function corpusOf(rel, snapshotDirs) {
+  for (const d of snapshotDirs) if (rel.startsWith(`${d}/`)) return `snapshot:${d.slice("snapshots/".length)}`;
+  return "tree";
 }
 
 /** Discover records under taxonomy/, evidence/, fixtures/, snapshots/ (absent dirs are fine). */
 export function loadTree(root) {
   const records = [];
   const errors = [];
+  const snapshotDirs = [];
+  const findSnapshotDirs = (dir) => {
+    for (const ent of readdirSync(dir, { withFileTypes: true })) {
+      if (ent.isSymbolicLink()) continue;
+      const abs = path.join(dir, ent.name);
+      if (ent.isDirectory()) findSnapshotDirs(abs);
+      else if (ent.name === "manifest.json") snapshotDirs.push(path.relative(root, dir).split(path.sep).join("/"));
+    }
+  };
+  const snapRoot = path.join(root, "snapshots");
+  if (existsSync(snapRoot) && !lstatSync(snapRoot).isSymbolicLink()) findSnapshotDirs(snapRoot);
+  snapshotDirs.sort((a, b) => b.length - a.length);
   const walk = (dir) => {
     for (const ent of readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
       const abs = path.join(dir, ent.name);
@@ -121,7 +138,7 @@ export function loadTree(root) {
       } else if (ent.isDirectory()) {
         walk(abs);
       } else if (ent.isFile() && /\.jsonl?$/.test(ent.name)) {
-        const r = readRecordFile(abs, rel, corpusOf(rel));
+        const r = readRecordFile(abs, rel, corpusOf(rel, snapshotDirs));
         records.push(...r.records);
         errors.push(...r.errors);
       }

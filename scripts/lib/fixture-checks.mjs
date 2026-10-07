@@ -20,7 +20,9 @@ export const PERSON_CONTENT_KEYS = ["person", "persons", "personName", "personTe
 
 const FLOATING_SNAPSHOT = new Set(["latest", "main", "master", "head", "current", "trunk", "dev", "stable", "nightly"]);
 
-const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+// Structural equality that ignores object key order (snapshots store key-sorted canonical JSON).
+const stable = (v) => (Array.isArray(v) ? v.map(stable) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, stable(v[k])])) : v);
+const same = (a, b) => JSON.stringify(stable(a)) === JSON.stringify(stable(b));
 
 /** Rule-internal consistency (the JSON Schema handles shape). Returns error strings. */
 export function ruleConsistencyErrors(rule) {

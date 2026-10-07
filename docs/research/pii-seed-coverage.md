@@ -13,7 +13,7 @@ Records live in `evidence/sources/<kind>.jsonl`, `evidence/claims/<kind>.jsonl` 
 
 ## Source readiness
 
-Sources that are not `public-safe` (see `npm run lint:provenance`): `iban/swift-registry` (page returned HTTP 403, nothing read, class `research-needed`), `payment-card/stripe-testing`, `phone/itu-e164` and `us-ssn/ssa-randomization` (redistribution terms not read, recorded `unknown`). The SSA statements were read only as search-result excerpts because direct fetches returned HTTP 403, so those claims are `partial`. The E.164 recommendation text was not read, so its maximum length claim is `research-needed` and the cases depending on it are `not-established`.
+Sources that are not `public-safe` (see `npm run lint:provenance`): `iban/swift-registry` (page returned HTTP 403, nothing read, class `research-needed`), `payment-card/stripe-testing`, and `phone/itu-e164` (redistribution terms not read or not established, recorded `unknown`). `us-ssn/ssa-randomization` was later made `public-safe` when the SSA public-domain statement was read (see `first-snapshot-coverage.md`); the SSA statements themselves were read only as search-result excerpts because direct fetches returned HTTP 403, so those claims are `partial`. The E.164 recommendation text was not read, so its maximum length claim is `research-needed` and the cases depending on it are `not-established`.
 
 ## Coverage per kind and axis
 
