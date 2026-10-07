@@ -8,8 +8,10 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs",
+    "lint:safe-data": "node scripts/lint-safe-data.mjs",
+    "lint:provenance": "node scripts/lint-provenance.mjs",
     "test": "node --test \"tests/**/*.test.mjs\"",
-    "check": "npm run validate && npm test"
+    "check": "npm run validate && npm run lint:safe-data && npm run lint:provenance && npm test"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

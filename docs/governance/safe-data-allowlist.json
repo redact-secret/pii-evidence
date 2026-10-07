@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "description": "Explicit exceptions for scripts/lint-safe-data.mjs. Each entry identifies one value by the SHA-256 of rule plus normalized value (the value is not repeated here) and needs a reason, a source and an observedAt date. Only reserved or documented public test values belong here. Policy: docs/governance/safe-data-policy.md. Compute a hash with: printf %s \"<value>\" | node scripts/lint-safe-data.mjs --hash <rule>",
+  "entries": [
+    {
+      "id": "card-test-visa-stripe",
+      "rule": "card",
+      "sha256": "fe5e1c09fb21177be74947cc893f605b0cf6ade910d360a41ca6a3fc1c0f348a",
+      "reason": "Visa test card number documented by Stripe",
+      "source": "https://docs.stripe.com/testing",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "card-test-visa-basic",
+      "rule": "card",
+      "sha256": "f9d75e893627e6b579da4699bbe11375689bc8fec6317966c636b639ae9e9729",
+      "reason": "Visa test card number documented in payment processor sandbox guides",
+      "source": "https://docs.stripe.com/testing",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "card-test-mastercard-stripe",
+      "rule": "card",
+      "sha256": "94e4641bcdab8b2b639ba9f2d9a5700dd1f82ea65202a83959088ac6dd69319d",
+      "reason": "Mastercard test card number documented by Stripe",
+      "source": "https://docs.stripe.com/testing",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "card-test-amex-stripe",
+      "rule": "card",
+      "sha256": "5336b07af74956f69a17af82f57cc1cd83bb15208476c6438fde4af10bf726c6",
+      "reason": "American Express test card number documented by Stripe",
+      "source": "https://docs.stripe.com/testing",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "card-test-discover-stripe",
+      "rule": "card",
+      "sha256": "387dc86f1804d4ed15a878f70f9af24db449c3a4897f51eff96ec23d9de56f6b",
+      "reason": "Discover test card number documented by Stripe",
+      "source": "https://docs.stripe.com/testing",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "iban-example-gb",
+      "rule": "iban",
+      "sha256": "fa77bde962818e917301bab0d08bc3a944341228073bd293e0d238325750e1bb",
+      "reason": "Published IBAN documentation example for the United Kingdom",
+      "source": "https://www.swift.com/standards/data-standards/iban-international-bank-account-number",
+      "observedAt": "2026-10-07"
+    },
+    {
+      "id": "iban-example-de",
+      "rule": "iban",
+      "sha256": "de53d6ca13f472d83a12f7be56d1e127c376e47532e30f019db16e7d9a025a7d",
+      "reason": "Published IBAN documentation example for Germany",
+      "source": "https://www.swift.com/standards/data-standards/iban-international-bank-account-number",
+      "observedAt": "2026-10-07"
+    }
+  ]
+}
