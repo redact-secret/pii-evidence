@@ -68,9 +68,11 @@
       "applicability": "any structured kind whose contextClaims lists this context",
       "boundedBy": "a documented, inspectable signal such as a labeled field or a stated clinical setting; the signals are not defined yet",
       "evidenceClass": "research-needed",
+      "claims": ["phi-hhs-164-514-b-2-i/electronic-mail-and-telephone"],
       "openQuestions": [
         "Which bounded signals qualify (field labels, document type, adjacent clinical terms)?",
-        "Which jurisdictions' definitions of health information apply, and do they differ?"
+        "Which jurisdictions' definitions of health information apply, and do they differ?",
+        "The seed cases use an explicit patient-labeled field as the bounded signal; that signal is project-authored, not source-defined, so the class stays research-needed."
       ]
     },
     {
@@ -80,6 +82,7 @@
       "applicability": "kinds whose contextClaims lists this context",
       "boundedBy": "not defined yet",
       "evidenceClass": "research-needed",
+      "claims": ["phi-hhs-164-514-b-2-i/health-plan-beneficiary-numbers"],
       "openQuestions": [
         "Does insurance or claims context alone make an occurrence phi, or is it jurisdiction- and holder-dependent? Classification is not established."
       ]

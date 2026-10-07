@@ -21,9 +21,20 @@ export function taxonomyRecords() {
   return records.filter((r) => r.file.startsWith("taxonomy/"));
 }
 
-/** Taxonomy plus every valid example. */
+/**
+ * Claim, source and review-event records under evidence/ that the taxonomy cites by id.
+ * Cases are not included.
+ */
+export function citedEvidenceRecords() {
+  const { records, errors } = loadTree(REPO_ROOT);
+  if (errors.length) throw new Error(errors.join("\n"));
+  const cited = new Set(["claim", "source", "review-event"]);
+  return records.filter((r) => r.file.startsWith("evidence/") && cited.has(r.data.kind));
+}
+
+/** Taxonomy, the evidence it cites, and every valid example. */
 export function validCorpus() {
-  const out = [...taxonomyRecords()];
+  const out = [...taxonomyRecords(), ...citedEvidenceRecords()];
   for (const n of exampleFiles("valid")) {
     const { records } = readRecordFile(path.join(EXAMPLES, "valid", n), `valid/${n}`);
     out.push(...records);

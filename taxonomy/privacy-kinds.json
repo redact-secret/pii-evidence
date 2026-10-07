@@ -148,7 +148,7 @@
       "domains": ["pii", "phi"],
       "jurisdictions": ["us"],
       "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": ["phi-hl7-identifier-type-table/mr-definition", "phi-fhir-r4-patient/identifier-no-format"],
       "contextClaims": [
         {
           "context": "field-label/global/general",
@@ -159,7 +159,8 @@
       "openQuestions": [
         "Which public-authority or provider-documented sources establish the health-domain role and the phi domain for this identifier?",
         "Which field labels are documented, and does the structured value have any bounded format at all?",
-        "Are non-US profiles needed as separate ids?"
+        "Are non-US profiles needed as separate ids?",
+        "Sources read state no value format (uniqueness is local to a set of medical records), so the identifier is recognized by label or type code. The label vocabulary is project-authored until a source lists labels. Holder-dependent applicability of the phi domain is not settled."
       ]
     },
     {
@@ -168,7 +169,7 @@
       "domains": ["pii", "phi"],
       "jurisdictions": ["us"],
       "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": ["phi-hl7-identifier-type-table/mb-member-number-definition", "phi-fhir-r4-coverage/subscriber-id"],
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -183,7 +184,8 @@
       ],
       "openQuestions": [
         "Which sources document the identifier's role and field names?",
-        "Is the value structure bounded enough to describe, or is it only identifiable through its field label?"
+        "Is the value structure bounded enough to describe, or is it only identifiable through its field label?",
+        "The sources read state no member id format; formats are carrier-specific. The Medicare Beneficiary Identifier has a CMS-documented format (claim phi-cms-mbi/format-and-randomness) and is a candidate separate kind, not modeled here."
       ]
     },
     {
@@ -192,7 +194,7 @@
       "domains": ["pii", "phi"],
       "jurisdictions": ["us"],
       "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": ["phi-fhir-r4-claim/identifier-and-patient"],
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -202,6 +204,7 @@
       ],
       "openQuestions": [
         "Is a claim identifier on its own a person-linked identifier, or only when joined with other data? Classification is not established.",
+        "The FHIR Claim resource links a patient through a separate required element, not through the identifier; the source read states no value format.",
         "Domains listed are candidates pending that determination."
       ]
     },
@@ -211,7 +214,7 @@
       "domains": ["pii", "phi"],
       "jurisdictions": ["us"],
       "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "formatClaims": ["phi-fhir-r4-medicationrequest/identifier-and-subject"],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -221,6 +224,7 @@
       ],
       "openQuestions": [
         "Is a prescription or order number on its own person-linked, or only joined with other data? Classification is not established.",
+        "The FHIR MedicationRequest resource links a subject through a separate element, not through the identifier; no pharmacy-standard source was read, so no format is stated.",
         "Domains listed are candidates pending that determination."
       ]
     }
