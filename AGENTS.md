@@ -63,13 +63,16 @@ another long-lived branch is introduced, update this section first.
 
 Run `npm ci` (once) and `npm run check`. `check` runs `npm run validate`
 (schema, cross-reference, duplicate-id, id-lint and fixture lineage checks over
-`taxonomy/`, `evidence/`, `fixtures/`, `snapshots/`), `npm run lint:safe-data`,
+`taxonomy/`, `evidence/`, `fixtures/`, `snapshots/`), `npm run lint:privacy-data`
+(PII/PHI publication safety; `lint:safe-data` is an alias), `npm run lint:credentials`
+(credential publication safety via `@redact-secret/core`, no allowlist),
 `npm run lint:provenance` (see `docs/governance/`),
 `npm run fixtures:materialize:check` (deterministic projection: two runs
 byte-identical, every fixture matches its authored case and rule; see
 `docs/methodology/fixture-projection.md`), `npm run snapshot:verify` (every snapshot
 directory and the released registry; see `docs/governance/snapshot-policy.md`) and then `npm test`; CI (`verify`) runs the
-same. See `docs/methodology/schemas.md`. `npm run fixtures:materialize` writes the
+same, plus a gitleaks second-pass job as an independent second opinion.
+See `docs/methodology/schemas.md`. `npm run fixtures:materialize` writes the
 untracked, ignored `fixtures/materialized/`, which is never committed. `npm run snapshot:build -- --date YYYY-MM-DD` assembles
 `snapshots/<id>/`; released snapshots (`snapshots/released.json`) are immutable and CI
 also runs `npm run snapshot:verify -- --base origin/main`. The consumer contract is

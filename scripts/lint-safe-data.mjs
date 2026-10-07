@@ -1,5 +1,10 @@
 #!/usr/bin/env node
-// Safe-data lint: scans text files for real-looking PII/PHI/credential shapes.
+// Privacy-data lint (npm run lint:privacy-data, alias lint:safe-data): scans text files for
+// real-looking PII/PHI shapes (email, phone, card, SSN, IBAN) before they are published.
+//
+// Scope: privacy-data publication safety only. Credential publication safety is owned by
+// scripts/lint-credentials.mjs (backed by @redact-secret/core); gitleaks in CI is an independent
+// second opinion. This file deliberately carries no credential, private-key or entropy rules.
 //
 // Policy authority: docs/governance/safe-data-policy.md
 // Zero dependencies, Node >= 22, ESM.
@@ -20,13 +25,12 @@ import { existsSync, lstatSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-export const RULES = ['email', 'phone', 'card', 'ssn', 'iban', 'private-key', 'credential', 'high-entropy'];
-// private-key blocks can never be excused by an allowlist entry.
-export const ALLOWLISTABLE = RULES.filter((r) => r !== 'private-key');
+export const RULES = ['email', 'phone', 'card', 'ssn', 'iban'];
+export const ALLOWLISTABLE = RULES;
 
 const RESERVED_EMAIL_DOMAINS = ['example.com', 'example.org', 'example.net'];
 const RESERVED_EMAIL_TLDS = ['test', 'invalid', 'example'];
-const SKIP_FILES = new Set(['package-lock.json', 'pnpm-lock.yaml', 'yarn.lock']);
+export const SKIP_FILES = new Set(['package-lock.json', 'pnpm-lock.yaml', 'yarn.lock']);
 const SKIP_DIRS = new Set(['.git', 'node_modules', '.claude/worktrees']);
 const MAX_BYTES = 2 * 1024 * 1024;
 
@@ -76,17 +80,6 @@ function ibanMod97(iban) {
     rem = Number(`${rem}${v}`) % 97;
   }
   return rem === 1;
-}
-
-function entropy(s) {
-  const counts = new Map();
-  for (const ch of s) counts.set(ch, (counts.get(ch) ?? 0) + 1);
-  let h = 0;
-  for (const n of counts.values()) {
-    const p = n / s.length;
-    h -= p * Math.log2(p);
-  }
-  return h;
 }
 
 function* emailMatches(line) {
@@ -144,46 +137,12 @@ function* ibanMatches(line) {
   }
 }
 
-function* privateKeyMatches(line) {
-  const re = /-----BEGIN (?:[A-Z0-9]+ )*PRIVATE KEY(?: BLOCK)?-----/g;
-  for (const m of line.matchAll(re)) yield m[0];
-}
-
-const CREDENTIAL_SHAPES = [
-  /\b(?:AKIA|ASIA)[0-9A-Z]{16}\b/g,
-  /\bgh[pousr]_[A-Za-z0-9]{36,}\b/g,
-  /\bgithub_pat_[A-Za-z0-9_]{22,}\b/g,
-  /\bxox[abprs]-[A-Za-z0-9-]{10,}/g,
-  /\bAIza[0-9A-Za-z_-]{35}\b/g,
-  /\bsk-(?:ant-)?[A-Za-z0-9_-]{32,}/g,
-  /\b[sr]k_live_[0-9A-Za-z]{16,}\b/g,
-  /\beyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{5,}/g,
-];
-
-function* credentialMatches(line) {
-  for (const re of CREDENTIAL_SHAPES) for (const m of line.matchAll(re)) yield m[0];
-}
-
-function* highEntropyMatches(line) {
-  const re = /[A-Za-z0-9_+=-]{32,}/g;
-  for (const m of line.matchAll(re)) {
-    const t = m[0];
-    if (/^[0-9a-fA-F]+$/.test(t)) continue; // hex digests are not secrets
-    if (!/[a-z]/.test(t) || !/[A-Z]/.test(t) || !/\d/.test(t)) continue;
-    if (new Set(t).size < 16) continue;
-    if (entropy(t) >= 4.2) yield t;
-  }
-}
-
 const DETECTORS = {
   email: emailMatches,
   phone: phoneMatches,
   card: cardMatches,
   ssn: ssnMatches,
   iban: ibanMatches,
-  'private-key': privateKeyMatches,
-  credential: credentialMatches,
-  'high-entropy': highEntropyMatches,
 };
 
 // ---------- allowlist ----------
@@ -240,7 +199,7 @@ export function scanText(text, { allowlist = [], path = '' } = {}) {
   lines.forEach((line, idx) => {
     for (const rule of RULES) {
       for (const value of DETECTORS[rule](line)) {
-        if (rule !== 'private-key' && allowed(allowlist, rule, value, path)) continue;
+        if (allowed(allowlist, rule, value, path)) continue;
         findings.push({ rule, line: idx + 1 });
         break; // one finding per rule per line
       }
@@ -275,7 +234,7 @@ export function listFiles(root) {
   return files.sort();
 }
 
-function readTextFile(abs) {
+export function readTextFile(abs) {
   const st = lstatSync(abs, { throwIfNoEntry: false });
   if (!st || !st.isFile() || st.size > MAX_BYTES) return null;
   const buf = readFileSync(abs);
@@ -348,7 +307,7 @@ export async function main(argv = process.argv.slice(2)) {
     console.log(JSON.stringify({ scanned, allowlistEntries: entries.length, findings }, null, 2));
   } else {
     for (const f of findings) console.log(`${f.path}:${f.line} ${f.rule}`);
-    console.log(`lint-safe-data: ${scanned} files scanned, ${findings.length} finding(s), ${entries.length} allowlist entr${entries.length === 1 ? 'y' : 'ies'}`);
+    console.log(`lint-privacy-data: ${scanned} files scanned, ${findings.length} finding(s), ${entries.length} allowlist entr${entries.length === 1 ? 'y' : 'ies'}`);
     if (findings.length) console.log('Matched values are never printed. See docs/governance/safe-data-policy.md.');
   }
   return findings.length ? 1 : 0;

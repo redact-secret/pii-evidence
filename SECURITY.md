@@ -34,6 +34,10 @@ Prefer, in order:
 
 A scanner result is not evidence that an input is safe to publish.
 
+## Publication checks
+
+Three layers guard publication, each with one job. `npm run lint:privacy-data` checks PII/PHI shapes (email, phone, card, SSN, IBAN). `npm run lint:credentials` checks credentials and private keys using the published `@redact-secret/core` package; this repository owns no credential patterns and offers no allowlist for credentials. Gitleaks in CI is an independent second opinion. None proves content is safe; human review still applies.
+
 ## Protected evidence boundary
 
 Real-world protected PII/PHI belongs outside this repository.

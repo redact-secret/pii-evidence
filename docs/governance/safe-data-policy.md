@@ -69,16 +69,18 @@ Protected corpora, their custody and their results belong to `private-custodian`
 
 | Command | Checks |
 | --- | --- |
-| `node scripts/lint-safe-data.mjs` | tracked and unignored text files for email, phone, card (Luhn), SSN, IBAN (mod 97), private-key block, credential-shape and high-entropy token patterns |
+| `npm run lint:privacy-data` (`node scripts/lint-safe-data.mjs`; `lint:safe-data` is an alias) | tracked and unignored text files for email, phone, card (Luhn), SSN, IBAN (mod 97). PII/PHI publication safety only |
+| `npm run lint:credentials` (`node scripts/lint-credentials.mjs`) | the same file set, scanned with the published `@redact-secret/core` package for credentials and private keys. No allowlist; pii-evidence owns no credential patterns |
+| gitleaks (CI `gitleaks` job) | independent second opinion over the repository history for credentials; not a substitute for either lint |
 | `node scripts/lint-provenance.mjs` | source records under `evidence/sources/` for required provenance fields and protected markers; prints the release-readiness summary |
 | `node scripts/lint-provenance.mjs --public-release` | the same, and any non-`public-safe` source is a failure |
 | `node --test "tests/**/*.test.mjs"` | the linters' own tests, with values built at runtime |
 
-`lint-safe-data` prints only `path:line rule`. It never prints, returns or logs the matched value, and neither must its tests, CI logs or reports. It is a floor, not proof: passing it does not make content safe, and a human review per [review requirements](review-requirements.md) still applies.
+Responsibilities are split: the privacy-data lint covers PII/PHI publication safety, `@redact-secret/core` covers credential publication safety, and gitleaks is an independent second opinion. `@redact-secret/core` is a pre-release (beta) dependency pinned to an exact version; an empty result does not prove text is secret-free, and a bare `-----BEGIN ... PRIVATE KEY-----` header without a key body is not flagged by it. The two linters print only `path:line rule`. It never prints, returns or logs the matched value, and neither must its tests, CI logs or reports. It is a floor, not proof: passing it does not make content safe, and a human review per [review requirements](review-requirements.md) still applies.
 
 ### Allowlist
 
-`docs/governance/safe-data-allowlist.json` excuses specific reserved or documented public test values. Each entry needs `id`, `rule`, `sha256`, `reason`, `source` (a publication link) and `observedAt`. An entry identifies the value by the SHA-256 of `rule:normalized-value`, so the allowlist does not repeat it. Compute a hash locally with `printf %s "<value>" | node scripts/lint-safe-data.mjs --hash <rule>`. Optional `paths` restricts an entry to named files. Private-key blocks cannot be allowlisted. Adding an entry is a reviewed change: the reviewer verifies the source publication lists that exact value. An entry is never a way to publish a value that merely resembles a test value.
+`docs/governance/safe-data-allowlist.json` excuses specific reserved or documented public test values. Each entry needs `id`, `rule`, `sha256`, `reason`, `source` (a publication link) and `observedAt`. An entry identifies the value by the SHA-256 of `rule:normalized-value`, so the allowlist does not repeat it. Compute a hash locally with `printf %s "<value>" | node scripts/lint-safe-data.mjs --hash <rule>`. Optional `paths` restricts an entry to named files. The allowlist applies to the privacy-data lint only; credentials and private keys have no allowlist at all. Adding an entry is a reviewed change: the reviewer verifies the source publication lists that exact value. An entry is never a way to publish a value that merely resembles a test value.
 
 To cite a reserved or test value in a source record, state its reserving publication in `locator`/`version` with `observedAt`, and set `valueOrigin` to `reserved` or `public-test`. If the lint fires on a documented card or IBAN example, add an allowlist entry; reserved emails, phones and SSNs need none.
 

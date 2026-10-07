@@ -34,6 +34,6 @@ Use `.agents/skills/safe-data-review` and `.agents/skills/boundary-review`.
 3. Source excerpts quote the statement, not surrounding data.
 4. No protected corpus material or marker; no PERSON/NER content; no scanner or product-policy vocabulary.
 5. License and redistribution terms cover public redistribution; `observedAt` and exact version or date are present.
-6. `node scripts/lint-safe-data.mjs` and `node scripts/lint-provenance.mjs` pass, and the reviewer did not need to print a value to judge the change.
+6. `npm run lint:privacy-data`, `npm run lint:credentials` and `npm run lint:provenance` pass, and the reviewer did not need to print a value to judge the change.
 
 A reviewer who finds possible real data stops and follows section 7 of the safe-data policy.

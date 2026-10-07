@@ -187,6 +187,8 @@ Every source/import records:
 
 Real customer/patient data is prohibited in this public repository.
 
+Publication safety is split by responsibility. The `pii-evidence` privacy-data lint covers PII/PHI shapes only. Credential detection is delegated to the published `@redact-secret/core` package through `npm run lint:credentials`; `pii-evidence` does not own credential patterns. Gitleaks in CI is an independent second opinion.
+
 ## 10. Snapshot contract
 
 Snapshots are the only supported evaluator input contract. Consumers should not depend on source-tree layout.

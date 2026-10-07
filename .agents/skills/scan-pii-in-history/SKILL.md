@@ -6,7 +6,7 @@ description: Scan the full Git history of pii-evidence for accidentally committe
 # Scan PII in history
 
 Run a history-aware scanner with redaction enabled over all commits reachable from `HEAD`
-(for example gitleaks or trufflehog for credentials, plus a PII-pattern pass for emails, phones,
+(for example gitleaks, which is also CI's independent second opinion, or trufflehog for credentials, plus a PII-pattern pass for emails, phones,
 cards, IBANs, SSNs and health identifiers). Record tool, version, rule set and scope. A scanner
 being absent is `not assessable`, not a pass.
 
