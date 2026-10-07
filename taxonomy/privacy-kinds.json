@@ -1,0 +1,227 @@
+{
+  "kind": "privacy-kinds",
+  "taxonomyVersion": "0.1.0",
+  "description": "Initial structured privacy kinds. Domain assignments and format/context claims are project modeling facts awaiting sources; they are not source-backed yet. See docs/methodology/taxonomy.md.",
+  "domainVocabulary": [
+    { "id": "pii", "label": "Personally identifiable information" },
+    { "id": "phi", "label": "Protected health information" }
+  ],
+  "classificationStates": ["resolved", "unresolved"],
+  "outOfScope": [
+    {
+      "id": "person-name",
+      "label": "PERSON / personal name recognition",
+      "owner": "redact-secret/ner-evidence",
+      "ownerUrl": "https://github.com/redact-secret/ner-evidence",
+      "covers": [
+        "person-name recognition",
+        "name ambiguity",
+        "person/location and person/organization collisions",
+        "language-specific name morphology",
+        "general NER evidence"
+      ],
+      "composition": "reference a pinned ner-evidence snapshot identity; never copy PERSON evidence into this repository",
+      "decision": "docs/decisions/0001-pii-phi-person-ownership-boundary.md"
+    }
+  ],
+  "kinds": [
+    {
+      "id": "email/global/basic",
+      "label": "Email address",
+      "domains": ["pii"],
+      "jurisdictions": ["global"],
+      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which standard defines the addr-spec boundary to model (format claims need a source)?",
+        "Which medical-context signals are sufficient for the phi domain to apply to an occurrence?"
+      ]
+    },
+    {
+      "id": "phone/global/basic",
+      "label": "Telephone number",
+      "domains": ["pii"],
+      "jurisdictions": ["global"],
+      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which numbering-plan standard bounds the international form, and which national forms are separate profiles?",
+        "Which jurisdiction-specific phone profiles are needed beyond the global profile?"
+      ]
+    },
+    {
+      "id": "payment-card/global/basic",
+      "label": "Payment card number",
+      "domains": ["pii"],
+      "jurisdictions": ["global"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Is a payment card number modeled as pii, as a separate financial domain, or both? The domain vocabulary currently has only pii and phi.",
+        "Which issuer or standards documents define length, prefix and check-digit claims?",
+        "Under what circumstances does a payment made for health care make an occurrence phi?"
+      ]
+    },
+    {
+      "id": "iban/global/basic",
+      "label": "International bank account number",
+      "domains": ["pii"],
+      "jurisdictions": ["global"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which registry and standard version define per-country structure and check digits?",
+        "Is an account number of a legal entity within scope, and does its domain differ from a personal account?",
+        "Same open domain-vocabulary question as payment-card/global/basic."
+      ]
+    },
+    {
+      "id": "us-ssn/us/structured",
+      "label": "United States Social Security number",
+      "domains": ["pii"],
+      "jurisdictions": ["us"],
+      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "adds-domain",
+          "domains": ["phi"],
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which public-authority sources define structural validity and unissuable ranges (needed before any synthetic value is authored)?",
+        "Which labeled-field and unlabeled forms are separate profiles?"
+      ]
+    },
+    {
+      "id": "national-id/unresolved/placeholder",
+      "label": "National or tax identifier (placeholder)",
+      "domains": ["pii"],
+      "jurisdictions": ["unresolved"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [],
+      "openQuestions": [
+        "Which national and tax identifier families are worth modeling, and in which jurisdictions?",
+        "This entry only reserves the concept so that jurisdiction-dependent classification is representable; it is to be split into per-jurisdiction kinds, each with its own id, once researched.",
+        "Whether a given identifier is also phi depends on jurisdiction and context and is not established."
+      ]
+    },
+    {
+      "id": "medical-record-number/us/labeled-field",
+      "label": "Medical record number",
+      "domains": ["pii", "phi"],
+      "jurisdictions": ["us"],
+      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "field-label/global/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which public-authority or provider-documented sources establish the health-domain role and the phi domain for this identifier?",
+        "Which field labels are documented, and does the structured value have any bounded format at all?",
+        "Are non-US profiles needed as separate ids?"
+      ]
+    },
+    {
+      "id": "health-plan-member-id/us/member-field",
+      "label": "Health plan member identifier",
+      "domains": ["pii", "phi"],
+      "jurisdictions": ["us"],
+      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "health-plan/us/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        },
+        {
+          "context": "field-label/global/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Which sources document the identifier's role and field names?",
+        "Is the value structure bounded enough to describe, or is it only identifiable through its field label?"
+      ]
+    },
+    {
+      "id": "health-claim-identifier/us/claim-field",
+      "label": "Health insurance claim identifier",
+      "domains": ["pii", "phi"],
+      "jurisdictions": ["us"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "health-plan/us/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Is a claim identifier on its own a person-linked identifier, or only when joined with other data? Classification is not established.",
+        "Domains listed are candidates pending that determination."
+      ]
+    },
+    {
+      "id": "prescription-order-identifier/us/order-field",
+      "label": "Prescription or order identifier",
+      "domains": ["pii", "phi"],
+      "jurisdictions": ["us"],
+      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "formatClaims": [],
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "effect": "supports-identification",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "openQuestions": [
+        "Is a prescription or order number on its own person-linked, or only joined with other data? Classification is not established.",
+        "Domains listed are candidates pending that determination."
+      ]
+    }
+  ]
+}

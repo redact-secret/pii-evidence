@@ -47,7 +47,10 @@ another PII/PHI scanner or evaluator?
 ## Branches
 
 `main` is the default branch. Work on a feature branch and open pull requests
-against `main`. Never merge your own pull request. If CI, branch protection, or
+against `main`. Never merge your own pull request, with one exception: the repository owner
+explicitly instructed the agent to run issues #2-#9 through merge, so for the
+pull requests that close those issues the agent merges its own pull request
+after verification. For every other pull request, never merge your own. If CI, branch protection, or
 another long-lived branch is introduced, update this section first.
 
 ## Before finishing
