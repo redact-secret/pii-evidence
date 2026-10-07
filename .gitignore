@@ -2,7 +2,7 @@ node_modules/
 .venv/
 results-output/
 *.log
-
+.DS_Store
 dist/
 public/results/*.json
 public/results/.*.json

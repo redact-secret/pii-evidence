@@ -7,9 +7,48 @@ define the canonical ownership and dependency direction.
 
 ## Repository boundary
 
+`pii-evidence` owns scanner-neutral, public structured PII/PHI evidence: privacy
+kinds, jurisdiction and context profiles, source provenance, authored cases
+(positive, negative, ambiguous, benign twins, collisions), deterministic fixture
+projections with lineage, review history, and immutable snapshots. It does not
+own scanner implementation or execution, measurement (`pii-eval`), support
+states, thresholds or release decisions (`redact-secret-benchmarks`), PERSON/NER
+evidence (`ner-evidence`), or protected PII/PHI corpora and custody
+(`private-custodian`, `private-ledger`).
+
+The primary architectural test is: would this record still be meaningful to
+another PII/PHI scanner or evaluator?
+
 ## Working rules
 
+- Start from a privacy kind, jurisdiction, context, case, or source claim, not a
+  detector name.
+- Author expectations from evidence and case reasoning, never from scanner
+  output or consensus.
+- Treat `pii` and `phi` as domain axes. Model a shared base kind once and the
+  medical context explicitly; do not duplicate an identifier because it can
+  become PHI.
+- Do not add PERSON/name evidence, name ambiguity, or general NER content;
+  compose with a `ner-evidence` snapshot by reference instead.
+- Give every material claim traceable provenance and an observed-at date, and
+  keep observed fact separate from project inference.
+- Preserve authored-versus-generated lineage. Fixtures are derived artifacts;
+  generation is deterministic and never invents an expectation.
+- Use stable, lowercase, URL-safe ids with no issue/PR numbers, milestones,
+  detector ids, scanner names, or scores.
+- This repository is public. Use only reserved/test values, deterministic
+  synthetic values, or documented redistributable examples. Real-person PII,
+  patient data, customer or production data, and protected corpus bytes are
+  forbidden, including values that are old, revoked, or already leaked.
+  `SECURITY.md` governs.
+- Released snapshots are immutable; a semantic correction is a new snapshot.
+- Describe project-maintained evidence as such, never as independent validation.
+
 ## Branches
+
+`main` is the default branch. Work on a feature branch and open pull requests
+against `main`. Never merge your own pull request. If CI, branch protection, or
+another long-lived branch is introduced, update this section first.
 
 ## Before finishing
 
@@ -20,6 +59,38 @@ authored case, reviewed contract, or documented generation rule and that no
 scanner-specific support status entered the canonical model.
 
 ## Local skills
+
+Workflows live in `.agents/skills/` and are linked into `.claude/skills/` by
+relative symlinks (`../../.agents/skills/<name>`). Edit only under `.agents/`.
+Shared reference pages in [`.agents/skills/_shared/`](.agents/skills/_shared/README.md)
+are not skills; they summarize the rules, and `README.md`, `ARCHITECTURE.md`,
+`CONVENTIONS.md` and `SECURITY.md` win when they differ.
+
+The repository is in its initial architecture phase, so schemas, validators,
+materializers and snapshot scripts may not exist yet. Skills must report a
+missing check as `not assessable` or "does not exist", never invent a command or
+a pass.
+
+Authoring (one bounded unit per run, always a pull request, never a merge):
+
+- `research-kind`: one privacy kind with domains, jurisdictions, format/context
+  claims, sources, and open questions.
+- `author-case`: one Case with a scanner-neutral expectation, or the decision
+  that no new record is needed.
+- `fixture-projection`: deterministic projection rules and materialization with
+  exact lineage.
+
+Read-only review and audit:
+
+- `boundary-review`: ownership and dependency-direction violations (PERSON/NER,
+  scanner or product policy, evaluator code, protected data).
+- `safe-data-review`: real or real-looking PII/PHI in a diff or the working tree.
+- `scan-pii-in-history`: full-history scan for PII, PHI, and credentials.
+- `snapshot-check`: manifest, digests, counts, lineage, and consumer contract.
+- `owasp-review`: security review of tooling once implementation exists.
+
+Safety scans must distinguish reserved/synthetic values from accidental real
+data, and never print or quote a matched value.
 
 <!-- graft:start -->
 ## Graft — repo context graph
