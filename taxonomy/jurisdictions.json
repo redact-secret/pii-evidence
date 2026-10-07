@@ -21,6 +21,14 @@
       ]
     },
     {
+      "id": "uk",
+      "label": "United Kingdom",
+      "scope": "country",
+      "openQuestions": [
+        "Whether England, Scotland, Wales and Northern Ireland need separate profiles is not established; the NINO source read does not distinguish them."
+      ]
+    },
+    {
       "id": "unresolved",
       "label": "Jurisdiction not yet determined",
       "scope": "scope",
