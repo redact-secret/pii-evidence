@@ -1,0 +1,18 @@
+{
+  "name": "pii-evidence",
+  "private": true,
+  "type": "module",
+  "description": "Scanner-neutral public PII/PHI evidence: schemas, validation, and snapshots.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "check": "npm run validate && npm test"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "kind": "case",
+  "schemaVersion": "1",
+  "id": "email/global/basic/mutation/doubled-at-sign",
+  "title": "Mutation with a doubled at sign",
+  "rationale": "A one-character mutation of the positive case that breaks addr-spec structure.",
+  "role": "mutation",
+  "privacyKind": "email/global/basic",
+  "jurisdiction": "global",
+  "contexts": [],
+  "valueOrigin": "reserved",
+  "input": {
+    "text": "contact: user@@example.com"
+  },
+  "expectation": {
+    "identity": "invalid",
+    "sensitivity": "non-sensitive",
+    "domains": [
+      "pii"
+    ]
+  },
+  "ambiguity": {
+    "state": "none"
+  },
+  "relationships": [
+    {
+      "type": "mutation",
+      "case": "email/global/basic/positive/example-domain-address"
+    }
+  ],
+  "provenance": {
+    "evidenceClass": "authored-adversarial",
+    "sources": [],
+    "claims": []
+  },
+  "review": {
+    "state": "unreviewed",
+    "events": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/contexts.schema.json",
+  "title": "Taxonomy file: contexts (v1)",
+  "description": "Wrapper for taxonomy/contexts.json: context profiles plus the occurrence composition model.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "taxonomyVersion", "occurrenceModel", "contexts"],
+  "properties": {
+    "kind": { "const": "contexts" },
+    "schemaVersion": { "const": "1" },
+    "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },
+    "description": { "$ref": "defs.schema.json#/$defs/text" },
+    "occurrenceModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fields", "rules"],
+      "properties": {
+        "fields": { "type": "object", "additionalProperties": { "$ref": "defs.schema.json#/$defs/text" } },
+        "rules": { "type": "array", "minItems": 1, "items": { "$ref": "defs.schema.json#/$defs/text" } }
+      }
+    },
+    "examples": {
+      "description": "Illustrative occurrence compositions. Documentation only; not records, no ids are registered.",
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "contexts": { "type": "array", "items": { "$ref": "context-profile.schema.json" } }
+  }
+}

@@ -55,9 +55,12 @@ another long-lived branch is introduced, update this section first.
 
 ## Before finishing
 
-Run all validation, schema, reference, generation, and formatting checks that
-exist in the repository. If implementation is not present yet, report that
-fact rather than inventing commands. Verify that new fixtures trace to an
+Run `npm ci` (once) and `npm run check`. `check` runs `npm run validate`
+(schema, cross-reference, duplicate-id and id-lint checks over `taxonomy/`,
+`evidence/`, `fixtures/`, `snapshots/`) and then `npm test`; CI (`verify`) runs
+the same. See `docs/methodology/schemas.md`. Generation, snapshot, and
+formatting commands do not exist yet; report that fact rather than inventing
+commands, and add new steps to `npm run check` when they land. Verify that new fixtures trace to an
 authored case, reviewed contract, or documented generation rule and that no
 scanner-specific support status entered the canonical model.
 

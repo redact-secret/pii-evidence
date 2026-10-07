@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/jurisdiction-profile.schema.json",
+  "title": "JurisdictionProfile (v1)",
+  "description": "A jurisdiction profile. Names scope only; legal conclusions need cited claims.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "label", "scope", "openQuestions"],
+  "properties": {
+    "id": { "$ref": "defs.schema.json#/$defs/id" },
+    "label": { "$ref": "defs.schema.json#/$defs/text" },
+    "scope": { "enum": ["country", "region", "scope"] },
+    "openQuestions": { "$ref": "defs.schema.json#/$defs/textList" }
+  }
+}

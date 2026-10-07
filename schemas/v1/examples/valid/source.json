@@ -1,0 +1,26 @@
+{
+  "kind": "source",
+  "schemaVersion": "1",
+  "id": "ietf-rfc-2606/reserved-names",
+  "title": "RFC 2606: Reserved Top Level DNS Names",
+  "locator": "https://www.rfc-editor.org/rfc/rfc2606",
+  "version": "RFC 2606 (BCP 32), June 1999",
+  "observedAt": "2026-10-07",
+  "license": {
+    "name": "IETF Trust Legal Provisions",
+    "redistribution": "allowed",
+    "terms": "Short quotation and citation are permitted; no text is copied into this repository."
+  },
+  "evidenceClass": "standards-body",
+  "transformations": [
+    "Cited by section only; no source text copied."
+  ],
+  "naturallyOccurringPersonalData": false,
+  "valueOrigin": "reserved",
+  "review": {
+    "state": "reviewed",
+    "events": [
+      "review/example-source-check"
+    ]
+  }
+}

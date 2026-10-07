@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/jurisdictions.schema.json",
+  "title": "Taxonomy file: jurisdictions (v1)",
+  "description": "Wrapper for taxonomy/jurisdictions.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "taxonomyVersion", "jurisdictions"],
+  "properties": {
+    "kind": { "const": "jurisdictions" },
+    "schemaVersion": { "const": "1" },
+    "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },
+    "description": { "$ref": "defs.schema.json#/$defs/text" },
+    "jurisdictions": { "type": "array", "items": { "$ref": "jurisdiction-profile.schema.json" } }
+  }
+}

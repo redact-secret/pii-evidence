@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/defs.schema.json",
+  "title": "Shared definitions (v1)",
+  "description": "Shared building blocks for the v1 pii-evidence schemas. Nothing here names a scanner, detector, support state, threshold or score.",
+  "$defs": {
+    "id": {
+      "description": "Stable semantic id: lowercase, URL-safe, slash-separated segments of [a-z0-9] words joined by hyphens. Content rules (no issue/PR numbers, release names, scanner names, scores, migration coordinates) are enforced by scripts/id-rules.mjs.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*(/[a-z0-9]+(-[a-z0-9]+)*)*$"
+    },
+    "idList": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+    "text": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "textList": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+    "date": { "type": "string", "format": "date" },
+    "dateTime": { "type": "string", "format": "date-time" },
+    "sha256": { "description": "Lowercase hex SHA-256.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "version": { "description": "Free-form non-empty version label (tool or contract version).", "type": "string", "minLength": 1, "maxLength": 64 },
+    "semver": { "type": "string", "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$" },
+    "domain": { "description": "Privacy domain axis. Not mutually exclusive.", "enum": ["pii", "phi"] },
+    "domains": { "type": "array", "items": { "$ref": "#/$defs/domain" }, "uniqueItems": true, "minItems": 1 },
+    "evidenceClass": {
+      "description": "ARCHITECTURE.md section 8. Scanner consensus is never ground truth.",
+      "enum": [
+        "public-authority",
+        "provider-documented",
+        "standards-body",
+        "reference-backed",
+        "licensed-corpus",
+        "authored-baseline",
+        "authored-adversarial",
+        "tool-corroborated",
+        "research-needed"
+      ]
+    },
+    "valueOrigin": {
+      "description": "ARCHITECTURE.md section 9. Where the PII/PHI-shaped values come from.",
+      "enum": ["synthetic", "reserved", "public-test", "licensed-corpus"]
+    },
+    "identityState": { "enum": ["valid", "invalid", "not-established"] },
+    "sensitivityState": { "enum": ["sensitive", "non-sensitive", "context-dependent"] },
+    "byteSpan": {
+      "description": "Half-open UTF-8 byte range [start, end) into the input bytes. Must lie on character boundaries (checked by the validator).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "generator": {
+      "description": "Identity of the tool that produced a derived artifact.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "$ref": "#/$defs/id" },
+        "version": { "$ref": "#/$defs/version" }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "properties": {
+        "state": { "enum": ["none", "partial", "unresolved"] },
+        "notes": { "$ref": "#/$defs/textList" },
+        "wouldSettle": { "$ref": "#/$defs/text" }
+      },
+      "if": { "properties": { "state": { "enum": ["partial", "unresolved"] } }, "required": ["state"] },
+      "then": { "required": ["notes"], "properties": { "notes": { "type": "array", "minItems": 1 } } }
+    },
+    "review": {
+      "description": "Review state with links to ReviewEvent records. 'reviewed' needs at least one event; an agent never marks its own work reviewed.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "events"],
+      "properties": {
+        "state": { "enum": ["unreviewed", "in-review", "reviewed", "rejected"] },
+        "events": { "$ref": "#/$defs/idList" }
+      },
+      "if": { "properties": { "state": { "const": "reviewed" } }, "required": ["state"] },
+      "then": { "properties": { "events": { "type": "array", "minItems": 1 } } }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 {
   "kind": "jurisdictions",
+  "schemaVersion": "1",
   "taxonomyVersion": "0.1.0",
   "description": "Jurisdiction profiles referenced by privacy kinds. Profiles name scope only; legal conclusions need cited sources in later work.",
   "jurisdictions": [

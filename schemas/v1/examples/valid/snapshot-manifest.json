@@ -1,0 +1,51 @@
+{
+  "kind": "snapshot-manifest",
+  "schemaVersion": "1",
+  "id": "example/structured-pii-sample",
+  "population": "public",
+  "schemaVersions": {
+    "case": "1",
+    "source": "1",
+    "claim": "1",
+    "fixture-projection": "1",
+    "review-event": "1",
+    "snapshot-manifest": "1"
+  },
+  "taxonomyVersion": "0.1.0",
+  "sourceManifestDigest": "1e1c709f43fd0b6a0b1a9a5d77bbd1d6fb60c013f9b14bb92d35b48f57ad1f1c",
+  "contentDigest": "a2dee47ba6268925da97750ab742baf67f02e2fb54ce23d499fb66a5b0222903",
+  "generator": {
+    "name": "example-snapshotter",
+    "version": "0.1.0"
+  },
+  "counts": {
+    "cases": 4,
+    "fixtures": 1,
+    "sources": 1,
+    "claims": 1
+  },
+  "coverage": {
+    "kinds": [
+      "email/global/basic"
+    ],
+    "jurisdictions": [
+      "global"
+    ],
+    "contexts": [
+      "medical/global/general"
+    ],
+    "domains": [
+      "pii",
+      "phi"
+    ],
+    "languages": [
+      "en"
+    ]
+  },
+  "validation": {
+    "schema": "passed",
+    "provenance": "passed",
+    "privacy": "passed"
+  },
+  "consumerContractVersion": "1"
+}

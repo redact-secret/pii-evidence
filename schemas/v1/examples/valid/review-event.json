@@ -1,0 +1,12 @@
+{
+  "kind": "review-event",
+  "schemaVersion": "1",
+  "id": "review/example-source-check",
+  "subject": "ietf-rfc-2606/reserved-names",
+  "reviewer": "example-maintainer",
+  "reviewerKind": "human",
+  "independent": false,
+  "decision": "approved",
+  "at": "2026-10-07T12:00:00Z",
+  "note": "Example record for schema tests; project-maintained, not independent validation."
+}

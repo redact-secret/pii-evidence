@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/privacy-kinds.schema.json",
+  "title": "Taxonomy file: privacy-kinds (v1)",
+  "description": "Wrapper for taxonomy/privacy-kinds.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "schemaVersion", "taxonomyVersion", "domainVocabulary", "classificationStates", "outOfScope", "kinds"],
+  "properties": {
+    "kind": { "const": "privacy-kinds" },
+    "schemaVersion": { "const": "1" },
+    "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },
+    "description": { "$ref": "defs.schema.json#/$defs/text" },
+    "domainVocabulary": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/$defs/domain" },
+          "label": { "$ref": "defs.schema.json#/$defs/text" }
+        }
+      }
+    },
+    "classificationStates": { "type": "array", "items": { "enum": ["resolved", "unresolved"] }, "uniqueItems": true },
+    "outOfScope": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label", "owner"],
+        "properties": {
+          "id": { "$ref": "defs.schema.json#/$defs/id" },
+          "label": { "$ref": "defs.schema.json#/$defs/text" },
+          "owner": { "$ref": "defs.schema.json#/$defs/text" },
+          "ownerUrl": { "type": "string", "format": "uri" },
+          "covers": { "$ref": "defs.schema.json#/$defs/textList" },
+          "composition": { "$ref": "defs.schema.json#/$defs/text" },
+          "decision": { "$ref": "defs.schema.json#/$defs/text" }
+        }
+      }
+    },
+    "kinds": { "type": "array", "items": { "$ref": "privacy-kind.schema.json" } }
+  }
+}

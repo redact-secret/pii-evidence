@@ -1,5 +1,6 @@
 {
   "kind": "privacy-kinds",
+  "schemaVersion": "1",
   "taxonomyVersion": "0.1.0",
   "description": "Initial structured privacy kinds. Domain assignments and format/context claims are project modeling facts awaiting sources; they are not source-backed yet. See docs/methodology/taxonomy.md.",
   "domainVocabulary": [

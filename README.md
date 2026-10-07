@@ -197,4 +197,6 @@ The first milestone for this repository is complete when a pinned public PII/PHI
 7. Publish the first immutable snapshot.
 8. Verify consumption and measurement in `pii-eval`.
 
+Run `npm ci && npm run check` to validate schemas, records, and references (Node 22+); see `docs/methodology/schemas.md`.
+
 See `ARCHITECTURE.md`, `SECURITY.md`, and `CONVENTIONS.md` before contributing.

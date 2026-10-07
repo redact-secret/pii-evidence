@@ -1,0 +1,25 @@
+{
+  "kind": "claim",
+  "schemaVersion": "1",
+  "id": "ietf-rfc-2606/example-domains-reserved",
+  "source": "ietf-rfc-2606/reserved-names",
+  "statement": "The second-level domain names example.com, example.net and example.org are reserved for documentation use.",
+  "location": "Section 3, Reserved Example Second Level Domain Names",
+  "inference": "Addresses under example.com are safe synthetic email values for public cases.",
+  "observedAt": "2026-10-07",
+  "evidenceClass": "standards-body",
+  "privacyKind": "email/global/basic",
+  "jurisdiction": "global",
+  "domains": [
+    "pii"
+  ],
+  "uncertainty": {
+    "state": "none"
+  },
+  "review": {
+    "state": "reviewed",
+    "events": [
+      "review/example-source-check"
+    ]
+  }
+}

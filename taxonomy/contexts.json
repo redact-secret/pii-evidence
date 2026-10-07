@@ -1,5 +1,6 @@
 {
   "kind": "contexts",
+  "schemaVersion": "1",
   "taxonomyVersion": "0.1.0",
   "description": "Occurrence-level context profiles and the rule for composing an occurrence from kind, contexts and domains.",
   "occurrenceModel": {
