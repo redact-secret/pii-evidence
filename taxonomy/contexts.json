@@ -1,0 +1,98 @@
+{
+  "kind": "contexts",
+  "taxonomyVersion": "0.1.0",
+  "description": "Occurrence-level context profiles and the rule for composing an occurrence from kind, contexts and domains.",
+  "occurrenceModel": {
+    "fields": {
+      "kind": "id from privacy-kinds.json (the base kind)",
+      "contexts": "zero or more ids from this file that bound the occurrence",
+      "jurisdiction": "id from jurisdictions.json",
+      "domains": "derived, see rules",
+      "classification": "resolved | unresolved, derived, see rules",
+      "externalRefs": "optional references to other repositories; identity and pinned snapshot only, never copied content"
+    },
+    "rules": [
+      "domains = union of the kind's domains and the domains added by each context whose effect on the kind is adds-domain.",
+      "A context never removes a domain.",
+      "classification is unresolved if the kind, any applied context claim, or the jurisdiction is unresolved; otherwise resolved.",
+      "A domain added by a context applies to the occurrence only, never to the base kind.",
+      "A base kind is not duplicated to represent phi; the occurrence composes kind plus context.",
+      "A dedicated kind is created only when the identifier itself is health-domain specific.",
+      "externalRefs to ner-evidence carry repository, pinned snapshot identity and entity id; no names or spans are copied."
+    ]
+  },
+  "examples": [
+    {
+      "id": "structured-identifier-only",
+      "occurrence": { "kind": "email/global/basic", "contexts": [], "domains": ["pii"], "classification": "resolved" }
+    },
+    {
+      "id": "contextual-phi",
+      "description": "Ordinary structured pii that becomes phi through medical context (patient-email in the issue vocabulary).",
+      "occurrence": {
+        "kind": "email/global/basic",
+        "contexts": ["medical/global/general"],
+        "domains": ["pii", "phi"],
+        "classification": "unresolved"
+      },
+      "note": "unresolved because the context claim is research-needed in privacy-kinds.json"
+    },
+    {
+      "id": "health-specific-identifier",
+      "occurrence": {
+        "kind": "medical-record-number/us/labeled-field",
+        "contexts": ["field-label/global/general"],
+        "domains": ["pii", "phi"],
+        "classification": "unresolved"
+      },
+      "note": "unresolved because the kind's context claim is research-needed; resolved once sourced"
+    },
+    {
+      "id": "future-person-plus-medical-context",
+      "description": "Not a canonical case. Shows the shape of a composition that references ner-evidence.",
+      "occurrence": {
+        "kind": null,
+        "contexts": ["medical/global/general"],
+        "externalRefs": [
+          { "repository": "redact-secret/ner-evidence", "snapshot": "<pinned snapshot id>", "entity": "<entity id>" }
+        ]
+      }
+    }
+  ],
+  "contexts": [
+    {
+      "id": "medical/global/general",
+      "label": "Medical or clinical context",
+      "addsDomains": ["phi"],
+      "applicability": "any structured kind whose contextClaims lists this context",
+      "boundedBy": "a documented, inspectable signal such as a labeled field or a stated clinical setting; the signals are not defined yet",
+      "evidenceClass": "research-needed",
+      "openQuestions": [
+        "Which bounded signals qualify (field labels, document type, adjacent clinical terms)?",
+        "Which jurisdictions' definitions of health information apply, and do they differ?"
+      ]
+    },
+    {
+      "id": "health-plan/us/general",
+      "label": "Health plan or claims context",
+      "addsDomains": ["phi"],
+      "applicability": "kinds whose contextClaims lists this context",
+      "boundedBy": "not defined yet",
+      "evidenceClass": "research-needed",
+      "openQuestions": [
+        "Does insurance or claims context alone make an occurrence phi, or is it jurisdiction- and holder-dependent? Classification is not established."
+      ]
+    },
+    {
+      "id": "field-label/global/general",
+      "label": "Labeled field context",
+      "addsDomains": [],
+      "applicability": "structural signal that a field name or key adjacent to a value names the identifier kind",
+      "boundedBy": "a documented label in a cited source",
+      "evidenceClass": "research-needed",
+      "openQuestions": [
+        "Which labels are documented per kind? Labels need cited sources before being listed."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "jurisdictions",
+  "taxonomyVersion": "0.1.0",
+  "description": "Jurisdiction profiles referenced by privacy kinds. Profiles name scope only; legal conclusions need cited sources in later work.",
+  "jurisdictions": [
+    {
+      "id": "global",
+      "label": "Not jurisdiction-bound (international or no jurisdiction-specific rule modeled)",
+      "scope": "scope",
+      "openQuestions": [
+        "A kind tagged global may still diverge per jurisdiction; split into per-jurisdiction ids when a source shows a difference."
+      ]
+    },
+    {
+      "id": "us",
+      "label": "United States",
+      "scope": "country",
+      "openQuestions": [
+        "Whether state-level distinctions need separate profiles is not established."
+      ]
+    },
+    {
+      "id": "unresolved",
+      "label": "Jurisdiction not yet determined",
+      "scope": "scope",
+      "openQuestions": [
+        "Used only by placeholder kinds. A record with this jurisdiction is classified unresolved and must be replaced by concrete jurisdiction ids."
+      ]
+    }
+  ]
+}
