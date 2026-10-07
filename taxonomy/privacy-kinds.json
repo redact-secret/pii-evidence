@@ -208,6 +208,7 @@
       "openQuestions": [
         "Which sources document the identifier's role and field names?",
         "Is the value structure bounded enough to describe, or is it only identifiable through its field label?",
+        "Subscriber, dependent, policy, group and payer/plan identifiers are distinct roles; docs/research/health-plan-identifiers.md records ambiguous and collision cases against this kind and recommends deferring separate kinds.",
         "The sources read state no member id format; formats are carrier-specific. The Medicare Beneficiary Identifier has a CMS-documented format (claim phi-cms-mbi/format-and-randomness) and is a candidate separate kind, not modeled here."
       ]
     },
