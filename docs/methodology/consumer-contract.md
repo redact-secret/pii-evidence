@@ -20,7 +20,7 @@ A directory `snapshots/<snapshot-id>/` (the id contains slashes, so it is a nest
 | `review-events.jsonl` | `review-event` records, present only when included records reference some |
 | `taxonomy/privacy-kinds.json`, `taxonomy/jurisdictions.json`, `taxonomy/contexts.json` | the vocabulary the cases refer to |
 
-`.jsonl` files hold one canonical JSON object per line (keys sorted at every depth, no insignificant whitespace), sorted by `id` in code point order. Every record carries `kind` and `schemaVersion` (`"1"`). Unknown `schemaVersion` or `kind` must be treated as an error (fail closed). Within version 1 changes are additive: ignore unknown optional properties, never ignore an unknown required one.
+`.jsonl` files hold one canonical JSON object per line (keys sorted at every depth, no insignificant whitespace), sorted by `id` in code point order. Every record carries `kind` and `schemaVersion` (`"1"`). Unknown `schemaVersion` or `kind` must be treated as an error (fail closed). Within version 1 changes are additive: ignore unknown optional properties, never ignore an unknown required one. JSON `null` is permitted in the taxonomy files (for example in an illustrative occurrence of `taxonomy/contexts.json`), so a consumer's reader must accept it; duplicate keys, floats and integers beyond 2^53 - 1 do not occur and a strict reader may refuse them.
 
 ## 2. What a consumer can rely on
 

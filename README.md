@@ -180,7 +180,7 @@ Released snapshots are immutable. Corrections create a new snapshot. The first p
 
 `pii-eval` consumes pinned evidence snapshots and measures scanners. It does not define the evidence and `pii-evidence` does not execute scanners.
 
-The first milestone for this repository is complete when a pinned public PII/PHI snapshot can be consumed by `pii-eval` and produce a reproducible measurement artifact without repository-private assumptions.
+The first milestone for this repository is complete when a pinned public PII/PHI snapshot can be consumed by `pii-eval` and produce a reproducible measurement artifact without repository-private assumptions. The first released snapshot has been consumed this way; what belongs to evidence, measurement and downstream qualification, what the run showed about the evidence, and where to reproduce it: `docs/methodology/pii-eval-handoff.md`. The run does not authorize Redact Secret product qualification or protected evaluation.
 
 ## Relationship to `ner-evidence`
 
