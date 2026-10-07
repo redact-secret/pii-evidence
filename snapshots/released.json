@@ -1,0 +1,35 @@
+{
+  "id": "snapshot-registry",
+  "kind": "snapshot-registry",
+  "schemaVersion": "1",
+  "snapshots": [
+    {
+      "archive": {
+        "name": "pii-evidence-public-pii-phi-2026-10-07-9d4e8e036bbb.tar.gz",
+        "tarGzSha256": "8962f02ec04687c3b26bc70a95c57629eb31161b809f8b8317851ff1baa7498b",
+        "tarSha256": "05d9dcd1483c70c5e763338a70366364b650658af1883b6a98bae0f4ab08b5a6"
+      },
+      "contentDigest": "9d4e8e036bbb180fb3a09569a2993e51ad10fbc183765882325f2bc10b321ba2",
+      "files": {
+        "cases.jsonl": "65dacad41e66f8dc73f18fba21df29e4c93489a039c323c02e21e2cb849de388",
+        "claims.jsonl": "7c700d5e90eeda3f997810c702f3027d151d282ca8daf75b8b0756b726e98a52",
+        "fixture-rules.jsonl": "696974e589ad8fb19d39332fe7443e7d7558bbcd89b03cb85c838cd155537f0d",
+        "fixtures.jsonl": "2a7eead8ef711b460a0072301472047b12279c6c3e95e8eaed802893de7547fd",
+        "manifest.json": "a9e24b6dc73bc876f9fce341c7305421b054ae399df83d198513bede03555ca9",
+        "skipped.jsonl": "2cba4632acd4dc720f870042b45420cab7a9f7207288244959309888829d124b",
+        "sources.jsonl": "e6f26033e83341c9a106dfa2542573e956912266cacfae0fcc1a6fb46d07c47c",
+        "taxonomy/contexts.json": "cf5704bd6316dc5dc9f04e537067efe0b068dcb3a15352167db1e08e78e28bf6",
+        "taxonomy/jurisdictions.json": "6a5fdbdc3c671a6a2011f2d588039ce28ce78681e2d53c7cdd446e68a69675fe",
+        "taxonomy/privacy-kinds.json": "4a770b2553d66f9687e7bfd36de7c4a9854f48ac684b5d1f7c5105835a946832"
+      },
+      "id": "public-pii-phi/2026-10-07/9d4e8e036bbb",
+      "manifestSha256": "a9e24b6dc73bc876f9fce341c7305421b054ae399df83d198513bede03555ca9",
+      "release": {
+        "tag": "snapshot-public-pii-phi-2026-10-07-9d4e8e036bbb",
+        "url": "https://github.com/redact-secret/pii-evidence/releases/tag/snapshot-public-pii-phi-2026-10-07-9d4e8e036bbb"
+      },
+      "snapshotDate": "2026-10-07",
+      "status": "released"
+    }
+  ]
+}

@@ -251,7 +251,7 @@ export function serialize({ cases, rules, fixtures, skipped }) {
 /** Canonical inputs: the tree minus generated output under fixtures/materialized/. */
 export function loadInputs(root = REPO_ROOT) {
   const { records, errors } = loadTree(root);
-  const kept = records.filter((r) => !r.file.startsWith(`${MATERIALIZED_DIR}/`));
+  const kept = records.filter((r) => r.corpus === "tree" && !r.file.startsWith(`${MATERIALIZED_DIR}/`) && !r.file.startsWith("snapshots/"));
   return { records: kept, errors };
 }
 

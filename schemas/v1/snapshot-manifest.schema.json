@@ -6,60 +6,447 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "kind", "schemaVersion", "id", "population", "schemaVersions", "taxonomyVersion", "sourceManifestDigest",
-    "contentDigest", "generator", "counts", "coverage", "validation", "consumerContractVersion"
+    "kind",
+    "schemaVersion",
+    "id",
+    "population",
+    "schemaVersions",
+    "taxonomyVersion",
+    "sourceManifestDigest",
+    "contentDigest",
+    "generator",
+    "counts",
+    "coverage",
+    "validation",
+    "consumerContractVersion"
   ],
   "properties": {
-    "kind": { "const": "snapshot-manifest" },
-    "schemaVersion": { "const": "1" },
-    "id": { "description": "Snapshot id.", "$ref": "defs.schema.json#/$defs/id" },
-    "population": { "const": "public" },
+    "kind": {
+      "const": "snapshot-manifest"
+    },
+    "schemaVersion": {
+      "const": "1"
+    },
+    "id": {
+      "description": "Snapshot id.",
+      "$ref": "defs.schema.json#/$defs/id"
+    },
+    "population": {
+      "const": "public"
+    },
     "schemaVersions": {
       "description": "Schema version used per record kind in this snapshot.",
       "type": "object",
       "minProperties": 1,
-      "propertyNames": { "enum": ["privacy-kinds", "jurisdictions", "contexts", "source", "claim", "case", "fixture-projection", "fixture-rule", "review-event", "snapshot-manifest"] },
-      "additionalProperties": { "type": "string", "pattern": "^[0-9]+$" }
+      "propertyNames": {
+        "enum": [
+          "privacy-kinds",
+          "jurisdictions",
+          "contexts",
+          "source",
+          "claim",
+          "case",
+          "fixture-projection",
+          "fixture-rule",
+          "review-event",
+          "snapshot-manifest",
+          "fixture-skip"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9]+$"
+      }
     },
-    "taxonomyVersion": { "$ref": "defs.schema.json#/$defs/semver" },
-    "sourceManifestDigest": { "$ref": "defs.schema.json#/$defs/sha256" },
-    "contentDigest": { "$ref": "defs.schema.json#/$defs/sha256" },
-    "generator": { "$ref": "defs.schema.json#/$defs/generator" },
+    "taxonomyVersion": {
+      "$ref": "defs.schema.json#/$defs/semver"
+    },
+    "sourceManifestDigest": {
+      "$ref": "defs.schema.json#/$defs/sha256"
+    },
+    "contentDigest": {
+      "$ref": "defs.schema.json#/$defs/sha256"
+    },
+    "generator": {
+      "$ref": "defs.schema.json#/$defs/generator"
+    },
     "counts": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["cases", "fixtures"],
+      "required": [
+        "cases",
+        "fixtures"
+      ],
       "properties": {
-        "cases": { "type": "integer", "minimum": 0 },
-        "fixtures": { "type": "integer", "minimum": 0 },
-        "sources": { "type": "integer", "minimum": 0 },
-        "claims": { "type": "integer", "minimum": 0 }
+        "cases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fixtures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sources": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "claims": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rules": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reviewEvents": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excludedSources": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excludedClaims": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excludedCases": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excludedFixtures": {
+          "type": "integer",
+          "minimum": 0
+        }
       }
     },
     "coverage": {
       "description": "What the snapshot covers. Descriptive only; no thresholds.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["kinds", "jurisdictions", "domains"],
+      "required": [
+        "kinds",
+        "jurisdictions",
+        "domains"
+      ],
       "properties": {
-        "kinds": { "$ref": "defs.schema.json#/$defs/idList" },
-        "jurisdictions": { "$ref": "defs.schema.json#/$defs/idList" },
-        "contexts": { "$ref": "defs.schema.json#/$defs/idList" },
-        "domains": { "type": "array", "items": { "$ref": "defs.schema.json#/$defs/domain" }, "uniqueItems": true },
-        "languages": { "type": "array", "items": { "type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$" }, "uniqueItems": true }
+        "kinds": {
+          "$ref": "defs.schema.json#/$defs/idList"
+        },
+        "jurisdictions": {
+          "$ref": "defs.schema.json#/$defs/idList"
+        },
+        "contexts": {
+          "$ref": "defs.schema.json#/$defs/idList"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "defs.schema.json#/$defs/domain"
+          },
+          "uniqueItems": true
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]+)*$"
+          },
+          "uniqueItems": true
+        },
+        "perKind": {
+          "description": "Case and fixture counts per privacy kind id.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "cases",
+              "fixtures"
+            ],
+            "properties": {
+              "cases": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "fixtures": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "roles": {
+          "description": "Case counts per role.",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z0-9/-]+$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "identityStates": {
+          "description": "Case counts per expected identity state.",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z0-9/-]+$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "evidenceClasses": {
+          "description": "Case counts per evidence class.",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z0-9/-]+$"
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "kindsWithoutCases": {
+          "description": "Taxonomy kinds that have no case in this snapshot.",
+          "$ref": "defs.schema.json#/$defs/idList"
+        }
       }
     },
     "validation": {
       "description": "Provenance/privacy/schema validation status at generation time.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["schema", "provenance", "privacy"],
+      "required": [
+        "schema",
+        "provenance",
+        "privacy"
+      ],
       "properties": {
-        "schema": { "enum": ["passed", "failed", "not-run"] },
-        "provenance": { "enum": ["passed", "failed", "not-run"] },
-        "privacy": { "enum": ["passed", "failed", "not-run"] }
+        "schema": {
+          "enum": [
+            "passed",
+            "failed",
+            "not-run"
+          ]
+        },
+        "provenance": {
+          "enum": [
+            "passed",
+            "failed",
+            "not-run"
+          ]
+        },
+        "privacy": {
+          "enum": [
+            "passed",
+            "failed",
+            "not-run"
+          ]
+        },
+        "checks": {
+          "description": "Exact checks run by the builder over the included set.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "status"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "status": {
+                "enum": [
+                  "passed",
+                  "failed",
+                  "not-run"
+                ]
+              },
+              "detail": {
+                "type": "string",
+                "maxLength": 400
+              }
+            }
+          }
+        }
       }
     },
-    "consumerContractVersion": { "$ref": "defs.schema.json#/$defs/version" }
+    "consumerContractVersion": {
+      "$ref": "defs.schema.json#/$defs/version"
+    },
+    "snapshotDate": {
+      "description": "Explicit date input of the build (YYYY-MM-DD). Part of the snapshot id; never read from the clock when verifying.",
+      "$ref": "defs.schema.json#/$defs/date"
+    },
+    "consumerContract": {
+      "description": "Name of the consumer contract that consumerContractVersion belongs to.",
+      "$ref": "defs.schema.json#/$defs/id"
+    },
+    "fixtureGenerator": {
+      "description": "Identity of the fixture projector that produced fixtures.jsonl.",
+      "$ref": "defs.schema.json#/$defs/generator"
+    },
+    "contentDigestSpec": {
+      "description": "Identifier of the content digest algorithm (docs/methodology/consumer-contract.md).",
+      "const": "files-v1"
+    },
+    "files": {
+      "description": "Every digested file of the snapshot (all files except manifest.json), sorted by path.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9/.-]*$",
+            "maxLength": 200
+          },
+          "records": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sha256": {
+            "$ref": "defs.schema.json#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "exclusions": {
+      "description": "What was excluded from the public set and why. Records are excluded, never edited. Exclusion is not a verdict on the evidence; it means the provenance gate or a dependency on excluded evidence prevented release.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rule",
+        "sources",
+        "claims",
+        "cases"
+      ],
+      "properties": {
+        "rule": {
+          "$ref": "defs.schema.json#/$defs/textList"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "reasons"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "reasons": {
+                "$ref": "defs.schema.json#/$defs/textList"
+              }
+            }
+          }
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "reasons"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "reasons": {
+                "$ref": "defs.schema.json#/$defs/textList"
+              }
+            }
+          }
+        },
+        "cases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "reasons"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "reasons": {
+                "$ref": "defs.schema.json#/$defs/textList"
+              }
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "reasons"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "reasons": {
+                "$ref": "defs.schema.json#/$defs/textList"
+              }
+            }
+          }
+        },
+        "fixtureCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "taxonomyClaimRefsRemoved": {
+          "description": "Claim ids removed from the bundled taxonomy copy because the claim is excluded.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "entry",
+              "claim"
+            ],
+            "properties": {
+              "entry": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "claim": {
+                "$ref": "defs.schema.json#/$defs/id"
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

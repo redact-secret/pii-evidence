@@ -23,7 +23,8 @@ None of the schemas holds scanner behavior, detector or support state, threshold
 | `fixture-skip.schema.json` | `fixture-skip` | one line of the skip report (generated) |
 | `materialization-manifest.schema.json` | `materialization-manifest` | digests and counts of one projector run (generated) |
 | `review-event.schema.json` | `review-event` | one review decision about one record |
-| `snapshot-manifest.schema.json` | `snapshot-manifest` | binds an immutable snapshot (ARCHITECTURE.md section 10) |
+| `snapshot-manifest.schema.json` | `snapshot-manifest` | binds an immutable snapshot (ARCHITECTURE.md section 10); optional additive fields `snapshotDate`, `files`, `exclusions`, `fixtureGenerator`, `consumerContract`, `contentDigestSpec`, `validation.checks`, extra `counts` and `coverage` summaries |
+| `snapshot-registry.schema.json` | `snapshot-registry` | `snapshots/released.json`, the committed registry of released snapshots (digests, archive, release pointers) |
 
 Every record carries `kind` and `schemaVersion`. `schemaVersion` is the string `"1"` for everything in `schemas/v1/`.
 
@@ -53,7 +54,7 @@ Ids must not embed issue or PR numbers, release or milestone names, scanner or d
 
 `scripts/validate.mjs` reads every `.json` and `.jsonl` file under `taxonomy/`, `evidence/`, `fixtures/` and `snapshots/`. Missing or empty directories succeed. Symbolic links are rejected. A `.json` file holds one object (a record or a taxonomy wrapper); a `.jsonl` file holds one record per line. Errors name the file, the line for JSONL, and the JSON pointer.
 
-Each `snapshots/<id>/` directory is its own corpus: ids are unique inside it but may repeat the working tree's ids (a snapshot copies them), and references resolve inside it plus the working tree's taxonomy.
+Each snapshot directory (any directory under `snapshots/` that holds a `manifest.json`; the id is the nested path, for example `snapshots/public-pii-phi/2026-10-07/<hex>/`) is its own corpus: ids are unique inside it but may repeat the working tree's ids (a snapshot copies them), and references resolve inside it plus the working tree's taxonomy.
 
 Cross-references checked: case to kind, jurisdiction, contexts, sources, claims, related cases and review events; claim to source (and optional kind, jurisdiction); fixture to case, rule, source and claim lineage; rule to applicable kinds and justifying cases; skip to case and rule; review-event subject to any record; kind to jurisdictions, base kind, context claims and claim ids; context to claim ids.
 

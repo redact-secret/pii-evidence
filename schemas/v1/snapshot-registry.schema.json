@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/redact-secret/pii-evidence/schemas/v1/snapshot-registry.schema.json",
+  "title": "SnapshotRegistry (v1)",
+  "description": "snapshots/released.json: the committed registry of released snapshots. A released entry binds the manifest digest, content digest and every file digest; it never changes. Release pointers sit here, outside the digested snapshot files.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "schemaVersion",
+    "id",
+    "snapshots"
+  ],
+  "properties": {
+    "kind": {
+      "const": "snapshot-registry"
+    },
+    "schemaVersion": {
+      "const": "1"
+    },
+    "id": {
+      "const": "snapshot-registry"
+    },
+    "snapshots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "status",
+          "snapshotDate",
+          "manifestSha256",
+          "contentDigest",
+          "files",
+          "archive",
+          "release"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "defs.schema.json#/$defs/id"
+          },
+          "status": {
+            "const": "released"
+          },
+          "snapshotDate": {
+            "$ref": "defs.schema.json#/$defs/date"
+          },
+          "manifestSha256": {
+            "$ref": "defs.schema.json#/$defs/sha256"
+          },
+          "contentDigest": {
+            "$ref": "defs.schema.json#/$defs/sha256"
+          },
+          "files": {
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "$ref": "defs.schema.json#/$defs/sha256"
+            }
+          },
+          "archive": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tarSha256",
+              "name",
+              "tarGzSha256"
+            ],
+            "properties": {
+              "tarSha256": {
+                "description": "SHA-256 of the uncompressed deterministic tar (reproducible by snapshot:pack).",
+                "$ref": "defs.schema.json#/$defs/sha256"
+              },
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9.-]*\\.tar\\.gz$"
+              },
+              "tarGzSha256": {
+                "description": "SHA-256 of the published .tar.gz asset.",
+                "$ref": "defs.schema.json#/$defs/sha256"
+              }
+            }
+          },
+          "release": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "tag",
+              "url"
+            ],
+            "properties": {
+              "tag": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9.-]*$"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
