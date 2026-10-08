@@ -26,7 +26,7 @@ import {
 } from "./projector.mjs";
 import { REPO_ROOT, loadTree, readRecordFile, validateRecords, validateTree } from "./validator.mjs";
 
-export const BUILDER = { name: "pii-evidence-snapshot-builder", version: "1.1.0" };
+export const BUILDER = { name: "pii-evidence-snapshot-builder", version: "1.2.0" };
 export const CONTRACT_NAME = "pii-evidence-consumer-contract";
 export const CONTRACT_VERSION = "1";
 export const DIGEST_SPEC = "files-v1";
@@ -183,6 +183,49 @@ export function adjudicationExclusionsOf(root, records) {
     }
   }
   return exclusions;
+}
+
+// Compare with a strictly earlier release so registering this candidate never
+// changes its rebuild bytes. Detailed reasoning stays in the hash-bound ledgers.
+export function promotionDeltaOf(root, date, manifest, files) {
+  const baseline = readRegistry(root).snapshots.filter(s => s.snapshotDate < date)
+    .sort((a, b) => cmp(a.snapshotDate, b.snapshotDate) || cmp(a.id, b.id)).at(-1);
+  if (!baseline) return undefined;
+  const { files: old, problems } = readSnapshotFiles(path.join(root, SNAPSHOT_DIR, baseline.id));
+  if (problems.length) throw new SnapshotRefusal(problems);
+  if (canonicalJson(Object.keys(old).sort(cmp)) !== canonicalJson(Object.keys(baseline.files).sort(cmp))) throw new SnapshotRefusal(["promotion baseline file set differs from its released pin"]);
+  for (const [file, expected] of Object.entries(baseline.files)) {
+    if (!old[file] || sha256Hex(old[file]) !== expected) throw new SnapshotRefusal([`promotion baseline file differs from its released pin: ${file}`]);
+  }
+  if (sha256Hex(old[FILES.manifest]) !== baseline.manifestSha256) throw new SnapshotRefusal(["promotion baseline manifest differs from its released pin"]);
+  const prior = JSON.parse(old[FILES.manifest]);
+  const diff = (before, after) => {
+    const a = new Map(before.map(r => [r.id, r]));
+    const b = new Map(after.map(r => [r.id, r]));
+    return {
+      added: [...b.keys()].filter(id => !a.has(id)).sort(cmp),
+      removed: [...a.keys()].filter(id => !b.has(id)).sort(cmp),
+      changed: [...b.keys()].filter(id => a.has(id) && canonicalJson(a.get(id)) !== canonicalJson(b.get(id))).sort(cmp),
+    };
+  };
+  const ledgers = [];
+  const decisions = [];
+  for (const name of ["case-strengthening", "coverage-expansion"]) {
+    const relative = `docs/research/${name}-adjudication.json`;
+    if (!existsSync(path.join(root, relative))) continue;
+    const bytes = readFileSync(path.join(root, relative));
+    const ledger = JSON.parse(bytes);
+    ledgers.push({ id: ledger.id, sha256: sha256Hex(bytes) });
+    for (const row of ledger.candidates) decisions.push({ id: row.id, ledger: ledger.id, disposition: row.disposition });
+  }
+  return {
+    baseline: { id: baseline.id, manifestSha256: baseline.manifestSha256 },
+    kinds: diff(JSON.parse(old[FILES.kinds]).kinds, JSON.parse(files[FILES.kinds]).kinds),
+    cases: diff(parseJsonl(old[FILES.cases]), parseJsonl(Buffer.from(files[FILES.cases]))),
+    counts: Object.fromEntries(["cases", "fixtures"].map(key => [key, { previous: prior.counts[key], candidate: manifest.counts[key], delta: manifest.counts[key] - prior.counts[key] }])),
+    ledgers,
+    decisions: decisions.sort((a, b) => cmp(`${a.ledger}/${a.id}`, `${b.ledger}/${b.id}`)),
+  };
 }
 
 export function selectEvidence(records, adjudicationExclusions = new Map()) {
@@ -447,6 +490,8 @@ export function buildSnapshot({ root = REPO_ROOT, date } = {}) {
       files: fileList,
       exclusions: { rule: EXCLUSION_RULE, ...sel.exclusions, fixtureCount: excludedFixtures },
     };
+    const promotion = promotionDeltaOf(root, date, manifest, out);
+    if (promotion) manifest.coverageDelta = promotion;
     const files = { ...out, [FILES.manifest]: pretty(manifest) };
 
     // The assembled directory must pass the same verification a consumer runs.

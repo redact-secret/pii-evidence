@@ -2,26 +2,26 @@
 
 Project-maintained evidence, not independent validation or product qualification.
 
-Baseline: `public-pii-phi/2026-10-07/9d4e8e036bbb`. Candidate: `public-pii-phi/2026-10-08/d8add618935d`. Both are pinned by manifest SHA-256 in snapshot-v2-candidate.json.
+Baseline: `public-pii-phi/2026-10-07/9d4e8e036bbb`. Candidate: `public-pii-phi/2026-10-08/ee61c7afc32d`. Both are pinned by manifest SHA-256 in snapshot-v2-candidate.json.
 
 ## Denominators
 
-Cases: 49 -> 116 (+67). Fixtures: 139 -> 275 (+136). Counts include only these public evidence snapshots; no scanner or protected population is added.
+Cases: 49 -> 118 (+69). Fixtures: 139 -> 285 (+146). Counts include only these public evidence snapshots; no scanner or protected population is added.
 
 ## Taxonomy
 
 - kinds: added `date-of-birth/global/labeled-field`, `uk-nino/uk/structured`; removed none; changed `health-claim-identifier/us/claim-field`, `health-plan-member-id/us/member-field`, `medical-record-number/us/labeled-field`, `national-id/unresolved/placeholder`, `prescription-order-identifier/us/order-field`.
-- contexts: added none; removed none; changed none.
+- contexts: added `date-locale/global/en-gb`, `date-locale/global/en-us`; removed none; changed none.
 - jurisdictions: added `uk`; removed none; changed none.
 
 Kinds without accepted cases: `iban/global/basic`, `national-id/unresolved/placeholder`, `payment-card/global/basic`.
 
 ## Evidence and review
 
-- cases: 67 added, 0 removed, 0 changed.
-- fixtures: 136 added, 0 removed, 0 changed.
-- claims: 28 added, 0 removed, 0 changed.
-- sources: 13 added, 0 removed, 0 changed.
+- cases: 69 added, 0 removed, 0 changed.
+- fixtures: 146 added, 0 removed, 0 changed.
+- claims: 30 added, 0 removed, 0 changed.
+- sources: 14 added, 0 removed, 0 changed.
 - review-events: 0 added, 0 removed, 0 changed.
 - fixture-rules: 0 added, 0 removed, 0 changed.
 
@@ -104,7 +104,7 @@ Exact IDs, source changes, review-state counts, exclusions and per-kind case/fix
 - `germany-tax-identifier` (defer, research #28): Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim.
 - `health-plan-organization-identifier` (reject, research #26): Decision and rationale remain in the adjudication ledger.
 - `healthcare-claim-identifier` (defer, research #29): Need bounded holder setting and person-linkage claim.
-- `locale-numeric-birth-date` (context-only, research #27): Source locale orders before adding jurisdiction/locale profiles.
+- `locale-numeric-birth-date` (context-only, research #27): Locales without an explicit declaration, application overrides and other calendars remain outside this bounded acceptance.
 - `medicare-beneficiary-identifier` (defer, research #26): Prove reserved/test or deterministic non-issued value strategy, author MBI kind and contrasts.
 - `organization-identifier` (reject, research #29): No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis.
 - `other-eu-personal-identifiers` (defer, research #28): Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim.

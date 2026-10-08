@@ -1,5 +1,14 @@
 # Date of birth as bounded contextual PII/PHI: recommendations
 
+## Locale-order follow-up, observed 2026-10-08
+
+The historical recommendations below are superseded only for the numeric-locale context. [Unicode CLDR JSON 48.0.0 en-GB Gregorian data](https://raw.githubusercontent.com/unicode-org/cldr-json/48.0.0/cldr-json/cldr-dates-full/main/en-GB/ca-gregorian.json) documents day/month/year order; [the versioned en data](https://raw.githubusercontent.com/unicode-org/cldr-json/48.0.0/cldr-json/cldr-dates-full/main/en/ca-gregorian.json) documents month/day/year order. For en-US, [identity-only en_US](https://raw.githubusercontent.com/unicode-org/cldr/release-48/common/main/en_US.xml), [default-content metadata](https://raw.githubusercontent.com/unicode-org/cldr/release-48/common/supplemental/supplementalMetadata.xml) and [parent-locale data](https://raw.githubusercontent.com/unicode-org/cldr/release-48/common/supplemental/supplementalData.xml) establish the en_US-to-en inheritance path. These are formatter locale facts, not universal country rules or DOB parser grammars.
+
+Accepted context-only: `date-locale/global/en-gb` and `date-locale/global/en-us`, bounded by literal locale declarations applying to a labeled DOB field. Two new context Cases retain the existing synthetic date digits and differ only in the declared locale. Both retain global jurisdiction because locale is metadata, not inferred residence or legal jurisdiction. The original unspecified-locale Case remains date-order ambiguous; identity valid concerns the DOB role, not actual date assignment. No new kind or PHI duplicate is created.
+
+New source `dob-unicode-cldr-date-patterns`, two `dob-cldr` claims, and the contexts/Cases are project-maintained and unreviewed. The Unicode-3.0 copyright and permission notice is retained in [unicode-license.txt](../governance/unicode-license.txt). No personal source examples are copied. DOB labels and application of formatting order to these hypothetical fields remain explicit authored inference; application overrides and other calendars remain unresolved.
+
+
 Status: draft, unreviewed agent work (observed 2026-10-07). Nothing here is independent validation. Records: kind `date-of-birth/global/labeled-field` in `taxonomy/privacy-kinds.json`, sources `evidence/sources/date-of-birth-sources.jsonl`, claims `evidence/claims/date-of-birth-claims.jsonl`, cases `evidence/cases/date-of-birth-cases.jsonl`. Generic date detection and PERSON/name evidence are out of scope.
 
 ## Established (source-stated; locators in the claims)

@@ -362,3 +362,29 @@ test("unknown or duplicate adjudication dispositions fail closed", () => {
     assert.throws(() => buildSnapshot({ root, date: DATE }), SnapshotRefusal);
   } finally { cleanup(root); }
 });
+
+test("promotion manifest binds earlier release and dispositions without changing on registration", () => {
+  const root = tempRoot();
+  try {
+    const registry = readRegistry(REPO_ROOT);
+    const baseline = registry.snapshots[0];
+    cpSync(path.join(REPO_ROOT, "snapshots", baseline.id), path.join(root, "snapshots", baseline.id), { recursive: true });
+    writeFileSync(path.join(root, REGISTRY_FILE), registryText(registry));
+    const next = buildSnapshot({ root, date: "2026-10-08" });
+    const delta = next.manifest.coverageDelta;
+    assert.equal(delta.baseline.manifestSha256, baseline.manifestSha256);
+    assert.equal(delta.counts.cases.previous, 49);
+    assert.equal(delta.counts.cases.candidate, next.manifest.counts.cases);
+    assert.equal(delta.counts.cases.delta, next.manifest.counts.cases - 49);
+    assert.equal(delta.ledgers.length, 2);
+    assert.ok(delta.decisions.some(row => row.disposition === "defer"));
+    assert.ok(delta.kinds.added.includes("uk-nino/uk/structured"));
+    writeSnapshot({ root, built: next });
+    registry.snapshots.push(registryEntryOf(next));
+    writeFileSync(path.join(root, REGISTRY_FILE), registryText(registry));
+    assert.deepEqual(buildSnapshot({ root, date: "2026-10-08" }).files, next.files);
+    const oldCases = path.join(root, "snapshots", baseline.id, FILES.cases);
+    writeFileSync(oldCases, `${readFileSync(oldCases, "utf8")}\n`);
+    assert.throws(() => buildSnapshot({ root, date: "2026-10-08" }), error => error instanceof SnapshotRefusal && /baseline file/.test(error.message));
+  } finally { cleanup(root); }
+});
