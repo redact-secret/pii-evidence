@@ -1,0 +1,50 @@
+{
+  "schema": "snapshot-v2-candidate/1",
+  "snapshot": {
+    "id": "public-pii-phi/2026-10-08/d8add618935d",
+    "manifestSha256": "cb396cfc2897aba01c423bbb6d6acec98fb3574183f1a98c0cf24a8d23633073"
+  },
+  "baseline": {
+    "id": "public-pii-phi/2026-10-07/9d4e8e036bbb",
+    "manifestSha256": "a9e24b6dc73bc876f9fce341c7305421b054ae399df83d198513bede03555ca9"
+  },
+  "adjudications": [
+    "docs/research/case-strengthening-adjudication.json",
+    "docs/research/coverage-expansion-adjudication.json"
+  ],
+  "mappingExpectations": {
+    "owner": "pii-eval",
+    "basis": "consumer mapping revision 1 documentation",
+    "mappedKinds": [
+      "email",
+      "phone",
+      "payment-card",
+      "iban",
+      "us-ssn",
+      "medical-record-number",
+      "health-plan-member-id",
+      "health-claim-identifier",
+      "prescription-order-identifier"
+    ],
+    "unmappedKinds": [
+      "date-of-birth",
+      "uk-nino",
+      "national-id"
+    ],
+    "acceptedJurisdictions": [
+      "global",
+      "us"
+    ],
+    "lossClasses": [
+      "identity-weakened-no-span",
+      "sensitivity-weakened-no-span",
+      "sensitivity-context-dependent-flattened",
+      "contexts-not-carried",
+      "phi-domain-not-carried"
+    ],
+    "unmappedJurisdictions": [
+      "uk"
+    ]
+  },
+  "status": "candidate"
+}

@@ -7,7 +7,7 @@ import path from "node:path";
 import test from "node:test";
 import { forbiddenIdViolations } from "../scripts/id-rules.mjs";
 import {
-  FILES, REGISTRY_FILE, SnapshotRefusal, buildSnapshot, contentDigestOf, flatId, readRegistry, readSnapshotFiles, registryEntryOf, registryText,
+  FILES, REGISTRY_FILE, SnapshotRefusal, adjudicationExclusionsOf, buildSnapshot, contentDigestOf, flatId, readRegistry, readSnapshotFiles, registryEntryOf, registryText,
   selectEvidence, snapshotIdOf, tarOf, verifyRepository, verifySnapshotDir, verifySnapshotFiles, writeSnapshot,
 } from "../scripts/lib/snapshot.mjs";
 import { REPO_ROOT, loadTree } from "../scripts/lib/validator.mjs";
@@ -20,6 +20,12 @@ function tempRoot() {
   const root = mkdtempSync(path.join(tmpdir(), "pii-evidence-snaptest-"));
   for (const d of ["taxonomy", "evidence"]) cpSync(path.join(REPO_ROOT, d), path.join(root, d), { recursive: true });
   cpSync(path.join(REPO_ROOT, "fixtures", "rules"), path.join(root, "fixtures", "rules"), { recursive: true });
+  const ledgerDir = path.join(root, "docs/research");
+  mkdirSync(ledgerDir, { recursive: true });
+  for (const name of ["case-strengthening", "coverage-expansion"]) {
+    const src = path.join(REPO_ROOT, "docs/research", `${name}-adjudication.json`);
+    if (existsSync(src)) cpSync(src, path.join(ledgerDir, `${name}-adjudication.json`));
+  }
   return root;
 }
 const cleanup = (root) => rmSync(root, { recursive: true, force: true });
@@ -315,4 +321,44 @@ test("an unreleased draft must equal a fresh rebuild; a stale draft fails", () =
 
 test("the committed snapshot in this repository verifies", () => {
   assert.deepEqual(verifyRepository({ root: REPO_ROOT, rebuild: false }).errors, []);
+});
+
+
+test("adjudicated deferred Cases stay in research but not in a snapshot", () => {
+  const { records } = loadTree(REPO_ROOT);
+  const exclusions = adjudicationExclusionsOf(REPO_ROOT, records);
+  assert.equal(exclusions.size, 3);
+  const included = new Set(readLines(path.join(REPO_ROOT, "evidence/cases/serialization-cases.jsonl")).map((c) => c.id));
+  for (const id of exclusions.keys()) {
+    assert.ok(included.has(id), "research remains inspectable");
+    assert.ok(built.manifest.exclusions.cases.some((c) => c.id === id && c.reasons.some((r) => r.startsWith("adjudication: defer"))));
+    assert.ok(!JSON.parse(`[${built.files[FILES.cases].trim().split("\n").join(",")}]`).some((c) => c.id === id));
+  }
+});
+
+test("unknown or duplicate adjudication dispositions fail closed", () => {
+  const root = tempRoot();
+  try {
+    const p = path.join(root, "docs/research/case-strengthening-adjudication.json");
+    const ledger = JSON.parse(readFileSync(p, "utf8"));
+    ledger.candidates[0].disposition = "maybe";
+    writeFileSync(p, JSON.stringify(ledger));
+    assert.throws(() => buildSnapshot({ root, date: DATE }), SnapshotRefusal);
+    ledger.candidates[0].disposition = "add";
+    ledger.candidates.push(ledger.candidates[0]);
+    writeFileSync(p, JSON.stringify(ledger));
+    assert.throws(() => buildSnapshot({ root, date: DATE }), SnapshotRefusal);
+    ledger.candidates.pop();
+    const deferred = ledger.candidates.find(c => c.disposition === "defer" && c.implementation?.cases?.length);
+    delete deferred.implementation.cases;
+    writeFileSync(p, JSON.stringify(ledger));
+    assert.ok(adjudicationExclusionsOf(root, loadTree(root).records).has(deferred.id));
+    ledger.candidates.push(null);
+    writeFileSync(p, JSON.stringify(ledger));
+    assert.throws(() => buildSnapshot({ root, date: DATE }), SnapshotRefusal);
+    ledger.candidates.pop();
+    ledger.candidates[0].canonicalCaseDisposition = "unknown";
+    writeFileSync(p, JSON.stringify(ledger));
+    assert.throws(() => buildSnapshot({ root, date: DATE }), SnapshotRefusal);
+  } finally { cleanup(root); }
 });

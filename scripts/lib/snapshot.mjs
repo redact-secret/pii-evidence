@@ -26,7 +26,7 @@ import {
 } from "./projector.mjs";
 import { REPO_ROOT, loadTree, readRecordFile, validateRecords, validateTree } from "./validator.mjs";
 
-export const BUILDER = { name: "pii-evidence-snapshot-builder", version: "1.0.0" };
+export const BUILDER = { name: "pii-evidence-snapshot-builder", version: "1.1.0" };
 export const CONTRACT_NAME = "pii-evidence-consumer-contract";
 export const CONTRACT_VERSION = "1";
 export const DIGEST_SPEC = "files-v1";
@@ -54,6 +54,7 @@ export const EXCLUSION_RULE = [
   "A source is included only if scripts/lint-provenance.mjs derives public-safe for it (the --public-release condition); otherwise it is excluded with the lint reasons.",
   "A claim is included only if its source is included and its review state is not rejected.",
   "A case is excluded if any source or claim it cites is excluded or its review state is rejected.",
+  "Existing authored cases explicitly deferred or rejected by the project research adjudication are excluded, with the disposition and ledger identity recorded as reasons. Deferred role proposals do not exclude accepted ambiguity or collision controls.",
   "Exclusion propagates across case relationships to a fixed point: a case that relates to an excluded case is excluded, so no included case points at a missing case. Relationships carry no direction, so this is deliberately conservative.",
   "A fixture rule is excluded if any case in its justifiedBy is excluded or its review state is rejected; fixtures exist only for included cases projected through included rules.",
   "Taxonomy entries are copied as taxonomy, not corpus. The only change is removing references to excluded claims, each recorded under taxonomyClaimRefsRemoved.",
@@ -157,7 +158,34 @@ const typeOf = (records, kind) => records.filter((r) => r.data.kind === kind).ma
  * Decide what is public. `records` are validated tree records (taxonomy, sources, claims, cases,
  * rules, review events). Returns included lists and exclusion entries with reasons.
  */
-export function selectEvidence(records) {
+// Dispositions govern promotion, while research records stay inspectable in the source tree.
+export function adjudicationExclusionsOf(root, records) {
+  const knownCases = new Map(typeOf(records, "case").map((c) => [c.id, c]));
+  const exclusions = new Map();
+  for (const name of ["case-strengthening", "coverage-expansion"]) {
+    const file = path.join(root, "docs/research", `${name}-adjudication.json`);
+    if (!existsSync(file)) continue; // Isolated historical/test corpora have no promotion ledger.
+    let ledger;
+    try { ledger = JSON.parse(readFileSync(file, "utf8")); }
+    catch { throw new SnapshotRefusal([`${name} adjudication ledger is not valid JSON`]); }
+    if (ledger?.schemaVersion !== "1" || !/^[a-z0-9-]+$/.test(ledger.id ?? "") || !Array.isArray(ledger.candidates)) throw new SnapshotRefusal([`${name} adjudication ledger has an unknown schema`]);
+    const seen = new Set();
+    for (const row of ledger.candidates) {
+      if (!row || typeof row !== "object" || typeof row.id !== "string" || !row.id || seen.has(row.id) || !["add", "context-only", "defer", "reject"].includes(row.disposition)) throw new SnapshotRefusal([`${name} adjudication has a duplicate/invalid candidate or disposition`]);
+      seen.add(row.id);
+      // A role proposal can be deferred while its relative-kind negative Case is accepted.
+      if (row.canonicalCaseDisposition !== undefined && !["add", "context-only", "defer", "reject", "retain-bounded-existing-cases", "no-new-case"].includes(row.canonicalCaseDisposition)) throw new SnapshotRefusal([`${name}: invalid canonical Case disposition for ${row.id}`]);
+      if (!knownCases.has(row.id)) continue;
+      if (row.canonicalCaseDisposition === "retain-bounded-existing-cases" || row.canonicalCaseDisposition === "no-new-case") throw new SnapshotRefusal([`${name}: role-only disposition used for an authored Case ${row.id}`]);
+      const disposition = row.canonicalCaseDisposition ?? row.disposition;
+      if (!["add", "context-only", "defer", "reject"].includes(disposition)) throw new SnapshotRefusal([`${name}: invalid canonical Case disposition for ${row.id}`]);
+      if (disposition === "defer" || disposition === "reject") exclusions.set(row.id, [`adjudication: ${disposition} in ${ledger.id}`]);
+    }
+  }
+  return exclusions;
+}
+
+export function selectEvidence(records, adjudicationExclusions = new Map()) {
   const sources = typeOf(records, "source");
   const claims = typeOf(records, "claim");
   const cases = typeOf(records, "case");
@@ -179,6 +207,7 @@ export function selectEvidence(records) {
     for (const s of c.provenance.sources) if (ex.sources.has(s)) note(ex.cases, c.id, `cites excluded source ${s}`);
     for (const cl of c.provenance.claims) if (ex.claims.has(cl)) note(ex.cases, c.id, `cites excluded claim ${cl}`);
     if (c.review.state === "rejected") note(ex.cases, c.id, "review state is rejected");
+    for (const reason of adjudicationExclusions.get(c.id) ?? []) note(ex.cases, c.id, reason);
   }
   for (let changed = true; changed; ) {
     changed = false;
@@ -299,7 +328,7 @@ export function buildSnapshot({ root = REPO_ROOT, date } = {}) {
   refuse(check(checks, "population: every record is public; no protected or mixed population", []));
   refuse(validateRecords(records).errors.map((e) => `source tree invalid: ${e}`));
 
-  const sel = selectEvidence(records);
+  const sel = selectEvidence(records, adjudicationExclusionsOf(root, records));
   const { included } = sel;
   if (included.cases.length === 0) refuse(["no public-safe case remains; nothing to snapshot"]);
   const allCases = typeOf(records, "case");
