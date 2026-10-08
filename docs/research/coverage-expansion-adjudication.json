@@ -1,0 +1,2317 @@
+{
+  "id": "coverage-expansion-adjudication",
+  "schemaVersion": "1",
+  "observedAt": "2026-10-08",
+  "reviewAuthority": "project-maintained adjudication under repository-owner delegated track; not independent validation",
+  "scope": "Coverage-expansion research tracks 25 through 29",
+  "decisionVocabulary": [
+    "add",
+    "context-only",
+    "defer",
+    "reject"
+  ],
+  "policies": {
+    "add": "Accept existing source-backed canonical role; labels and remaining uncertainty stay explicit.",
+    "context-only": "Accept bounded context or relative-kind control, without new kind/grammar.",
+    "defer": "No new kind or stronger positive; existing unresolved records retained.",
+    "reject": "Reject candidate from specified personal/patient role only; do not imply universal non-PII."
+  },
+  "candidates": [
+    {
+      "id": "medical-record-number",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "add",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/mr-definition",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "phi-hhs-164-514-b-2-i/medical-record-numbers",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Accept existing source-defined MR role; value is opaque and has no universal grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [
+          "medical-record-number/us/labeled-field"
+        ],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/mr-definition",
+          "phi-hhs-164-514-b-2-i/medical-record-numbers"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/ambiguous/patient-identifier-label",
+          "medical-record-number/us/labeled-field/ambiguous/unlabeled-reference-in-clinical-text",
+          "medical-record-number/us/labeled-field/collision/account-number-field",
+          "medical-record-number/us/labeled-field/collision/encounter-identifier-field",
+          "medical-record-number/us/labeled-field/collision/generic-patient-id-label",
+          "medical-record-number/us/labeled-field/collision/order-label-in-clinical-context",
+          "medical-record-number/us/labeled-field/context/patient-placeholder-with-labeled-number",
+          "medical-record-number/us/labeled-field/mutation/hl7v2-type-code",
+          "medical-record-number/us/labeled-field/mutation/json-field",
+          "medical-record-number/us/labeled-field/mutation/logfmt-field",
+          "medical-record-number/us/labeled-field/mutation/punctuation-boundary",
+          "medical-record-number/us/labeled-field/negative/label-without-value",
+          "medical-record-number/us/labeled-field/negative/span-less-absence-statement",
+          "medical-record-number/us/labeled-field/positive/labeled-plain-text",
+          "medical-record-number/us/labeled-field/twin/value-under-non-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "patient-internal-identifier",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/patient-internal-and-external-identifier",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "PI/PT are distinct roles; existing MRN-relative ambiguity does not establish a new kind.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/patient-internal-and-external-identifier"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/ambiguous/patient-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need bounded source-defined occurrence and source-backed person linkage; do not equate PI/PT with MR."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "patient-external-identifier",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/patient-internal-and-external-identifier",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "PI/PT are distinct roles; existing MRN-relative ambiguity does not establish a new kind.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/patient-internal-and-external-identifier"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/ambiguous/patient-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need bounded source-defined occurrence and source-backed person linkage; do not equate PI/PT with MR."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "patient-account-number",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/account-and-visit-number",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "clinical-fhir-r4-account/identifier-is-account-number",
+          "source": "clinical-hl7-fhir-r4-encounter-account",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "phi-hhs-164-514-b-2-i/account-numbers-and-other-unique-codes",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain MRN collision context, not a new health identifier grammar. Account resource also covers expense/depreciation.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/account-and-visit-number",
+          "clinical-fhir-r4-account/identifier-is-account-number",
+          "phi-hhs-164-514-b-2-i/account-numbers-and-other-unique-codes"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/collision/account-number-field"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Standalone account kind and holder context remain deferred."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "encounter-identifier",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/account-and-visit-number",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "clinical-fhir-r4-encounter/identifier-and-subject",
+          "source": "clinical-hl7-fhir-r4-encounter-account",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Identifier and patient subject are separate; retain MRN-relative controls.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/account-and-visit-number",
+          "clinical-fhir-r4-encounter/identifier-and-subject"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/collision/encounter-identifier-field"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need person-linkage and bounded role contract."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "visit-number",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "medical-record-number/us/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/account-and-visit-number",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "clinical-fhir-r4-encounter/identifier-and-subject",
+          "source": "clinical-hl7-fhir-r4-encounter-account",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Identifier and patient subject are separate; retain MRN-relative controls.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/account-and-visit-number",
+          "clinical-fhir-r4-encounter/identifier-and-subject"
+        ],
+        "cases": [
+          "medical-record-number/us/labeled-field/collision/encounter-identifier-field"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need person-linkage and bounded role contract."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "facility-department-code",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "No reviewed provider specification. HIPAA catch-all is not a format or label vocabulary.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Reconsider only with provider documentation and safe values."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "facility-bed-code",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "No reviewed provider specification. HIPAA catch-all is not a format or label vocabulary.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Reconsider only with provider documentation and safe values."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "facility-order-set-code",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "No reviewed provider specification. HIPAA catch-all is not a format or label vocabulary.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Reconsider only with provider documentation and safe values."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "facility-local-code",
+      "researchIssue": 25,
+      "researchDocument": "docs/research/clinical-record-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "No reviewed provider specification. HIPAA catch-all is not a format or label vocabulary.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Reconsider only with provider documentation and safe values."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "health-plan-member-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "add",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/mb-member-number-definition",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "phi-hhs-164-514-b-2-i/health-plan-beneficiary-numbers",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain existing member role; insurer-local values stay opaque.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [
+          "health-plan-member-id/us/member-field"
+        ],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/mb-member-number-definition",
+          "phi-hhs-164-514-b-2-i/health-plan-beneficiary-numbers"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/ambiguous/dependent-identifier-label",
+          "health-plan-member-id/us/member-field/ambiguous/medicare-number-label",
+          "health-plan-member-id/us/member-field/ambiguous/subscriber-number-label",
+          "health-plan-member-id/us/member-field/ambiguous/unlabeled-reference-in-plan-text",
+          "health-plan-member-id/us/member-field/collision/group-number-label",
+          "health-plan-member-id/us/member-field/collision/membership-outside-health-plan",
+          "health-plan-member-id/us/member-field/collision/policy-number-label",
+          "health-plan-member-id/us/member-field/collision/public-payer-identifier-label",
+          "health-plan-member-id/us/member-field/mutation/fhir-coverage-subscriber-id",
+          "health-plan-member-id/us/member-field/negative/label-without-value",
+          "health-plan-member-id/us/member-field/negative/span-less-pointer-to-elsewhere",
+          "health-plan-member-id/us/member-field/positive/labeled-plain-text"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "subscriber-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-fhir-r4-coverage/subscriber-id",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain explicit subscriber ambiguity against member kind; source defines subscriber role, not member equivalence.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-fhir-r4-coverage/subscriber-id",
+          "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/ambiguous/subscriber-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Member/subscriber taxonomy relationship remains unresolved."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "dependent-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-fhir-coverage/dependent-and-class-value",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Dependent role documented without universal format; no separate accepted kind.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-fhir-coverage/dependent-and-class-value"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/ambiguous/dependent-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need bounded standalone semantics."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "policy-coverage-number",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-fhir-coverage/dependent-and-class-value",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Coverage identity is not necessarily individual identity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-fhir-coverage/dependent-and-class-value",
+          "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/collision/policy-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need holder-specific person linkage."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "group-number",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-fhir-coverage/dependent-and-class-value",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain coverage-level group control relative to person member kind; no person-linkage asserted.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-fhir-coverage/dependent-and-class-value"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/collision/group-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "plan-class-value",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-fhir-coverage/dependent-and-class-value",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain coverage-level group control relative to person member kind; no person-linkage asserted.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-fhir-coverage/dependent-and-class-value"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/collision/group-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "medicare-beneficiary-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-cms-mbi/format-and-randomness",
+          "source": "phi-cms-mbi-format",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "CMS format exists, but a separate MBI kind requires safe-value provenance and explicit new Cases; current opaque Medicare-label case is not an MBI format positive.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-cms-mbi/format-and-randomness"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/ambiguous/medicare-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Prove reserved/test or deterministic non-issued value strategy, author MBI kind and contrasts."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "payer-organization-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a person-member kind; organization role is a relative-kind collision, not a universal assertion that public identifiers cannot be personal data.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier",
+          "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/collision/public-payer-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "health-plan-organization-identifier",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a person-member kind; organization role is a relative-kind collision, not a universal assertion that public identifiers cannot be personal data.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "health-plan-roles-hl7/subscriber-number-and-health-plan-identifier",
+          "health-plan-roles-fhir-coverage/beneficiary-subscriber-payor"
+        ],
+        "cases": [
+          "health-plan-member-id/us/member-field/collision/public-payer-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "claim-related-member-reference",
+      "researchIssue": 26,
+      "researchDocument": "docs/research/health-plan-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "health-plan-member-id/us/member-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-fhir-r4-claim/identifier-and-patient",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Use existing member role only when explicitly identified; claim identity remains a separately deferred semantic boundary.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-fhir-r4-claim/identifier-and-patient"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "labeled-birth-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "add",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "dob-fhir-r4-patient/birth-date",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-fhir-r4-datatypes/date-notation",
+          "source": "dob-hl7-fhir-r4-datatypes",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-rfc3339/full-date-production",
+          "source": "dob-ietf-rfc3339",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Accept existing bounded DOB kind and authored label inference; calendar notation is source-backed, labels are project-maintained.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [
+          "date-of-birth/global/labeled-field"
+        ],
+        "contexts": [],
+        "claims": [
+          "dob-fhir-r4-patient/birth-date",
+          "dob-fhir-r4-datatypes/date-notation",
+          "dob-rfc3339/full-date-production"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/ambiguous/age-over-89",
+          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
+          "date-of-birth/global/labeled-field/ambiguous/year-only-birth-label",
+          "date-of-birth/global/labeled-field/context/medical-labeled-date",
+          "date-of-birth/global/labeled-field/negative/age-under-90",
+          "date-of-birth/global/labeled-field/negative/format-placeholder-label",
+          "date-of-birth/global/labeled-field/negative/impossible-calendar-date",
+          "date-of-birth/global/labeled-field/negative/label-without-value",
+          "date-of-birth/global/labeled-field/positive/labeled-iso-date",
+          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "medical-birth-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "context-only",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-fhir-r4-patient/birth-date",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Compose same DOB kind with medical context; do not create PHI duplicate. Holder applicability and signal remain explicit inference.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [
+          "medical/global/general"
+        ],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "dob-fhir-r4-patient/birth-date"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/context/medical-labeled-date"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "locale-numeric-birth-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "context-only",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "dob-rfc3339/full-date-production",
+          "source": "dob-ietf-rfc3339",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain ambiguous authored numeric-order Case, not a sourced locale grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "dob-rfc3339/full-date-production"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Source locale orders before adding jurisdiction/locale profiles."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "age-over-89",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-fhir-r4-datatypes/date-notation",
+          "source": "dob-hl7-fhir-r4-datatypes",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "No new age or partial-date kind; retain existing boundary Case without overriding its distinct expectation.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "dob-fhir-r4-datatypes/date-notation"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/ambiguous/age-over-89"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Define separate role and calendar/holder semantics before expansion."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "age-under-90",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-fhir-r4-datatypes/date-notation",
+          "source": "dob-hl7-fhir-r4-datatypes",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "No new age or partial-date kind; retain existing boundary Case without overriding its distinct expectation.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "dob-fhir-r4-datatypes/date-notation"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/negative/age-under-90"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Define separate role and calendar/holder semantics before expansion."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "year-only-birth-value",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-fhir-r4-datatypes/date-notation",
+          "source": "dob-hl7-fhir-r4-datatypes",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "No new age or partial-date kind; retain existing boundary Case without overriding its distinct expectation.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "dob-fhir-r4-datatypes/date-notation"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/ambiguous/year-only-birth-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Define separate role and calendar/holder semantics before expansion."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "admission-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "HIPAA mentions individual dates but no accepted bounded non-birth kind is defined.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped kind, safe values and bounded occurrence signals."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "discharge-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "HIPAA mentions individual dates but no accepted bounded non-birth kind is defined.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped kind, safe values and bounded occurrence signals."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "death-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "HIPAA mentions individual dates but no accepted bounded non-birth kind is defined.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped kind, safe values and bounded occurrence signals."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "other-individual-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [
+        {
+          "claim": "phi-hhs-164-514-b-2-i/dates-and-ages",
+          "source": "phi-hhs-hipaa-deidentification-identifiers",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "HIPAA mentions individual dates but no accepted bounded non-birth kind is defined.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hhs-164-514-b-2-i/dates-and-ages"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped kind, safe values and bounded occurrence signals."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "unlabeled-generic-date",
+      "researchIssue": 27,
+      "researchDocument": "docs/research/date-of-birth.md",
+      "disposition": "reject",
+      "semanticTarget": "date-of-birth/global/labeled-field",
+      "sourceBasis": [
+        {
+          "claim": "dob-fhir-r4-patient/birth-date",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Generic date recognition is outside bounded birth-date scope.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "dob-fhir-r4-patient/birth-date"
+        ],
+        "cases": [
+          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "uk-national-insurance-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "add",
+      "semanticTarget": "uk-nino/uk/structured",
+      "sourceBasis": [
+        {
+          "claim": "uk-nino/format-and-prefix-rules",
+          "source": "uk-nino/hmrc-nim39110",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "uk-nino/administrative-and-temporary-numbers",
+          "source": "uk-nino/hmrc-nim39110",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Accept UK-only bounded format and HMRC example; structural validity does not mean assignability. Never-used example prefix is safe.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [
+          "uk-nino/uk/structured"
+        ],
+        "contexts": [],
+        "claims": [
+          "uk-nino/format-and-prefix-rules",
+          "uk-nino/administrative-and-temporary-numbers"
+        ],
+        "cases": [
+          "uk-nino/uk/structured/ambiguous/unlabeled-example-under-tracking-label",
+          "uk-nino/uk/structured/collision/pension-reporting-placeholder",
+          "uk-nino/uk/structured/negative/excluded-prefix",
+          "uk-nino/uk/structured/negative/suffix-letter-outside-a-d",
+          "uk-nino/uk/structured/negative/too-few-digits",
+          "uk-nino/uk/structured/positive/labeled-spaced-example",
+          "uk-nino/uk/structured/twin/compact-example"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "canada-social-insurance-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Nine digits documented; validation and safe test-value provenance incomplete. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "finland-personal-identity-code",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Documented structure does not establish a non-issued safe value; decree test range not verified. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "us-individual-taxpayer-identification-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Existing SSN collision shape is insufficient for a dedicated IRS-backed kind. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "south-korea-resident-registration-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Authority, checksum and safe non-issued values not researched. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "spain-dni",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Not researched. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "spain-nie",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Not researched. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "germany-tax-identifier",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Not researched. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "france-nir",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Not researched. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "sweden-personnummer",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Authority test-number lead not verified. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "other-eu-personal-identifiers",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "No jurisdiction-specific reviewed contract. Do not infer a cross-jurisdiction grammar.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "deferred-no-new-fixtures",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Research authority and safe values before canonical kind; source lead is recorded in originating research document, not an accepted claim."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "us-employer-identification-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Reject from personal national-id expansion only; business/entity role and sole-proprietor applicability require a separate bounded analysis. Public availability alone does not establish non-PII.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Holder-specific privacy semantics remain unresolved."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "vat-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Reject from personal national-id expansion only; business/entity role and sole-proprietor applicability require a separate bounded analysis. Public availability alone does not establish non-PII.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Holder-specific privacy semantics remain unresolved."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "company-registration-number",
+      "researchIssue": 28,
+      "researchDocument": "docs/research/national-and-tax-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": null,
+      "sourceBasis": [],
+      "rationale": "Reject from personal national-id expansion only; business/entity role and sole-proprietor applicability require a separate bounded analysis. Public availability alone does not establish non-PII.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Holder-specific privacy semantics remain unresolved."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "healthcare-claim-identifier",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "health-claim-identifier/us/claim-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-fhir-r4-claim/identifier-and-patient",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Keep existing unresolved vocabulary and Cases. Separate patient element does not prove either absence or presence of person linkage in every system.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-fhir-r4-claim/identifier-and-patient"
+        ],
+        "cases": [
+          "health-claim-identifier/us/claim-field/ambiguous/labeled-claim-field",
+          "health-claim-identifier/us/claim-field/collision/billing-provider-npi-label",
+          "health-claim-identifier/us/claim-field/ambiguous/patient-account-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need bounded holder setting and person-linkage claim."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "prescription-order-identifier",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-fhir-r4-medicationrequest/identifier-and-subject",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Keep existing unresolved vocabulary and Cases; no universal prescription format supported.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-fhir-r4-medicationrequest/identifier-and-subject"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/order-label-without-prescription-wording",
+          "prescription-order-identifier/us/order-field/ambiguous/labeled-order-field",
+          "prescription-order-identifier/us/order-field/ambiguous/filler-order-number-label",
+          "prescription-order-identifier/us/order-field/ambiguous/encounter-visit-number-label",
+          "prescription-order-identifier/us/order-field/collision/pharmacy-or-facility-identifier-label",
+          "prescription-order-identifier/us/order-field/collision/pharmacist-license-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need pharmacy/provider role specification and safe values."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "placer-order-number",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain typed order-role ambiguity, no distinct grammar and no invented positive.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "filler-order-number",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "context-only",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain typed order-role ambiguity, no distinct grammar and no invented positive.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/ambiguous/filler-order-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "existing-canonical-role-or-context"
+    },
+    {
+      "id": "encounter-visit-order-reference",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain relative-kind ambiguity; same role already considered in clinical track.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/ambiguous/encounter-visit-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped role/person linkage."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "patient-account-claim-reference",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "defer",
+      "semanticTarget": "health-claim-identifier/us/claim-field",
+      "sourceBasis": [
+        {
+          "claim": "phi-hl7-identifier-type-table/account-and-visit-number",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Retain relative-kind ambiguity; same role already considered in clinical track.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "phi-hl7-identifier-type-table/account-and-visit-number"
+        ],
+        "cases": [
+          "health-claim-identifier/us/claim-field/ambiguous/patient-account-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "Need scoped role/person linkage."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "provider-npi",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "health-claim-identifier/us/claim-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-npi/format-and-scope",
+          "source": "provider-cms-npi-standard",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-npi/check-digit",
+          "source": "provider-cms-npi-check-digit",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-npi/format-and-scope",
+          "provider-npi/check-digit"
+        ],
+        "cases": [
+          "health-claim-identifier/us/claim-field/collision/billing-provider-npi-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "provider-number",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "health-claim-identifier/us/claim-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "upin",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "health-claim-identifier/us/claim-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "vocabulary-or-boundary-only",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "no-new-case",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "pharmacist-license-number",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/pharmacist-license-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "state-practitioner-license",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/pharmacist-license-number-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "pharmacy-identifier",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/pharmacy-or-facility-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "facility-identifier",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/pharmacy-or-facility-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    },
+    {
+      "id": "organization-identifier",
+      "researchIssue": 29,
+      "researchDocument": "docs/research/claim-order-and-provider-identifiers.md",
+      "disposition": "reject",
+      "semanticTarget": "prescription-order-identifier/us/order-field",
+      "sourceBasis": [
+        {
+          "claim": "provider-roles-hl7/provider-facility-and-order-codes",
+          "source": "phi-hl7-identifier-type-table",
+          "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "provider-roles-fhir/practitioner-and-encounter-identifiers",
+          "source": "phi-hl7-fhir-r4-resources",
+          "observedAt": "2026-10-07"
+        }
+      ],
+      "rationale": "Reject as a patient claim/order identifier; retain relative-kind controls. Individual practitioner identifier can be PII; published/provider status is not proof of universal non-sensitivity.",
+      "consumerRepresentability": {
+        "contractVersion": "1",
+        "state": "represented",
+        "semantics": "Identity invalid is relative to the named privacyKind; not-established remains unscored. Sensitivity is an independent axis. No scanner output determines the expectation."
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [
+          "provider-roles-hl7/provider-facility-and-order-codes",
+          "provider-roles-fhir/practitioner-and-encounter-identifiers"
+        ],
+        "cases": [
+          "prescription-order-identifier/us/order-field/collision/pharmacy-or-facility-identifier-label"
+        ],
+        "fixtures": {
+          "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
+          "newKindRequired": false
+        }
+      },
+      "unresolved": [
+        "No patient-privacy kind here; individual practitioner privacy needs separate bounded analysis."
+      ],
+      "canonicalCaseDisposition": "retain-bounded-existing-cases",
+      "proposalScope": "standalone-kind-or-role"
+    }
+  ]
+}

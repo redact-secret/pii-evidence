@@ -34,6 +34,22 @@ The build refuses (exit 1, nothing written) unless all of these pass over the in
 
 The manifest records each check under `validation.checks`.
 
+## Research promotion selection
+
+The project-maintained disposition ledgers in `docs/research/case-strengthening-adjudication.json`
+and `docs/research/coverage-expansion-adjudication.json` govern existing authored Case promotion.
+An existing Case whose canonical disposition is `defer` or `reject` remains research in the
+source tree and is excluded from candidates. The manifest records the disposition and ledger
+identity, and the usual relationship/rule exclusion closure still applies. A deferred proposal
+for a new standalone kind does not exclude an accepted bounded ambiguity or relative-kind
+collision Case. `context-only` accepts only the authored bounded semantics, never a universal
+grammar. Invalid or duplicate dispositions fail closed.
+
+The candidate pointer and deterministic coverage report bind both ledgers by SHA-256, identify
+the baseline released snapshot, and keep unresolved proposals and downstream mapping losses
+visible. Agent adjudication does not change a record to `reviewed` or make the evidence independent.
+Candidate preparation does not register a release or authorize benchmark adoption.
+
 ## Identity and digest
 
 Id: `public-pii-phi/<snapshotDate>/<first 12 hex of contentDigest>`. Content digest `files-v1`: SHA-256 over the sorted lines `<file sha256> <path>`, for every file except `manifest.json`. The id is checked against `scripts/id-rules.mjs`, so it never carries release, milestone, scanner or score words. Rebuilding from the same sources with the same tool versions is byte-identical; any content change changes the digest and therefore the id.

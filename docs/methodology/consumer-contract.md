@@ -68,6 +68,7 @@ Pin a snapshot by id plus manifest SHA-256 (or content digest). Never consume a 
 The manifest lists every exclusion under `exclusions` with reasons: `sources`, `claims`, `cases`, `rules`, the number of excluded fixtures, and `taxonomyClaimRefsRemoved`. Rule summary (the exact text is `exclusions.rule`):
 
 - only sources the provenance lint derives `public-safe` are included (the `--public-release` condition); a claim or case that cites an excluded source or claim is excluded; exclusion propagates across case relationships to a fixed point so no included case points at a missing case;
+- explicit project research adjudication can defer or reject an existing authored Case; that Case remains in research but is excluded with its disposition and ledger identity, with ordinary relationship exclusion closure;
 - no record is edited; excluded records are not copied;
 - the taxonomy is copied as vocabulary, minus references to excluded claims;
 - cases that cite no source are included with their evidence class unchanged.

@@ -15,9 +15,11 @@
     "fixtures:materialize": "node scripts/materialize-fixtures.mjs",
     "fixtures:materialize:check": "node scripts/materialize-fixtures.mjs --check",
     "test": "node --test \"tests/**/*.test.mjs\"",
-    "check": "npm run validate && npm run lint:privacy-data && npm run lint:credentials && npm run lint:provenance && npm run fixtures:materialize:check && npm run snapshot:verify && npm test",
+    "check": "npm run validate && npm run lint:privacy-data && npm run lint:credentials && npm run lint:provenance && npm run fixtures:materialize:check && npm run snapshot:verify && npm run snapshot:delta:check && npm test",
     "snapshot:build": "node scripts/snapshot.mjs build",
-    "snapshot:verify": "node scripts/snapshot.mjs verify"
+    "snapshot:verify": "node scripts/snapshot.mjs verify",
+    "snapshot:delta": "node scripts/snapshot-delta.mjs",
+    "snapshot:delta:check": "node scripts/snapshot-delta.mjs --check"
   },
   "devDependencies": {
     "@redact-secret/core": "0.1.0-beta.14",

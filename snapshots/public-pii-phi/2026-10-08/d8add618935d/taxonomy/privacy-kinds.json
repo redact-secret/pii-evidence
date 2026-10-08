@@ -1,37 +1,39 @@
 {
-  "kind": "privacy-kinds",
-  "schemaVersion": "1",
-  "taxonomyVersion": "0.1.0",
+  "classificationStates": [
+    "resolved",
+    "unresolved"
+  ],
   "description": "Initial structured privacy kinds. Domain assignments and format/context claims are project modeling facts awaiting sources; they are not source-backed yet. See docs/methodology/taxonomy.md.",
   "domainVocabulary": [
-    { "id": "pii", "label": "Personally identifiable information" },
-    { "id": "phi", "label": "Protected health information" }
-  ],
-  "classificationStates": ["resolved", "unresolved"],
-  "outOfScope": [
     {
-      "id": "person-name",
-      "label": "PERSON / personal name recognition",
-      "owner": "redact-secret/ner-evidence",
-      "ownerUrl": "https://github.com/redact-secret/ner-evidence",
-      "covers": [
-        "person-name recognition",
-        "name ambiguity",
-        "person/location and person/organization collisions",
-        "language-specific name morphology",
-        "general NER evidence"
-      ],
-      "composition": "reference a pinned ner-evidence snapshot identity; never copy PERSON evidence into this repository",
-      "decision": "docs/decisions/0001-pii-phi-person-ownership-boundary.md"
+      "id": "pii",
+      "label": "Personally identifiable information"
+    },
+    {
+      "id": "phi",
+      "label": "Protected health information"
     }
   ],
+  "kind": "privacy-kinds",
   "kinds": [
     {
-      "id": "email/global/basic",
-      "label": "Email address",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "classification": {
+        "evidenceClass": "authored-baseline",
+        "state": "resolved"
+      },
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
+          "effect": "adds-domain",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "domains": [
+        "pii"
+      ],
       "formatClaims": [
         "email/rfc-5322-addr-spec",
         "email/rfc-5322-dot-atom",
@@ -40,61 +42,74 @@
         "email/rfc-2606-reserved-tlds",
         "email/rfc-6761-special-use"
       ],
-      "contextClaims": [
-        {
-          "context": "medical/global/general",
-          "effect": "adds-domain",
-          "domains": ["phi"],
-          "evidenceClass": "research-needed"
-        }
+      "id": "email/global/basic",
+      "jurisdictions": [
+        "global"
       ],
+      "label": "Email address",
       "openQuestions": [
         "RFC 5322 plain dot-atom addr-spec and RFC 5321 size limits are sourced; are quoted-string, domain-literal, obsolete and internationalized (RFC 6531, not read) forms in scope?",
         "Which medical-context signals are sufficient for the phi domain to apply to an occurrence?"
       ]
     },
     {
-      "id": "phone/global/basic",
-      "label": "Telephone number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
-      "formatClaims": [
-        "phone/nanp-555-range",
-        "phone/e164-maximum-length"
-      ],
+      "classification": {
+        "evidenceClass": "authored-baseline",
+        "state": "resolved"
+      },
       "contextClaims": [
         {
           "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
           "effect": "adds-domain",
-          "domains": ["phi"],
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [
+        "phone/nanp-555-range"
+      ],
+      "id": "phone/global/basic",
+      "jurisdictions": [
+        "global"
+      ],
+      "label": "Telephone number",
       "openQuestions": [
         "The E.164 recommendation text was not read (maximum length and structure unverified); which national forms are separate profiles?",
         "Which jurisdiction-specific phone profiles are needed beyond the global profile?"
       ]
     },
     {
-      "id": "payment-card/global/basic",
-      "label": "Payment card number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [
-        "payment-card/iso7812-structure",
-        "payment-card/luhn-method",
-        "payment-card/stripe-test-numbers"
-      ],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
           "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
           "effect": "adds-domain",
-          "domains": ["phi"],
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [
+        "payment-card/iso7812-structure",
+        "payment-card/luhn-method"
+      ],
+      "id": "payment-card/global/basic",
+      "jurisdictions": [
+        "global"
+      ],
+      "label": "Payment card number",
       "openQuestions": [
         "Is a payment card number modeled as pii, as a separate financial domain, or both? The domain vocabulary currently has only pii and phi.",
         "Length, prefix and check-digit claims rest on a secondary reference to ISO/IEC 7812 (not read); which issuer or standards documents settle them, and for which networks beyond Visa, Mastercard and American Express?",
@@ -102,24 +117,32 @@
       ]
     },
     {
-      "id": "iban/global/basic",
-      "label": "International bank account number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [
-        "iban/iban-structure",
-        "iban/iban-example",
-        "iban/registry-authority"
-      ],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
           "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
           "effect": "adds-domain",
-          "domains": ["phi"],
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [
+        "iban/iban-structure",
+        "iban/iban-example"
+      ],
+      "id": "iban/global/basic",
+      "jurisdictions": [
+        "global"
+      ],
+      "label": "International bank account number",
       "openQuestions": [
         "Structure and check digits rest on a secondary reference; the registry (HTTP 403 when read) and ISO 13616 per-country structures are unread.",
         "Is an account number of a legal entity within scope, and does its domain differ from a personal account?",
@@ -127,37 +150,53 @@
       ]
     },
     {
-      "id": "us-ssn/us/structured",
-      "label": "United States Social Security number",
-      "domains": ["pii"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "classification": {
+        "evidenceClass": "authored-baseline",
+        "state": "resolved"
+      },
+      "contextClaims": [
+        {
+          "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
+          "effect": "adds-domain",
+          "evidenceClass": "research-needed"
+        }
+      ],
+      "domains": [
+        "pii"
+      ],
       "formatClaims": [
         "us-ssn/ssa-structure-and-unassigned",
         "us-ssn/reference-structure",
         "us-ssn/reference-itin-format"
       ],
-      "contextClaims": [
-        {
-          "context": "medical/global/general",
-          "effect": "adds-domain",
-          "domains": ["phi"],
-          "evidenceClass": "research-needed"
-        }
+      "id": "us-ssn/us/structured",
+      "jurisdictions": [
+        "us"
       ],
+      "label": "United States Social Security number",
       "openQuestions": [
         "SSA unassigned ranges were read only as search excerpts (direct fetch returned HTTP 403); direct reads of the SSA pages and the IRS ITIN publication are still needed.",
         "Which labeled-field and unlabeled forms are separate profiles?"
       ]
     },
     {
-      "id": "national-id/unresolved/placeholder",
-      "label": "National or tax identifier (placeholder)",
-      "domains": ["pii"],
-      "jurisdictions": ["unresolved"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": [],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [],
+      "id": "national-id/unresolved/placeholder",
+      "jurisdictions": [
+        "unresolved"
+      ],
+      "label": "National or tax identifier (placeholder)",
       "openQuestions": [
         "Which national and tax identifier families are worth modeling, and in which jurisdictions?",
         "This entry only reserves the concept so that jurisdiction-dependent classification is representable; it is to be split into per-jurisdiction kinds, each with its own id, once researched.",
@@ -166,12 +205,10 @@
       ]
     },
     {
-      "id": "uk-nino/uk/structured",
-      "label": "United Kingdom National Insurance number",
-      "domains": ["pii"],
-      "jurisdictions": ["uk"],
-      "classification": { "state": "unresolved", "evidenceClass": "public-authority" },
-      "formatClaims": ["uk-nino/format-and-prefix-rules", "uk-nino/administrative-and-temporary-numbers"],
+      "classification": {
+        "evidenceClass": "public-authority",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
           "context": "field-label/global/general",
@@ -179,6 +216,18 @@
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [
+        "uk-nino/format-and-prefix-rules",
+        "uk-nino/administrative-and-temporary-numbers"
+      ],
+      "id": "uk-nino/uk/structured",
+      "jurisdictions": [
+        "uk"
+      ],
+      "label": "United Kingdom National Insurance number",
       "openQuestions": [
         "Whether a NINO becomes phi in a medical context is not sourced; no medical context claim is made.",
         "The label vocabulary is project-authored.",
@@ -187,12 +236,10 @@
       ]
     },
     {
-      "id": "medical-record-number/us/labeled-field",
-      "label": "Medical record number",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-hl7-identifier-type-table/mr-definition", "phi-fhir-r4-patient/identifier-no-format"],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "resolved"
+      },
       "contextClaims": [
         {
           "context": "field-label/global/general",
@@ -200,6 +247,19 @@
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "formatClaims": [
+        "phi-hl7-identifier-type-table/mr-definition",
+        "phi-fhir-r4-patient/identifier-no-format"
+      ],
+      "id": "medical-record-number/us/labeled-field",
+      "jurisdictions": [
+        "us"
+      ],
+      "label": "Medical record number",
       "openQuestions": [
         "HL7 MR establishes the medical-record role and HIPAA lists medical record numbers. PI/PT patient identifiers, AN account numbers and VN visit numbers are distinct roles; no universal value grammar is established.",
         "Which field labels are documented, and does the structured value have any bounded format at all?",
@@ -209,12 +269,10 @@
       ]
     },
     {
-      "id": "health-plan-member-id/us/member-field",
-      "label": "Health plan member identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-hl7-identifier-type-table/mb-member-number-definition"],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "resolved"
+      },
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -227,6 +285,18 @@
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "formatClaims": [
+        "phi-hl7-identifier-type-table/mb-member-number-definition"
+      ],
+      "id": "health-plan-member-id/us/member-field",
+      "jurisdictions": [
+        "us"
+      ],
+      "label": "Health plan member identifier",
       "openQuestions": [
         "HL7 MB defines the member role. FHIR Coverage.subscriberId defines a distinct subscriber role and is not a member format claim; retain subscriber ambiguity rather than equating the roles.",
         "Is the value structure bounded enough to describe, or is it only identifiable through its field label?",
@@ -235,12 +305,10 @@
       ]
     },
     {
-      "id": "health-claim-identifier/us/claim-field",
-      "label": "Health insurance claim identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-fhir-r4-claim/identifier-and-patient"],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -248,6 +316,18 @@
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "formatClaims": [
+        "phi-fhir-r4-claim/identifier-and-patient"
+      ],
+      "id": "health-claim-identifier/us/claim-field",
+      "jurisdictions": [
+        "us"
+      ],
+      "label": "Health insurance claim identifier",
       "openQuestions": [
         "Standalone claim-identifier promotion is deferred by docs/research/coverage-expansion-adjudication.json. Existing Cases remain bounded ambiguity and collision controls; no value grammar or positive is invented.",
         "Is a claim identifier on its own a person-linked identifier, or only when joined with other data? Classification is not established.",
@@ -256,12 +336,10 @@
       ]
     },
     {
-      "id": "prescription-order-identifier/us/order-field",
-      "label": "Prescription or order identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-fhir-r4-medicationrequest/identifier-and-subject"],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -269,6 +347,18 @@
           "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "formatClaims": [
+        "phi-fhir-r4-medicationrequest/identifier-and-subject"
+      ],
+      "id": "prescription-order-identifier/us/order-field",
+      "jurisdictions": [
+        "us"
+      ],
+      "label": "Prescription or order identifier",
       "openQuestions": [
         "Standalone prescription/order promotion is deferred by docs/research/coverage-expansion-adjudication.json. PLAC/FILL remain typed context only; provider, facility and practitioner licenses are relative-kind collisions, not universally non-PII.",
         "Is a prescription or order number on its own person-linked, or only joined with other data? Classification is not established.",
@@ -277,27 +367,44 @@
       ]
     },
     {
-      "id": "date-of-birth/global/labeled-field",
-      "label": "Date of birth",
-      "domains": ["pii"],
-      "jurisdictions": ["global", "us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["dob-fhir-r4-datatypes/date-notation", "dob-rfc3339/full-date-production"],
+      "classification": {
+        "evidenceClass": "research-needed",
+        "state": "unresolved"
+      },
       "contextClaims": [
         {
+          "claims": [
+            "phi-hhs-164-514-b-2-i/dates-and-ages"
+          ],
           "context": "medical/global/general",
+          "domains": [
+            "phi"
+          ],
           "effect": "adds-domain",
-          "domains": ["phi"],
-          "evidenceClass": "public-authority",
-          "claims": ["phi-hhs-164-514-b-2-i/dates-and-ages"]
+          "evidenceClass": "public-authority"
         },
         {
+          "claims": [
+            "dob-fhir-r4-patient/birth-date"
+          ],
           "context": "field-label/global/general",
           "effect": "supports-identification",
-          "evidenceClass": "research-needed",
-          "claims": ["dob-fhir-r4-patient/birth-date"]
+          "evidenceClass": "research-needed"
         }
       ],
+      "domains": [
+        "pii"
+      ],
+      "formatClaims": [
+        "dob-fhir-r4-datatypes/date-notation",
+        "dob-rfc3339/full-date-production"
+      ],
+      "id": "date-of-birth/global/labeled-field",
+      "jurisdictions": [
+        "global",
+        "us"
+      ],
+      "label": "Date of birth",
       "openQuestions": [
         "A birth date is recognized by label and date notation, never by a bare date; generic date detection is out of scope for this kind.",
         "Numeric day/month order by locale is not source-documented; the order-ambiguity case rests on project inference.",
@@ -305,5 +412,24 @@
         "Whether a birth date alone is PHI outside a medical context is holder-dependent and unsettled."
       ]
     }
-  ]
+  ],
+  "outOfScope": [
+    {
+      "composition": "reference a pinned ner-evidence snapshot identity; never copy PERSON evidence into this repository",
+      "covers": [
+        "person-name recognition",
+        "name ambiguity",
+        "person/location and person/organization collisions",
+        "language-specific name morphology",
+        "general NER evidence"
+      ],
+      "decision": "docs/decisions/0001-pii-phi-person-ownership-boundary.md",
+      "id": "person-name",
+      "label": "PERSON / personal name recognition",
+      "owner": "redact-secret/ner-evidence",
+      "ownerUrl": "https://github.com/redact-secret/ner-evidence"
+    }
+  ],
+  "schemaVersion": "1",
+  "taxonomyVersion": "0.1.0"
 }

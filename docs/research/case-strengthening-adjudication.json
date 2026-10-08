@@ -1,0 +1,3834 @@
+{
+  "schemaVersion": "1",
+  "id": "case-strengthening-adjudication",
+  "observedAt": "2026-10-08",
+  "status": "project-maintained-adjudication",
+  "reviewScope": "Agent review of stored research, canonical records and consumer contract; no scanner output or independent validation. Implementation and public-safe checks are separate gates.",
+  "researchIssues": [
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "candidates": [
+    {
+      "id": "email/global/basic/twin/customer-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/billing-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/electronic-mail-and-telephone",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The health-plan context is research-needed in the taxonomy; the billing label is project-authored.",
+        "Payment for care is within the regulation's definition only for a listed holder; a billing record outside that setting is not established as phi."
+      ]
+    },
+    {
+      "id": "email/global/basic/twin/docs-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label states the value is an example, but the identical text would also be written about a real value; the classification of a self-declared example is a policy question the evidence does not settle.",
+        "The value is reserved or provider-documented as non-attributable, which the label alone cannot prove."
+      ]
+    },
+    {
+      "id": "phone/global/basic/twin/customer-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "phone/global/basic/twin/billing-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/electronic-mail-and-telephone",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The health-plan context is research-needed in the taxonomy; the billing label is project-authored.",
+        "Payment for care is within the regulation's definition only for a listed holder; a billing record outside that setting is not established as phi."
+      ]
+    },
+    {
+      "id": "phone/global/basic/twin/docs-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label states the value is an example, but the identical text would also be written about a real value; the classification of a self-declared example is a policy question the evidence does not settle.",
+        "The value is reserved or provider-documented as non-attributable, which the label alone cannot prove."
+      ]
+    },
+    {
+      "id": "us-ssn/us/structured/twin/patient-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "us-ssn/us/structured/twin/customer-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "us-ssn/ssa-randomization",
+        "us-ssn/wikipedia-ssn"
+      ],
+      "claimBasis": [
+        "us-ssn/ssa-structure-and-unassigned",
+        "us-ssn/reference-structure"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "us-ssn/us/structured/twin/billing-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Identity is settled as invalid; only the domain composition is open.",
+        "The health-plan context is research-needed in the taxonomy and the label is project-authored."
+      ]
+    },
+    {
+      "id": "us-ssn/us/structured/twin/docs-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "us-ssn/ssa-randomization",
+        "us-ssn/wikipedia-ssn"
+      ],
+      "claimBasis": [
+        "us-ssn/ssa-structure-and-unassigned",
+        "us-ssn/reference-structure"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label states the value is an example, but the identical text would also be written about a real value; the classification of a self-declared example is a policy question the evidence does not settle.",
+        "The value is reserved or provider-documented as non-attributable, which the label alone cannot prove."
+      ]
+    },
+    {
+      "id": "payment-card/global/basic/twin/patient-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The medical-context claim for this kind is research-needed in the taxonomy; an explicit patient label is a project-authored signal.",
+        "Whether the phi domain applies depends on the holder type and on bounded signals that are not established."
+      ]
+    },
+    {
+      "id": "payment-card/global/basic/twin/customer-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "payment-card/wikipedia-payment-card-number",
+        "payment-card/luhn-patent-us2950048",
+        "payment-card/stripe-testing"
+      ],
+      "claimBasis": [
+        "payment-card/iso7812-structure",
+        "payment-card/luhn-method",
+        "payment-card/stripe-test-numbers"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "payment-card/global/basic/twin/billing-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The health-plan context is research-needed in the taxonomy; the billing label is project-authored.",
+        "Payment for care is within the regulation's definition only for a listed holder; a billing record outside that setting is not established as phi."
+      ]
+    },
+    {
+      "id": "payment-card/global/basic/twin/docs-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "payment-card/wikipedia-payment-card-number",
+        "payment-card/luhn-patent-us2950048",
+        "payment-card/stripe-testing"
+      ],
+      "claimBasis": [
+        "payment-card/iso7812-structure",
+        "payment-card/luhn-method",
+        "payment-card/stripe-test-numbers"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label states the value is an example, but the identical text would also be written about a real value; the classification of a self-declared example is a policy question the evidence does not settle.",
+        "The value is reserved or provider-documented as non-attributable, which the label alone cannot prove."
+      ]
+    },
+    {
+      "id": "iban/global/basic/twin/patient-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The medical-context claim for this kind is research-needed in the taxonomy; an explicit patient label is a project-authored signal.",
+        "Whether the phi domain applies depends on the holder type and on bounded signals that are not established."
+      ]
+    },
+    {
+      "id": "iban/global/basic/twin/customer-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "iban/wikipedia-iban"
+      ],
+      "claimBasis": [
+        "iban/iban-structure",
+        "iban/iban-example"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "iban/global/basic/twin/billing-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "phi-hhs-hipaa-deidentification-identifiers",
+        "phi-hhs-hipaa-phi-definition"
+      ],
+      "claimBasis": [
+        "phi-hhs-164-514-b-2-i/social-security-and-account-numbers",
+        "phi-hhs-160-103/individually-identifiable-health-information"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The health-plan context is research-needed in the taxonomy; the billing label is project-authored.",
+        "Payment for care is within the regulation's definition only for a listed holder; a billing record outside that setting is not established as phi."
+      ]
+    },
+    {
+      "id": "iban/global/basic/twin/docs-same-value",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Hold value identity fixed across labels; health relationship changes candidate occurrence domains, not assignability. PHI remains bounded project inference rather than legal classification."
+      ],
+      "sourceBasis": [
+        "iban/wikipedia-iban"
+      ],
+      "claimBasis": [
+        "iban/iban-structure",
+        "iban/iban-example"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/context-twin-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/context-twin-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/context-twin-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Ensure every case includes underlying grammar/safe-value source lineage in addition to HIPAA context lineage."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label states the value is an example, but the identical text would also be written about a real value; the classification of a self-declared example is a policy question the evidence does not settle.",
+        "The value is reserved or provider-documented as non-attributable, which the label alone cannot prove."
+      ]
+    },
+    {
+      "id": "email/global/basic/twin/csv-quoted-field",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-4180",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/csv-quoted-field",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/csv-crlf-record-end",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-4180",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/csv-crlf-record-delimiter",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/csv-doubled-quote-field",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-4180",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/csv-quoted-field",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/json-escaped-quote-adjacent",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-8259",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/json-string-escapes",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/json-nested-string",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-8259",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/json-string-escapes",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/twin/logfmt-quoted-value",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/ambiguous/percent-encoded-at-sign",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "research inventory only",
+      "rationale": [
+        "The draft asserts decoded identity valid without defining decoding scope or a raw-byte anchor. Consumer contract v1 cannot faithfully represent that stronger claim."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-3986",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/uri-percent-encoding",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Retain as unresolved research; do not promote decoded validity. A future conservative raw not-established Case needs an explicit separate adjudication."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The decoded octets equal a reserved mailbox, but the raw text is not a mailbox in the RFC 5322 grammar.",
+        "Which representation an expectation addresses (raw bytes or decoded value) is a project decision; a span over the encoded token would assume one."
+      ]
+    },
+    {
+      "id": "email/global/basic/ambiguous/json-unicode-escaped-at-sign",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "research inventory only",
+      "rationale": [
+        "The draft asserts decoded identity valid without defining decoding scope or a raw-byte anchor. Consumer contract v1 cannot faithfully represent that stronger claim."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-8259",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/json-string-escapes",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Retain as unresolved research; do not promote decoded validity. A future conservative raw not-established Case needs an explicit separate adjudication."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "JSON allows any character to be escaped, so the encoded form is legitimate and decodes to the baseline mailbox.",
+        "Raw-text versus decoded-value scope is undecided, as for the percent-encoded twin."
+      ]
+    },
+    {
+      "id": "email/global/basic/ambiguous/trailing-ideographic-full-stop",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept an explicit not-established ambiguity only; no IDNA or decoded-domain validity claim is established."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-6531",
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "serialization/email-extended-atext",
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "RFC 6531 extends atext with non-ASCII characters in the local part, but this character follows the domain, where the grammar is a different question.",
+        "An IDNA treatment of this character as a dot was not read, so whether it belongs to the domain is unresolved.",
+        "The ASCII-period counterpart is already an authored positive with the period excluded."
+      ]
+    },
+    {
+      "id": "phone/global/basic/twin/csv-quoted-field",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Unchanged contiguous mailbox/phone bytes are representable by existing UTF-8 spans; carrier syntax is adjacent to, not part of, the value."
+      ],
+      "sourceBasis": [
+        "serialization/rfc-4180",
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [
+        "serialization/csv-quoted-field",
+        "phone/nanp-555-range"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "phone/global/basic/ambiguous/form-plus-read-as-space",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "research inventory only",
+      "rationale": [
+        "WHATWG living-standard source is not pinned; leading-plus phone identity and decoding scope remain unsettled."
+      ],
+      "sourceBasis": [
+        "serialization/whatwg-url",
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [
+        "serialization/form-urlencoded-plus-as-space",
+        "phone/nanp-555-range"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/serialization-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/serialization-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/serialization-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Pin the exact WHATWG version and define scope before promotion."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Per form parsing the plus becomes a space, so the parsed value has no plus; the raw text still reads as an E.164-style number.",
+        "A producer may have intended a literal plus without encoding it; the text alone does not say."
+      ]
+    },
+    {
+      "id": "email/global/basic/negative/template-variable-token",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/negative/template-domain-token",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "email/global/basic/negative/all-x-placeholder",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-2606-reserved-tlds"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Keep identity not-established and ambiguity explicit; do not interpret non-sensitive as a located invalid value."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Grammatically a mailbox; the placeholder reading rests on convention while the reserved top-level name only establishes that it cannot be delivered. Whether a placeholder-shaped but syntactically valid string is an identity at all is a policy question."
+      ]
+    },
+    {
+      "id": "email/global/basic/ambiguous/masked-local-part",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Preserve not-established/context-dependent; no assertion about masked residue being benign or complete."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Asterisk is not atext, so the string is not a mailbox as written.",
+        "The retained first character and full domain still partly identify the address."
+      ]
+    },
+    {
+      "id": "email/global/basic/ambiguous/role-address-reserved-domain",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "email/rfc-5322",
+        "email/rfc-2606"
+      ],
+      "claimBasis": [
+        "email/rfc-5322-addr-spec",
+        "email/rfc-2606-example-domains"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Syntactically a mailbox at a reserved domain.",
+        "A role address does not name an individual, but role-versus-person is not decided by the grammar; no source on role mailboxes was read."
+      ]
+    },
+    {
+      "id": "email/global/basic/ambiguous/single-label-localhost-domain",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "benign/rfc-6761",
+        "email/rfc-5322"
+      ],
+      "claimBasis": [
+        "benign/rfc-6761-special-use-names",
+        "email/rfc-5322-addr-spec"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "A single-label domain is grammatical under the RFC 5322 dot-atom rule but not a public mail domain.",
+        "The reserved name is non-attributable, which the label does not make non-sensitive in every policy."
+      ]
+    },
+    {
+      "id": "phone/global/basic/negative/nanp-letter-placeholder",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "phone/global/basic/ambiguous/masked-keep-last-four",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [
+        "phone/nanp-555-range"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Preserve not-established/context-dependent; no assertion about masked residue being benign or complete."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Asterisks are not digits, so the string is not a complete number.",
+        "Whether a retained final fragment is personal data depends on policy; no source on partial telephone numbers was read."
+      ]
+    },
+    {
+      "id": "us-ssn/us/structured/negative/x-placeholder",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "us-ssn/us/structured/ambiguous/masked-keep-last-four",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Preserve not-established/context-dependent; no assertion about masked residue being benign or complete."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Asterisks are not digits, so the string is not a complete SSN.",
+        "Whether a retained serial fragment is sensitive depends on policy; no source was read."
+      ]
+    },
+    {
+      "id": "payment-card/global/basic/negative/x-placeholder-groups",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "payment-card/global/basic/ambiguous/masked-first-six-last-four",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "payment-card/stripe-testing"
+      ],
+      "claimBasis": [
+        "payment-card/stripe-test-numbers"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Preserve not-established/context-dependent; no assertion about masked residue being benign or complete."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Asterisks are not digits, so the string cannot satisfy the check-digit method.",
+        "Whether such a truncation is sensitive depends on policy; the PCI DSS rule on displayed PANs was not read."
+      ]
+    },
+    {
+      "id": "iban/global/basic/negative/x-placeholder",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "iban/wikipedia-iban"
+      ],
+      "claimBasis": [
+        "iban/iban-structure"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "iban/global/basic/ambiguous/masked-middle",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Reserved/test origin is publication safety, not a semantic non-sensitive rule. Grammar exclusions can be negative; role, partial-mask and host semantics stay explicit ambiguities."
+      ],
+      "sourceBasis": [
+        "iban/wikipedia-iban"
+      ],
+      "claimBasis": [
+        "iban/iban-example"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [
+          "evidence/sources/benign-sources.jsonl"
+        ],
+        "claims": [
+          "evidence/claims/benign-claims.jsonl"
+        ],
+        "cases": [
+          "evidence/cases/benign-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Preserve not-established/context-dependent; no assertion about masked residue being benign or complete."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "public-test",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Asterisks are not alphanumeric, so the mod 97 check cannot be satisfied.",
+        "Whether a retained fragment is sensitive depends on policy."
+      ]
+    },
+    {
+      "id": "phone/global/basic/twin/tel-label-same-digits",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "phone/nanp-555-fictional"
+      ],
+      "claimBasis": [
+        "phone/nanp-555-range"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": true,
+        "limitations": []
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "phone/global/basic/collision/order-number-label-same-digits",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The digits fit a North American number and an order reference equally; only the label differs.",
+        "No numbering-plan or order-reference source was read that makes a label authoritative."
+      ]
+    },
+    {
+      "id": "phone/global/basic/collision/epoch-seconds-timestamp",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Set sensitivity context-dependent: unread NANP/ISO allocation rules do not justify a blanket non-sensitive collision. Keep identity not-established."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Length alone does not separate a timestamp from a ten-digit national number.",
+        "Whether a leading digit of 1 is excluded as an area code was not read from a numbering-plan source."
+      ]
+    },
+    {
+      "id": "phone/global/basic/collision/dotted-groups-version-label",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "reserved",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "Dotted three-part digit groups are used for both telephone numbers and numeric versions or OIDs.",
+        "The label is the sole discriminator and no source ranks it."
+      ]
+    },
+    {
+      "id": "us-ssn/us/structured/collision/dashed-part-number",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "us-ssn/ssa-randomization"
+      ],
+      "claimBasis": [
+        "us-ssn/ssa-structure-and-unassigned"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "medical-record-number/us/labeled-field/collision/order-label-in-clinical-context",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "phi-hl7-fhir-r4-resources",
+        "phi-hl7-identifier-type-table"
+      ],
+      "claimBasis": [
+        "phi-fhir-r4-medicationrequest/identifier-and-subject",
+        "phi-hl7-identifier-type-table/mr-definition"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "An order label names a different identifier role from a medical record number.",
+        "The sources state no value format, so shape cannot separate the roles.",
+        "The medical and field-label contexts are research-needed."
+      ]
+    },
+    {
+      "id": "medical-record-number/us/labeled-field/collision/generic-patient-id-label",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "phi-hl7-fhir-r4-resources",
+        "phi-hl7-identifier-type-table"
+      ],
+      "claimBasis": [
+        "phi-fhir-r4-patient/identifier-no-format",
+        "phi-hl7-identifier-type-table/mr-definition"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label does not name a medical record number; a patient may carry several identifiers.",
+        "No format is defined, so shape cannot select among them."
+      ]
+    },
+    {
+      "id": "prescription-order-identifier/us/order-field/collision/order-label-without-prescription-wording",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "phi-hl7-fhir-r4-resources"
+      ],
+      "claimBasis": [
+        "phi-fhir-r4-medicationrequest/identifier-and-subject"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The label does not distinguish a prescription order from other orders.",
+        "Without a medical context no recorded context adds phi."
+      ]
+    },
+    {
+      "id": "health-plan-member-id/us/member-field/collision/group-number-label",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "phi-hl7-fhir-r4-resources"
+      ],
+      "claimBasis": [
+        "phi-fhir-r4-coverage/subscriber-id"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "pii-eval collapses context-dependent sensitivity to its weaker unresolved state.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": []
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "A group or policy number can identify a coverage shared by many people rather than one person.",
+        "Whether such an identifier is within the health plan beneficiary number category was not read."
+      ]
+    },
+    {
+      "id": "payment-card/global/basic/collision/short-luhn-valid-reference",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Labels alone do not prove or disprove identity; retain explicit not-established ambiguity unless never-assigned structure supplies an independent discriminator."
+      ],
+      "sourceBasis": [
+        "payment-card/wikipedia-payment-card-number",
+        "payment-card/luhn-patent-us2950048"
+      ],
+      "claimBasis": [
+        "payment-card/iso7812-structure",
+        "payment-card/luhn-method"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/collision-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Set sensitivity context-dependent: unread NANP/ISO allocation rules do not justify a blanket non-sensitive collision. Keep identity not-established."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": [
+        "The check digit and length are satisfied, so structure alone does not exclude a card number.",
+        "Whether an issuer prefix beginning with 1 is allocated was not read."
+      ]
+    },
+    {
+      "id": "email/global/basic/negative/span-less-prompt-prose",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "phone/global/basic/negative/span-less-empty-labelled-field",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "us-ssn/us/structured/negative/span-less-format-description",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "payment-card/global/basic/negative/span-less-redaction-notice",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "iban/global/basic/negative/span-less-aggregate-statement",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "medical-record-number/us/labeled-field/negative/span-less-absence-statement",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "health-plan-member-id/us/member-field/negative/span-less-pointer-to-elsewhere",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "add",
+      "semanticTarget": "existing authored Case reviewed conservatively",
+      "rationale": [
+        "Accept a source-free authored text-level absence example under the existing invalid/non-sensitive convention; never invent a span to make it measurable."
+      ],
+      "sourceBasis": [],
+      "claimBasis": [],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "preservesAuthoredRecord": true,
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "pii-eval maps range-less assertions to not-established; absence/invalid assertions are unscored, not negative measurement wins.",
+          "Context ids and phi domain survive binding provenance but are not represented in the current PII-only semantic families."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "sources": [],
+        "claims": [],
+        "cases": [
+          "evidence/cases/span-less-cases.jsonl"
+        ],
+        "fixtures": [
+          "fixtures/rules/carriers.jsonl"
+        ],
+        "schemaChanges": false,
+        "requiredChanges": [
+          "Clarify in rationale that invalid denotes absence under the existing v1 convention, not a located invalid identifier."
+        ]
+      },
+      "safety": {
+        "valueOrigin": "synthetic",
+        "newValueRequired": false,
+        "review": "Use existing reserved/synthetic/documented test value only; snapshot public-safe closure remains mandatory."
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/non-medical-context-profiles",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Customer, documentation and bare billing labels can be documented contrasts. No source-backed bounded classifier or automatic domain addition is established."
+      ],
+      "sourceBasis": [
+        "docs/research/context-twins.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/context-twins.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/label-swap-generation",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "reject",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "A label-swap rule must not invent sensitivity/domain expectations; independent authored context Cases remain the unit."
+      ],
+      "sourceBasis": [
+        "docs/research/context-twins.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/context-twins.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/covered-holder-and-other-jurisdictions",
+      "researchIssue": 20,
+      "researchDocument": "docs/research/context-twins.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "HIPAA holder exclusions and GDPR health contexts require separate source-backed review."
+      ],
+      "sourceBasis": [
+        "docs/research/context-twins.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/context-twins.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "HIPAA holder exclusions and GDPR health contexts require separate source-backed review."
+      ]
+    },
+    {
+      "id": "case-strengthening/csv-and-crlf-new-projector-templates",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Existing authored serialized input plus plain-text projection already preserves exact bytes; new carrier implementations add no necessary semantics for this promotion."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/encoding-and-decoded-span-schema",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Raw versus decoded scope and discontiguous decoded spans require explicit consumer agreement."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Raw versus decoded scope and discontiguous decoded spans require explicit consumer agreement."
+      ]
+    },
+    {
+      "id": "case-strengthening/quoted-printable-html-base64-double-encoding",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "No reviewed authored semantics or representation contract."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "No reviewed authored semantics or representation contract."
+      ]
+    },
+    {
+      "id": "case-strengthening/deeper-nesting-and-serialization-chains",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "One nesting level accepted; new chains need authored scope and exact spans."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "One nesting level accepted; new chains need authored scope and exact spans."
+      ]
+    },
+    {
+      "id": "case-strengthening/tsv-unix-delimiters-formula-prefixes",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "No bounded reviewed candidate; formula execution is not a privacy identity rule."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "No bounded reviewed candidate; formula execution is not a privacy identity rule."
+      ]
+    },
+    {
+      "id": "case-strengthening/payment-card-iban-carrier-expansion",
+      "researchIssue": 21,
+      "researchDocument": "docs/research/serialization-representations.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Grouping/spacing semantics and publication-safe source closure need kind-specific review."
+      ],
+      "sourceBasis": [
+        "docs/research/serialization-representations.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/serialization-representations.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Grouping/spacing semantics and publication-safe source closure need kind-specific review."
+      ]
+    },
+    {
+      "id": "case-strengthening/reserved-means-non-sensitive",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "reject",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Publication-safe origin does not change the scanner-neutral identifier semantics."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/historical-specimen-or-advertising-identifiers",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "reject",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Public/old/revoked is not safe provenance; policy forbids real-person identifiers."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/real-shaped-degenerate-digit-placeholders",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "No documented reserved source or proven unassignability; never bypass safety lint."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "No documented reserved source or proven unassignability; never bypass safety lint."
+      ]
+    },
+    {
+      "id": "case-strengthening/documentation-ip-ranges",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "IP taxonomy and domain contracts are outside this bounded promotion."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "IP taxonomy and domain contracts are outside this bounded promotion."
+      ]
+    },
+    {
+      "id": "case-strengthening/redaction-tokens",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Record as absence/template reasoning; avoid duplicating tool-specific token conventions."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/masked-sensitivity-role-mailbox-and-localhost-decisions",
+      "researchIssue": 22,
+      "researchDocument": "docs/research/benign-reserved-values.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Retain current ambiguities; PCI/RFC2142 and data-protection reasoning is not reviewed."
+      ],
+      "sourceBasis": [
+        "docs/research/benign-reserved-values.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/benign-reserved-values.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Retain current ambiguities; PCI/RFC2142 and data-protection reasoning is not reviewed."
+      ]
+    },
+    {
+      "id": "case-strengthening/assignable-ssn-itin-near-shapes",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "reject",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "No public-safe reserved values established; do not create real-looking assignable identities."
+      ],
+      "sourceBasis": [
+        "docs/research/cross-family-collisions.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/cross-family-collisions.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/ein-near-shape",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Format authority and safe-value range not established."
+      ],
+      "sourceBasis": [
+        "docs/research/cross-family-collisions.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/cross-family-collisions.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Format authority and safe-value range not established."
+      ]
+    },
+    {
+      "id": "case-strengthening/domestic-bank-card-phone-collisions",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "New domestic format and allocation sources not reviewed."
+      ],
+      "sourceBasis": [
+        "docs/research/cross-family-collisions.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/cross-family-collisions.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "New domestic format and allocation sources not reviewed."
+      ]
+    },
+    {
+      "id": "case-strengthening/label-overrides-shape-policy",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "reject",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Evidence records ambiguity; product label precedence is not canonical truth."
+      ],
+      "sourceBasis": [
+        "docs/research/cross-family-collisions.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/cross-family-collisions.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/discriminator-class-and-cross-kind-record-schema",
+      "researchIssue": 23,
+      "researchDocument": "docs/research/cross-family-collisions.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Existing rationale and linked per-kind Cases express the bounded facts; no schema needed now."
+      ],
+      "sourceBasis": [
+        "docs/research/cross-family-collisions.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/cross-family-collisions.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/text-level-no-value-enum-and-negative-regions",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Semantic contract change requires consumer agreement; current invalid absence convention is preserved explicitly."
+      ],
+      "sourceBasis": [
+        "docs/research/span-less-negatives.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/span-less-negatives.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Semantic contract change requires consumer agreement; current invalid absence convention is preserved explicitly."
+      ]
+    },
+    {
+      "id": "case-strengthening/negative-carrier-projection",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Plain-text/line preserves absence faithfully; additional wrappers are optional and must not claim valueBytes without a value span."
+      ],
+      "sourceBasis": [
+        "docs/research/span-less-negatives.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/span-less-negatives.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/remaining-kind-absence-duplicates",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "context-only",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Seven existing patterns establish methodology; duplicating prose per remaining kind adds no researched fact."
+      ],
+      "sourceBasis": [
+        "docs/research/span-less-negatives.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/span-less-negatives.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": []
+    },
+    {
+      "id": "case-strengthening/sensitive-pointer-context-twins",
+      "researchIssue": 24,
+      "researchDocument": "docs/research/span-less-negatives.md",
+      "disposition": "defer",
+      "semanticTarget": "documentation-only proposal",
+      "rationale": [
+        "Pointer sensitivity lacks reviewed authority and bounded context."
+      ],
+      "sourceBasis": [
+        "docs/research/span-less-negatives.md"
+      ],
+      "consumerRepresentability": {
+        "snapshotContract": "1",
+        "faithfulMeasurementToday": false,
+        "limitations": [
+          "No new executable assertion approved."
+        ]
+      },
+      "implementation": {
+        "privacyKinds": [],
+        "contexts": [],
+        "claims": [],
+        "cases": [],
+        "fixtures": [],
+        "schemaChanges": false,
+        "notes": [
+          "docs/research/span-less-negatives.md"
+        ],
+        "requiredChanges": []
+      },
+      "unresolved": [
+        "Pointer sensitivity lacks reviewed authority and bounded context."
+      ]
+    }
+  ]
+}
