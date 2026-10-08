@@ -2,6 +2,18 @@
 
 Observed 2026-10-08. Project-maintained agent review of research #20–#24, stored Cases, schema v1 and consumer contract v1. This is not independent validation, human approval, or a scanner measurement. Canonical review states remain unreviewed. Exact per-candidate reasoning, target files, source/claim ids, safety and consumer limitations are in `case-strengthening-adjudication.json`.
 
+## Rationale erratum, 2026-10-08
+
+The hash-bound ledger and its generated coverage-delta report incorrectly say
+“Asterisk is not atext” in the masked-email unresolved note. [RFC 5322 section
+3.2.3](https://www.rfc-editor.org/rfc/rfc5322#section-3.2.3) explicitly permits
+asterisk in `atext`. Syntax therefore cannot establish masking. The unresolved
+question is whether the surrounding context establishes a mask rather than a
+literal mailbox local-part; identity remains not-established pending that
+evidence. This correction supersedes that rationale only, with no change to a
+Case expectation, disposition, fixture or consumer result. Historical ledger
+bytes remain pinned so the verified candidate and proposal are reproducible.
+
 ## Decisions
 
 60 authored Cases: 57 accepted (`add`) and 3 deferred. The 24 additional proposals have 16 combined deferred items with the Cases, 6 context-only items and 5 rejected items. No candidate is accepted because of scanner output.
