@@ -1,18 +1,18 @@
 {
   "schema": "pii-evidence-candidate-handoff/1",
   "observedAt": "2026-10-08",
-  "state": "candidate-import-blocked",
+  "state": "compatible-candidate-prepared",
   "authority": "project-maintained-evidence",
   "snapshot": {
-    "id": "public-pii-phi/2026-10-08/d8add618935d",
-    "manifestSha256": "cb396cfc2897aba01c423bbb6d6acec98fb3574183f1a98c0cf24a8d23633073",
-    "contentDigest": "d8add618935d350c30d4ba5df3a3f707ee02f1cd9d238af9740d69f2e8d07502",
-    "sourceManifestDigest": "486e1f180ccd78a2b67b2d0a4c780f46b62e47f2b8783c682aa62d7ac537e04f"
+    "id": "public-pii-phi/2026-10-08/ee61c7afc32d",
+    "contentDigest": "ee61c7afc32db4db320e57051ff762eee5ca70942a7b740a383a1d8e54e397bb",
+    "manifestSha256": "acf14bf012740f25083a6c50134afffa406605061138208bbe83d7f83ad8eb0b",
+    "sourceManifestDigest": "0230e2c92daefe0292284c5e61ebd520585ced52be96e77484dd23340a54a82f"
   },
   "archive": {
-    "name": "pii-evidence-public-pii-phi-2026-10-08-d8add618935d.tar.gz",
-    "tarSha256": "4970d6f9e1108bd6298d89ee89ff63d847cd30df1463b45960d19a91b0f10040",
-    "tarGzSha256": "9afd9ce401b0019d9c409f153d016d84da62bbff664c7e788b0d5d9c543c3dd8",
+    "name": "pii-evidence-public-pii-phi-2026-10-08-ee61c7afc32d.tar.gz",
+    "tarSha256": "ae0324a180361a70bd6f225859fe46f7fde6f02f4d9d317a2336ae432c0a2e36",
+    "tarGzSha256": "e86648cf7c54fd6fcc62a17e58859aa334557b6cb9ba30954d12a42cc087c626",
     "determinism": {
       "runs": 2,
       "tarBytesIdentical": true,
@@ -20,148 +20,217 @@
     }
   },
   "proposedRelease": {
-    "tag": "snapshot-public-pii-phi-2026-10-08-d8add618935d",
+    "repository": "redact-secret/pii-evidence",
+    "tag": "snapshot-public-pii-phi-2026-10-08-ee61c7afc32d",
+    "commit": "d6825d5985c7fbc83d54e49f5c0b5426e5d852a2",
+    "archive": {
+      "name": "pii-evidence-public-pii-phi-2026-10-08-ee61c7afc32d.tar.gz",
+      "tarSha256": "ae0324a180361a70bd6f225859fe46f7fde6f02f4d9d317a2336ae432c0a2e36",
+      "tarGzSha256": "e86648cf7c54fd6fcc62a17e58859aa334557b6cb9ba30954d12a42cc087c626"
+    },
     "published": false,
-    "registered": false,
-    "commit": "pending-merged-candidate-revision"
+    "registered": false
   },
   "consumer": {
     "repository": "redact-secret/pii-eval",
-    "sourceCommit": "e99128f5633c5905497342623e249ad90d902800",
+    "sourceCommit": "74b35e4aeffeef9c8679f3d7809cfe4415a0bc42",
     "binary": {
-      "build": "existing-debug",
-      "sha256": "1d5a497067d33efc90156346817f7c2512dd331a709f2bcd29d2562e1baffeee",
+      "build": "source-built-debug",
+      "sha256": "42fdfda23ba649810f48f74b2c9555bd364070c1f6d15d8c8993791253e185e9",
       "canonical": false
+    },
+    "buildReceipt": {
+      "schema": "pii-evidence-consumer-build-receipt/1",
+      "sourceCommit": "74b35e4aeffeef9c8679f3d7809cfe4415a0bc42",
+      "sourceArchiveSha256": "8c801b3ef64af5f59c8aef4adfd91062dc33a9fd960d3a78a4af9010c5be8bd4",
+      "cargoLockSha256": "e646a917c7dc8a5d5f5744bbfc56456661ebeb5505ac18788b7d5262f29a956a",
+      "rustToolchainFileSha256": "887f9be066a15585a2c583578e84b0fcb541126d81546276bad3d2ff00d61167",
+      "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+      "command": "cargo build --locked -p pii-eval-cli --bin pii-eval-evidence -j 2",
+      "platform": "darwin-arm64",
+      "binarySha256": "42fdfda23ba649810f48f74b2c9555bd364070c1f6d15d8c8993791253e185e9"
     },
     "verify": {
       "state": "accepted",
       "exitCode": 0,
       "counts": {
-        "cases": 116,
-        "fixtures": 275,
+        "cases": 118,
+        "fixtures": 285,
         "skipped": 18
       }
     },
     "import": {
-      "state": "refused",
-      "exitCode": 3,
-      "reason": "kind-unmapped",
-      "at": "date-of-birth/global/labeled-field/ambiguous/age-over-89",
-      "outputsWritten": false
-    },
-    "declaredMapping": {
-      "newlyUnmappedKinds": [
-        "date-of-birth/global/labeled-field",
-        "uk-nino/uk/structured"
-      ],
-      "unmappedJurisdictions": [
-        "uk"
-      ],
-      "allLossClasses": [
-        "identity-weakened-no-span",
-        "sensitivity-weakened-no-span",
-        "sensitivity-context-dependent-flattened",
-        "contexts-not-carried",
-        "phi-domain-not-carried"
-      ],
-      "observedLossCounts": null,
-      "reason": "whole-snapshot import refused; no mapped denominator or loss counts exist",
-      "includedKindInventory": [
-        {
-          "id": "date-of-birth/global/labeled-field",
-          "mapping": "unmapped",
-          "cases": 10,
-          "fixtures": 18
+      "state": "accepted",
+      "exitCode": 0,
+      "outputsWritten": true,
+      "population": {
+        "id": "pii-evidence-public-pii-phi-2026-10-08-ee61c7afc32d",
+        "version": 2,
+        "digest": "2bff16441b6e3ef3be72ecb8cacedfdb404053981d1d086546a00f2c4c407d52",
+        "bindingDigest": "299c406c1f7e5ae49dfd819e42c713da54d99952b1b3219db3451bdcbcc6e864"
+      },
+      "outputs": {
+        "binding.json": {
+          "bytes": 319321,
+          "sha256": "3b8ddba8e89ecf232c17b3d860834edc1b63c7c78b5bd572c8244dc399d57a84"
         },
-        {
-          "id": "email/global/basic",
-          "mapping": "known-kind-table-entry",
-          "cases": 37,
-          "fixtures": 145
-        },
-        {
-          "id": "health-claim-identifier/us/claim-field",
-          "mapping": "known-kind-table-entry",
-          "cases": 3,
-          "fixtures": 3
-        },
-        {
-          "id": "health-plan-member-id/us/member-field",
-          "mapping": "known-kind-table-entry",
-          "cases": 12,
-          "fixtures": 16
-        },
-        {
-          "id": "medical-record-number/us/labeled-field",
-          "mapping": "known-kind-table-entry",
-          "cases": 15,
-          "fixtures": 23
-        },
-        {
-          "id": "phone/global/basic",
-          "mapping": "known-kind-table-entry",
-          "cases": 7,
-          "fixtures": 32
-        },
-        {
-          "id": "prescription-order-identifier/us/order-field",
-          "mapping": "known-kind-table-entry",
-          "cases": 6,
-          "fixtures": 6
-        },
-        {
-          "id": "uk-nino/uk/structured",
-          "mapping": "unmapped",
-          "cases": 7,
-          "fixtures": 15
-        },
-        {
-          "id": "us-ssn/us/structured",
-          "mapping": "known-kind-table-entry",
-          "cases": 19,
-          "fixtures": 17
+        "snapshot.json": {
+          "bytes": 272723,
+          "sha256": "6426676ad51b7ad4f816233a32aed778ce596302e39daaaec74df888aadb9886"
         }
-      ],
-      "unmappedKindCounts": {
-        "cases": 17,
-        "fixtures": 33
+      },
+      "counts": {
+        "corpusCases": 123,
+        "corpusVariants": 285,
+        "evidenceCases": 118,
+        "evidenceCasesCarried": 115,
+        "evidenceCasesWithoutFixtures": 3,
+        "evidenceFixtures": 285,
+        "evidenceSkipped": 18,
+        "locatedOccurrences": 198,
+        "occurrences": 285,
+        "rangeLessOccurrences": 87
       }
+    },
+    "mapping": {
+      "revision": 2,
+      "mappedKinds": [
+        "date-of-birth/global/labeled-field",
+        "email/global/basic",
+        "health-claim-identifier/us/claim-field",
+        "health-plan-member-id/us/member-field",
+        "medical-record-number/us/labeled-field",
+        "phone/global/basic",
+        "prescription-order-identifier/us/order-field",
+        "uk-nino/uk/structured",
+        "us-ssn/us/structured"
+      ],
+      "mappedFamilies": {
+        "pii:gb:national-insurance-number": {
+          "cases": 7,
+          "variants": 15
+        },
+        "pii:global:date-of-birth": {
+          "cases": 8,
+          "variants": 20
+        },
+        "pii:global:email": {
+          "cases": 44,
+          "variants": 145
+        },
+        "pii:global:phone": {
+          "cases": 7,
+          "variants": 32
+        },
+        "pii:us:date-of-birth": {
+          "cases": 4,
+          "variants": 8
+        },
+        "pii:us:health-claim-identifier": {
+          "cases": 3,
+          "variants": 3
+        },
+        "pii:us:health-plan-member-id": {
+          "cases": 12,
+          "variants": 16
+        },
+        "pii:us:medical-record-number": {
+          "cases": 15,
+          "variants": 23
+        },
+        "pii:us:prescription-order-identifier": {
+          "cases": 6,
+          "variants": 6
+        },
+        "pii:us:ssn": {
+          "cases": 17,
+          "variants": 17
+        }
+      },
+      "excludedKinds": [
+        "iban/global/basic",
+        "payment-card/global/basic"
+      ],
+      "excludedKindsMeaning": "known mapping kinds absent from imported binding; not scanner support",
+      "observedLossCounts": {
+        "contexts-not-carried": 102,
+        "identity-weakened-no-span": 44,
+        "phi-domain-not-carried": 74,
+        "sensitivity-context-dependent-flattened": 35,
+        "sensitivity-weakened-no-span": 47
+      },
+      "lossDeltaAgainstInitialSnapshot": {
+        "contexts-not-carried": {
+          "previous": 37,
+          "candidate": 102,
+          "delta": 65
+        },
+        "phi-domain-not-carried": {
+          "previous": 37,
+          "candidate": 74,
+          "delta": 37
+        },
+        "sensitivity-context-dependent-flattened": {
+          "previous": 11,
+          "candidate": 35,
+          "delta": 24
+        },
+        "identity-weakened-no-span": {
+          "previous": 17,
+          "candidate": 44,
+          "delta": 27
+        },
+        "sensitivity-weakened-no-span": {
+          "previous": 19,
+          "candidate": 47,
+          "delta": 28
+        }
+      }
+    },
+    "failClosed": {
+      "unknownKind": "kind-unmapped",
+      "unknownJurisdiction": "jurisdiction-unmapped",
+      "tests": "pii-eval consumer tests and benchmarks exact-runtime/mapping-version refusal tests passed",
+      "priorBlockers": "mapping revision 1 unknown DOB semantics and unpinned local binary were resolved by reviewed mapping revision 2 and exact source-build runtime registry"
     }
   },
   "benchmarks": {
     "preflight": {
-      "state": "refused",
-      "exitCode": 1,
-      "reason": "consumer-binary-not-pinned",
-      "outputsWritten": false
+      "state": "compatible-candidate",
+      "exitCode": 0,
+      "outputsWritten": true
     },
     "prepare": {
-      "state": "refused",
-      "exitCode": 1,
-      "reason": "verified-preflight-input-absent",
-      "outputsWritten": false
+      "state": "proposed",
+      "exitCode": 0,
+      "outputsWritten": true,
+      "candidateDigest": "5732aed798ea7da0cb484c6b14fe76e04bd8ee6efc3ff84773322d18ffcf78cc"
     },
+    "artifactPath": "docs/reports/pii-evidence-snapshot-v2-candidate/",
     "adoption": {
-      "state": "blocked",
-      "candidatePreparedByHelper": false,
+      "state": "proposed",
+      "candidatePreparedByHelper": true,
       "activePinsChanged": false,
       "authorityChanged": false,
       "supportClaims": false,
-      "ownerAcceptance": null
+      "ownerAcceptance": null,
+      "canApply": false,
+      "reason": "strict-measurement-receipt-required-before-acceptance"
     }
   },
   "execution": {
     "scannerExecutions": 0,
-    "ciDispatches": 0,
+    "measurementCiDispatches": 0,
     "protectedExecution": false
   },
-  "requiredNextSteps": [
-    "pii-eval owner reviews and implements date-of-birth and UK NINO mapping plus UK jurisdiction, or explicitly refuses unsupported semantics",
-    "benchmarks owner supplies the exact pinned evidence-consumer runtime before verified proposal preparation",
-    "explicit maintainer decision is required for snapshot registration/release and downstream acceptance"
+  "remainingAcceptancePrerequisites": [
+    "Explicit maintainer snapshot registration and release decision",
+    "Canonical Linux consumer build receipt and a separately authorized fresh measurement before active benchmark adoption",
+    "Explicit maintainer adoption acceptance; evidence preparation does not authorize product support or authority changes"
   ],
   "limitations": [
-    "Proposed tag and archive metadata are candidate identities, not evidence that a release exists",
-    "No observation set, measurement artifact, mapped population or benchmark adoption candidate was fabricated"
+    "Proposed release tag/archive identities do not assert a published release",
+    "Darwin verification/import is scanner-free and not canonical Linux execution",
+    "Project-maintained unreviewed evidence is not independent validation"
   ]
 }
