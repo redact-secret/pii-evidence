@@ -4,10 +4,19 @@
   "taxonomyVersion": "0.1.0",
   "description": "Initial structured privacy kinds. Domain assignments and format/context claims are project modeling facts awaiting sources; they are not source-backed yet. See docs/methodology/taxonomy.md.",
   "domainVocabulary": [
-    { "id": "pii", "label": "Personally identifiable information" },
-    { "id": "phi", "label": "Protected health information" }
+    {
+      "id": "pii",
+      "label": "Personally identifiable information"
+    },
+    {
+      "id": "phi",
+      "label": "Protected health information"
+    }
   ],
-  "classificationStates": ["resolved", "unresolved"],
+  "classificationStates": [
+    "resolved",
+    "unresolved"
+  ],
   "outOfScope": [
     {
       "id": "person-name",
@@ -29,9 +38,16 @@
     {
       "id": "email/global/basic",
       "label": "Email address",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "classification": {
+        "state": "resolved",
+        "evidenceClass": "authored-baseline"
+      },
       "formatClaims": [
         "email/rfc-5322-addr-spec",
         "email/rfc-5322-dot-atom",
@@ -44,7 +60,9 @@
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "research-needed"
         }
       ],
@@ -56,9 +74,16 @@
     {
       "id": "phone/global/basic",
       "label": "Telephone number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "classification": {
+        "state": "resolved",
+        "evidenceClass": "authored-baseline"
+      },
       "formatClaims": [
         "phone/nanp-555-range",
         "phone/e164-maximum-length"
@@ -67,7 +92,9 @@
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "research-needed"
         }
       ],
@@ -79,9 +106,16 @@
     {
       "id": "payment-card/global/basic",
       "label": "Payment card number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
       "formatClaims": [
         "payment-card/iso7812-structure",
         "payment-card/luhn-method",
@@ -91,7 +125,9 @@
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "research-needed"
         }
       ],
@@ -104,9 +140,16 @@
     {
       "id": "iban/global/basic",
       "label": "International bank account number",
-      "domains": ["pii"],
-      "jurisdictions": ["global"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "global"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
       "formatClaims": [
         "iban/iban-structure",
         "iban/iban-example",
@@ -116,7 +159,9 @@
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "research-needed"
         }
       ],
@@ -129,9 +174,16 @@
     {
       "id": "us-ssn/us/structured",
       "label": "United States Social Security number",
-      "domains": ["pii"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "authored-baseline" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "us"
+      ],
+      "classification": {
+        "state": "resolved",
+        "evidenceClass": "authored-baseline"
+      },
       "formatClaims": [
         "us-ssn/ssa-structure-and-unassigned",
         "us-ssn/reference-structure",
@@ -141,7 +193,9 @@
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "research-needed"
         }
       ],
@@ -153,9 +207,16 @@
     {
       "id": "national-id/unresolved/placeholder",
       "label": "National or tax identifier (placeholder)",
-      "domains": ["pii"],
-      "jurisdictions": ["unresolved"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "unresolved"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
       "formatClaims": [],
       "contextClaims": [],
       "openQuestions": [
@@ -168,10 +229,20 @@
     {
       "id": "uk-nino/uk/structured",
       "label": "United Kingdom National Insurance number",
-      "domains": ["pii"],
-      "jurisdictions": ["uk"],
-      "classification": { "state": "unresolved", "evidenceClass": "public-authority" },
-      "formatClaims": ["uk-nino/format-and-prefix-rules", "uk-nino/administrative-and-temporary-numbers"],
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "uk"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "public-authority"
+      },
+      "formatClaims": [
+        "uk-nino/format-and-prefix-rules",
+        "uk-nino/administrative-and-temporary-numbers"
+      ],
       "contextClaims": [
         {
           "context": "field-label/global/general",
@@ -189,10 +260,21 @@
     {
       "id": "medical-record-number/us/labeled-field",
       "label": "Medical record number",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-hl7-identifier-type-table/mr-definition", "phi-fhir-r4-patient/identifier-no-format"],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "jurisdictions": [
+        "us"
+      ],
+      "classification": {
+        "state": "resolved",
+        "evidenceClass": "research-needed"
+      },
+      "formatClaims": [
+        "phi-hl7-identifier-type-table/mr-definition",
+        "phi-fhir-r4-patient/identifier-no-format"
+      ],
       "contextClaims": [
         {
           "context": "field-label/global/general",
@@ -211,10 +293,20 @@
     {
       "id": "health-plan-member-id/us/member-field",
       "label": "Health plan member identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "resolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-hl7-identifier-type-table/mb-member-number-definition"],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "jurisdictions": [
+        "us"
+      ],
+      "classification": {
+        "state": "resolved",
+        "evidenceClass": "research-needed"
+      },
+      "formatClaims": [
+        "phi-hl7-identifier-type-table/mb-member-number-definition"
+      ],
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -237,10 +329,20 @@
     {
       "id": "health-claim-identifier/us/claim-field",
       "label": "Health insurance claim identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-fhir-r4-claim/identifier-and-patient"],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "jurisdictions": [
+        "us"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
+      "formatClaims": [
+        "phi-fhir-r4-claim/identifier-and-patient"
+      ],
       "contextClaims": [
         {
           "context": "health-plan/us/general",
@@ -258,10 +360,20 @@
     {
       "id": "prescription-order-identifier/us/order-field",
       "label": "Prescription or order identifier",
-      "domains": ["pii", "phi"],
-      "jurisdictions": ["us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["phi-fhir-r4-medicationrequest/identifier-and-subject"],
+      "domains": [
+        "pii",
+        "phi"
+      ],
+      "jurisdictions": [
+        "us"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
+      "formatClaims": [
+        "phi-fhir-r4-medicationrequest/identifier-and-subject"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
@@ -279,28 +391,61 @@
     {
       "id": "date-of-birth/global/labeled-field",
       "label": "Date of birth",
-      "domains": ["pii"],
-      "jurisdictions": ["global", "us"],
-      "classification": { "state": "unresolved", "evidenceClass": "research-needed" },
-      "formatClaims": ["dob-fhir-r4-datatypes/date-notation", "dob-rfc3339/full-date-production"],
+      "domains": [
+        "pii"
+      ],
+      "jurisdictions": [
+        "global",
+        "us"
+      ],
+      "classification": {
+        "state": "unresolved",
+        "evidenceClass": "research-needed"
+      },
+      "formatClaims": [
+        "dob-fhir-r4-datatypes/date-notation",
+        "dob-rfc3339/full-date-production"
+      ],
       "contextClaims": [
         {
           "context": "medical/global/general",
           "effect": "adds-domain",
-          "domains": ["phi"],
+          "domains": [
+            "phi"
+          ],
           "evidenceClass": "public-authority",
-          "claims": ["phi-hhs-164-514-b-2-i/dates-and-ages"]
+          "claims": [
+            "phi-hhs-164-514-b-2-i/dates-and-ages"
+          ]
         },
         {
           "context": "field-label/global/general",
           "effect": "supports-identification",
           "evidenceClass": "research-needed",
-          "claims": ["dob-fhir-r4-patient/birth-date"]
+          "claims": [
+            "dob-fhir-r4-patient/birth-date"
+          ]
+        },
+        {
+          "context": "date-locale/global/en-gb",
+          "effect": "supports-identification",
+          "evidenceClass": "standards-body",
+          "claims": [
+            "dob-cldr/gb-numeric-date-order"
+          ]
+        },
+        {
+          "context": "date-locale/global/en-us",
+          "effect": "supports-identification",
+          "evidenceClass": "standards-body",
+          "claims": [
+            "dob-cldr/us-numeric-date-order"
+          ]
         }
       ],
       "openQuestions": [
         "A birth date is recognized by label and date notation, never by a bare date; generic date detection is out of scope for this kind.",
-        "Numeric day/month order by locale is not source-documented; the order-ambiguity case rests on project inference.",
+        "CLDR 48 en-GB and en-US inherited Gregorian order is source-documented only when locale is explicitly declared. Unspecified locale and application overrides remain ambiguous; no date assignment is inferred.",
         "Age (including over 89), year-only birth values and other individual dates (admission, discharge, death) are not modeled; docs/research/date-of-birth.md records recommendations.",
         "Whether a birth date alone is PHI outside a medical context is holder-dependent and unsettled."
       ]

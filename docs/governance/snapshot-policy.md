@@ -45,7 +45,7 @@ for a new standalone kind does not exclude an accepted bounded ambiguity or rela
 collision Case. `context-only` accepts only the authored bounded semantics, never a universal
 grammar. Invalid or duplicate dispositions fail closed.
 
-The candidate pointer and deterministic coverage report bind both ledgers by SHA-256, identify
+The optional manifest `coverageDelta` binds the earlier release, count/kind/Case delta and dispositions. Its baseline is a strictly earlier dated release, so registering the candidate does not change rebuild bytes. The candidate pointer and deterministic coverage report bind both ledgers by SHA-256, identify
 the baseline released snapshot, and keep unresolved proposals and downstream mapping losses
 visible. Agent adjudication does not change a record to `reviewed` or make the evidence independent.
 Candidate preparation does not register a release or authorize benchmark adoption.

@@ -879,7 +879,9 @@
           "date-of-birth/global/labeled-field/negative/impossible-calendar-date",
           "date-of-birth/global/labeled-field/negative/label-without-value",
           "date-of-birth/global/labeled-field/positive/labeled-iso-date",
-          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label"
+          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us"
         ],
         "fixtures": {
           "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
@@ -946,9 +948,19 @@
           "claim": "dob-rfc3339/full-date-production",
           "source": "dob-ietf-rfc3339",
           "observedAt": "2026-10-07"
+        },
+        {
+          "claim": "dob-cldr/gb-numeric-date-order",
+          "source": "dob-unicode-cldr-date-patterns",
+          "observedAt": "2026-10-08"
+        },
+        {
+          "claim": "dob-cldr/us-numeric-date-order",
+          "source": "dob-unicode-cldr-date-patterns",
+          "observedAt": "2026-10-08"
         }
       ],
-      "rationale": "Retain ambiguous authored numeric-order Case, not a sourced locale grammar.",
+      "rationale": "Accept bounded explicitly declared en-GB/en-US Gregorian numeric order contexts from CLDR 48. Keep original unspecified-locale DOB Case ambiguous. No country-wide parser rule or actual DOB assignment.",
       "consumerRepresentability": {
         "contractVersion": "1",
         "state": "represented",
@@ -956,12 +968,19 @@
       },
       "implementation": {
         "privacyKinds": [],
-        "contexts": [],
+        "contexts": [
+          "date-locale/global/en-gb",
+          "date-locale/global/en-us"
+        ],
         "claims": [
-          "dob-rfc3339/full-date-production"
+          "dob-rfc3339/full-date-production",
+          "dob-cldr/gb-numeric-date-order",
+          "dob-cldr/us-numeric-date-order"
         ],
         "cases": [
-          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order"
+          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us"
         ],
         "fixtures": {
           "strategy": "existing deterministic carrier rules; retain authored spans and lineage; do not invent expectations",
@@ -969,7 +988,7 @@
         }
       },
       "unresolved": [
-        "Source locale orders before adding jurisdiction/locale profiles."
+        "Locales without an explicit declaration, application overrides and other calendars remain outside this bounded acceptance."
       ],
       "canonicalCaseDisposition": "retain-bounded-existing-cases",
       "proposalScope": "existing-canonical-role-or-context"

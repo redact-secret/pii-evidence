@@ -2880,6 +2880,16 @@
             "id": "date-of-birth/global/labeled-field/twin/date-under-non-birth-label",
             "reasons": [],
             "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+            "reasons": [],
+            "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us",
+            "reasons": [],
+            "state": "included"
           }
         ],
         "consumerRepresentability": {
@@ -2899,7 +2909,9 @@
           "date-of-birth/global/labeled-field/negative/impossible-calendar-date",
           "date-of-birth/global/labeled-field/negative/label-without-value",
           "date-of-birth/global/labeled-field/positive/labeled-iso-date",
-          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label"
+          "date-of-birth/global/labeled-field/twin/date-under-non-birth-label",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us"
         ],
         "ledger": "docs/research/coverage-expansion-adjudication.json",
         "researchIssue": 27,
@@ -2913,6 +2925,16 @@
             "id": "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
             "reasons": [],
             "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+            "reasons": [],
+            "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us",
+            "reasons": [],
+            "state": "included"
           }
         ],
         "consumerRepresentability": {
@@ -2923,13 +2945,15 @@
         "disposition": "context-only",
         "id": "locale-numeric-birth-date",
         "implementationCases": [
-          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order"
+          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us"
         ],
         "ledger": "docs/research/coverage-expansion-adjudication.json",
         "researchIssue": 27,
         "semanticTarget": "date-of-birth/global/labeled-field",
         "unresolved": [
-          "Source locale orders before adding jurisdiction/locale profiles."
+          "Locales without an explicit declaration, application overrides and other calendars remain outside this bounded acceptance."
         ]
       },
       {
@@ -3844,7 +3868,7 @@
       },
       {
         "path": "docs/research/coverage-expansion-adjudication.json",
-        "sha256": "a60bb6f2628d2478ffe64207b59c67c0b97f51e0ba7c9aadf4c64c29fbf05512"
+        "sha256": "174964aa7743a0290ec4cc4f233463883e4983f2c22370b4218acacd598647c9"
       }
     ],
     "unresolvedInventory": [
@@ -5665,6 +5689,16 @@
             "id": "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
             "reasons": [],
             "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+            "reasons": [],
+            "state": "included"
+          },
+          {
+            "id": "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us",
+            "reasons": [],
+            "state": "included"
           }
         ],
         "consumerRepresentability": {
@@ -5675,13 +5709,15 @@
         "disposition": "context-only",
         "id": "locale-numeric-birth-date",
         "implementationCases": [
-          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order"
+          "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+          "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us"
         ],
         "ledger": "docs/research/coverage-expansion-adjudication.json",
         "researchIssue": 27,
         "semanticTarget": "date-of-birth/global/labeled-field",
         "unresolved": [
-          "Source locale orders before adding jurisdiction/locale profiles."
+          "Locales without an explicit declaration, application overrides and other calendars remain outside this bounded acceptance."
         ]
       },
       {
@@ -6358,18 +6394,18 @@
     "id": "public-pii-phi/2026-10-07/9d4e8e036bbb"
   },
   "candidate": {
-    "contentDigest": "d8add618935d350c30d4ba5df3a3f707ee02f1cd9d238af9740d69f2e8d07502",
-    "id": "public-pii-phi/2026-10-08/d8add618935d"
+    "contentDigest": "ee61c7afc32db4db320e57051ff762eee5ca70942a7b740a383a1d8e54e397bb",
+    "id": "public-pii-phi/2026-10-08/ee61c7afc32d"
   },
   "counts": {
     "cases": {
-      "candidate": 116,
-      "delta": 67,
+      "candidate": 118,
+      "delta": 69,
       "previous": 49
     },
     "claims": {
-      "candidate": 52,
-      "delta": 28,
+      "candidate": 54,
+      "delta": 30,
       "previous": 24
     },
     "excludedCases": {
@@ -6393,8 +6429,8 @@
       "previous": 3
     },
     "fixtures": {
-      "candidate": 275,
-      "delta": 136,
+      "candidate": 285,
+      "delta": 146,
       "previous": 139
     },
     "reviewEvents": {
@@ -6413,14 +6449,16 @@
       "previous": 8
     },
     "sources": {
-      "candidate": 27,
-      "delta": 13,
+      "candidate": 28,
+      "delta": 14,
       "previous": 14
     }
   },
   "coverage": {
     "candidate": {
       "contexts": [
+        "date-locale/global/en-gb",
+        "date-locale/global/en-us",
         "field-label/global/general",
         "health-plan/us/general",
         "medical/global/general"
@@ -6431,7 +6469,7 @@
       ],
       "evidenceClasses": {
         "authored-adversarial": 24,
-        "authored-baseline": 16,
+        "authored-baseline": 18,
         "public-authority": 28,
         "reference-backed": 2,
         "research-needed": 6,
@@ -6440,7 +6478,7 @@
       "identityStates": {
         "invalid": 44,
         "not-established": 31,
-        "valid": 41
+        "valid": 43
       },
       "jurisdictions": [
         "global",
@@ -6465,8 +6503,8 @@
       ],
       "perKind": {
         "date-of-birth/global/labeled-field": {
-          "cases": 10,
-          "fixtures": 18
+          "cases": 12,
+          "fixtures": 28
         },
         "email/global/basic": {
           "cases": 37,
@@ -6504,7 +6542,7 @@
       "roles": {
         "ambiguous": 19,
         "collision": 21,
-        "context": 4,
+        "context": 6,
         "mutation": 11,
         "negative": 23,
         "positive": 12,
@@ -7314,9 +7352,10 @@
     "metadata": {
       "acceptedJurisdictions": [
         "global",
-        "us"
+        "us",
+        "uk"
       ],
-      "basis": "consumer mapping revision 1 documentation",
+      "basis": "pii-evidence-to-corpus mapping revision 2; legacy-only populations retain revision 1",
       "lossClasses": [
         "identity-weakened-no-span",
         "sensitivity-weakened-no-span",
@@ -7333,15 +7372,13 @@
         "medical-record-number",
         "health-plan-member-id",
         "health-claim-identifier",
-        "prescription-order-identifier"
+        "prescription-order-identifier",
+        "date-of-birth",
+        "uk-nino"
       ],
       "owner": "pii-eval",
-      "unmappedJurisdictions": [
-        "uk"
-      ],
+      "unmappedJurisdictions": [],
       "unmappedKinds": [
-        "date-of-birth",
-        "uk-nino",
         "national-id"
       ]
     },
@@ -7356,6 +7393,8 @@
         "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
         "date-of-birth/global/labeled-field/ambiguous/year-only-birth-label",
         "date-of-birth/global/labeled-field/context/medical-labeled-date",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us",
         "date-of-birth/global/labeled-field/negative/age-under-90",
         "date-of-birth/global/labeled-field/negative/format-placeholder-label",
         "date-of-birth/global/labeled-field/negative/impossible-calendar-date",
@@ -7428,6 +7467,8 @@
         "benign/rfc-6761-special-use-names",
         "clinical-fhir-r4-account/identifier-is-account-number",
         "clinical-fhir-r4-encounter/identifier-and-subject",
+        "dob-cldr/gb-numeric-date-order",
+        "dob-cldr/us-numeric-date-order",
         "dob-fhir-r4-datatypes/date-notation",
         "dob-fhir-r4-patient/birth-date",
         "dob-rfc3339/full-date-production",
@@ -7472,6 +7513,16 @@
         "date-of-birth/global/labeled-field/context/medical-labeled-date/json/object-field",
         "date-of-birth/global/labeled-field/context/medical-labeled-date/logfmt/key-value",
         "date-of-birth/global/labeled-field/context/medical-labeled-date/plain-text/line",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb/header-config/header-line",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb/header-config/ini-entry",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb/json/object-field",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb/logfmt/key-value",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb/plain-text/line",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us/header-config/header-line",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us/header-config/ini-entry",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us/json/object-field",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us/logfmt/key-value",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us/plain-text/line",
         "date-of-birth/global/labeled-field/negative/age-under-90/plain-text/line",
         "date-of-birth/global/labeled-field/negative/format-placeholder-label/plain-text/line",
         "date-of-birth/global/labeled-field/negative/impossible-calendar-date/plain-text/line",
@@ -7615,6 +7666,7 @@
         "clinical-hl7-fhir-r4-encounter-account",
         "dob-hl7-fhir-r4-datatypes",
         "dob-ietf-rfc3339",
+        "dob-unicode-cldr-date-patterns",
         "phi-hhs-hipaa-phi-definition",
         "provider-cms-npi-check-digit",
         "provider-cms-npi-standard",
@@ -7632,16 +7684,16 @@
   "reviewStates": {
     "candidate": {
       "cases": {
-        "unreviewed": 116
+        "unreviewed": 118
       },
       "claims": {
-        "unreviewed": 52
+        "unreviewed": 54
       },
       "fixture-rules": {
         "unreviewed": 10
       },
       "sources": {
-        "unreviewed": 27
+        "unreviewed": 28
       }
     },
     "previous": {
@@ -7662,7 +7714,10 @@
   "schema": "pii-evidence-snapshot-delta/1",
   "taxonomy": {
     "contexts": {
-      "added": [],
+      "added": [
+        "date-locale/global/en-gb",
+        "date-locale/global/en-us"
+      ],
       "changed": [],
       "removed": []
     },

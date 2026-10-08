@@ -447,6 +447,178 @@
           }
         }
       }
+    },
+    "coverageDelta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline",
+        "kinds",
+        "cases",
+        "counts",
+        "ledgers",
+        "decisions"
+      ],
+      "properties": {
+        "baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "manifestSha256"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "defs.schema.json#/$defs/id"
+            },
+            "manifestSha256": {
+              "$ref": "defs.schema.json#/$defs/sha256"
+            }
+          }
+        },
+        "kinds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "added",
+            "removed",
+            "changed"
+          ],
+          "properties": {
+            "added": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            },
+            "removed": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            },
+            "changed": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            }
+          }
+        },
+        "cases": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "added",
+            "removed",
+            "changed"
+          ],
+          "properties": {
+            "added": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            },
+            "removed": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            },
+            "changed": {
+              "$ref": "defs.schema.json#/$defs/idList"
+            }
+          }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "cases",
+            "fixtures"
+          ],
+          "properties": {
+            "cases": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "previous",
+                "candidate",
+                "delta"
+              ],
+              "properties": {
+                "previous": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "candidate": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "delta": {
+                  "type": "integer"
+                }
+              }
+            },
+            "fixtures": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "previous",
+                "candidate",
+                "delta"
+              ],
+              "properties": {
+                "previous": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "candidate": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "delta": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "ledgers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "sha256"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "sha256": {
+                "$ref": "defs.schema.json#/$defs/sha256"
+              }
+            }
+          }
+        },
+        "decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "ledger",
+              "disposition"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "ledger": {
+                "$ref": "defs.schema.json#/$defs/id"
+              },
+              "disposition": {
+                "enum": [
+                  "add",
+                  "context-only",
+                  "defer",
+                  "reject"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "description": "Optional promotion summary against a strictly earlier released snapshot, binding project-maintained dispositions by ledger SHA-256. No consumer mapping or product authority."
     }
   }
 }

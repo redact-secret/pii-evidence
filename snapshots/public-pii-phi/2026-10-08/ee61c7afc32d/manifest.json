@@ -1,0 +1,1499 @@
+{
+  "consumerContract": "pii-evidence-consumer-contract",
+  "consumerContractVersion": "1",
+  "contentDigest": "ee61c7afc32db4db320e57051ff762eee5ca70942a7b740a383a1d8e54e397bb",
+  "contentDigestSpec": "files-v1",
+  "counts": {
+    "cases": 118,
+    "claims": 54,
+    "excludedCases": 57,
+    "excludedClaims": 3,
+    "excludedFixtures": 165,
+    "excludedSources": 3,
+    "fixtures": 285,
+    "reviewEvents": 0,
+    "rules": 10,
+    "skipped": 18,
+    "sources": 28
+  },
+  "coverage": {
+    "contexts": [
+      "date-locale/global/en-gb",
+      "date-locale/global/en-us",
+      "field-label/global/general",
+      "health-plan/us/general",
+      "medical/global/general"
+    ],
+    "domains": [
+      "phi",
+      "pii"
+    ],
+    "evidenceClasses": {
+      "authored-adversarial": 24,
+      "authored-baseline": 18,
+      "public-authority": 28,
+      "reference-backed": 2,
+      "research-needed": 6,
+      "standards-body": 40
+    },
+    "identityStates": {
+      "invalid": 44,
+      "not-established": 31,
+      "valid": 43
+    },
+    "jurisdictions": [
+      "global",
+      "uk",
+      "us"
+    ],
+    "kinds": [
+      "date-of-birth/global/labeled-field",
+      "email/global/basic",
+      "health-claim-identifier/us/claim-field",
+      "health-plan-member-id/us/member-field",
+      "medical-record-number/us/labeled-field",
+      "phone/global/basic",
+      "prescription-order-identifier/us/order-field",
+      "uk-nino/uk/structured",
+      "us-ssn/us/structured"
+    ],
+    "kindsWithoutCases": [
+      "iban/global/basic",
+      "national-id/unresolved/placeholder",
+      "payment-card/global/basic"
+    ],
+    "perKind": {
+      "date-of-birth/global/labeled-field": {
+        "cases": 12,
+        "fixtures": 28
+      },
+      "email/global/basic": {
+        "cases": 37,
+        "fixtures": 145
+      },
+      "health-claim-identifier/us/claim-field": {
+        "cases": 3,
+        "fixtures": 3
+      },
+      "health-plan-member-id/us/member-field": {
+        "cases": 12,
+        "fixtures": 16
+      },
+      "medical-record-number/us/labeled-field": {
+        "cases": 15,
+        "fixtures": 23
+      },
+      "phone/global/basic": {
+        "cases": 7,
+        "fixtures": 32
+      },
+      "prescription-order-identifier/us/order-field": {
+        "cases": 6,
+        "fixtures": 6
+      },
+      "uk-nino/uk/structured": {
+        "cases": 7,
+        "fixtures": 15
+      },
+      "us-ssn/us/structured": {
+        "cases": 19,
+        "fixtures": 17
+      }
+    },
+    "roles": {
+      "ambiguous": 19,
+      "collision": 21,
+      "context": 6,
+      "mutation": 11,
+      "negative": 23,
+      "positive": 12,
+      "twin": 26
+    }
+  },
+  "coverageDelta": {
+    "baseline": {
+      "id": "public-pii-phi/2026-10-07/9d4e8e036bbb",
+      "manifestSha256": "a9e24b6dc73bc876f9fce341c7305421b054ae399df83d198513bede03555ca9"
+    },
+    "cases": {
+      "added": [
+        "date-of-birth/global/labeled-field/ambiguous/age-over-89",
+        "date-of-birth/global/labeled-field/ambiguous/numeric-day-month-order",
+        "date-of-birth/global/labeled-field/ambiguous/year-only-birth-label",
+        "date-of-birth/global/labeled-field/context/medical-labeled-date",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-gb",
+        "date-of-birth/global/labeled-field/context/numeric-date-explicit-en-us",
+        "date-of-birth/global/labeled-field/negative/age-under-90",
+        "date-of-birth/global/labeled-field/negative/format-placeholder-label",
+        "date-of-birth/global/labeled-field/negative/impossible-calendar-date",
+        "date-of-birth/global/labeled-field/negative/label-without-value",
+        "date-of-birth/global/labeled-field/positive/labeled-iso-date",
+        "date-of-birth/global/labeled-field/twin/date-under-non-birth-label",
+        "email/global/basic/ambiguous/masked-local-part",
+        "email/global/basic/ambiguous/role-address-reserved-domain",
+        "email/global/basic/ambiguous/single-label-localhost-domain",
+        "email/global/basic/ambiguous/trailing-ideographic-full-stop",
+        "email/global/basic/negative/all-x-placeholder",
+        "email/global/basic/negative/span-less-prompt-prose",
+        "email/global/basic/negative/template-domain-token",
+        "email/global/basic/negative/template-variable-token",
+        "email/global/basic/twin/billing-same-value",
+        "email/global/basic/twin/csv-crlf-record-end",
+        "email/global/basic/twin/csv-doubled-quote-field",
+        "email/global/basic/twin/csv-quoted-field",
+        "email/global/basic/twin/customer-same-value",
+        "email/global/basic/twin/docs-same-value",
+        "email/global/basic/twin/json-escaped-quote-adjacent",
+        "email/global/basic/twin/json-nested-string",
+        "email/global/basic/twin/logfmt-quoted-value",
+        "health-claim-identifier/us/claim-field/ambiguous/patient-account-number-label",
+        "health-claim-identifier/us/claim-field/collision/billing-provider-npi-label",
+        "health-plan-member-id/us/member-field/ambiguous/dependent-identifier-label",
+        "health-plan-member-id/us/member-field/ambiguous/medicare-number-label",
+        "health-plan-member-id/us/member-field/ambiguous/subscriber-number-label",
+        "health-plan-member-id/us/member-field/collision/group-number-label",
+        "health-plan-member-id/us/member-field/collision/policy-number-label",
+        "health-plan-member-id/us/member-field/collision/public-payer-identifier-label",
+        "health-plan-member-id/us/member-field/negative/span-less-pointer-to-elsewhere",
+        "medical-record-number/us/labeled-field/ambiguous/patient-identifier-label",
+        "medical-record-number/us/labeled-field/collision/account-number-field",
+        "medical-record-number/us/labeled-field/collision/encounter-identifier-field",
+        "medical-record-number/us/labeled-field/collision/generic-patient-id-label",
+        "medical-record-number/us/labeled-field/collision/order-label-in-clinical-context",
+        "medical-record-number/us/labeled-field/negative/span-less-absence-statement",
+        "phone/global/basic/collision/order-number-label-same-digits",
+        "phone/global/basic/twin/billing-same-value",
+        "phone/global/basic/twin/customer-same-value",
+        "phone/global/basic/twin/docs-same-value",
+        "phone/global/basic/twin/tel-label-same-digits",
+        "prescription-order-identifier/us/order-field/ambiguous/encounter-visit-number-label",
+        "prescription-order-identifier/us/order-field/ambiguous/filler-order-number-label",
+        "prescription-order-identifier/us/order-field/collision/order-label-without-prescription-wording",
+        "prescription-order-identifier/us/order-field/collision/pharmacist-license-number-label",
+        "prescription-order-identifier/us/order-field/collision/pharmacy-or-facility-identifier-label",
+        "uk-nino/uk/structured/ambiguous/unlabeled-example-under-tracking-label",
+        "uk-nino/uk/structured/collision/pension-reporting-placeholder",
+        "uk-nino/uk/structured/negative/excluded-prefix",
+        "uk-nino/uk/structured/negative/suffix-letter-outside-a-d",
+        "uk-nino/uk/structured/negative/too-few-digits",
+        "uk-nino/uk/structured/positive/labeled-spaced-example",
+        "uk-nino/uk/structured/twin/compact-example",
+        "us-ssn/us/structured/ambiguous/masked-keep-last-four",
+        "us-ssn/us/structured/collision/dashed-part-number",
+        "us-ssn/us/structured/negative/span-less-format-description",
+        "us-ssn/us/structured/negative/x-placeholder",
+        "us-ssn/us/structured/twin/billing-same-value",
+        "us-ssn/us/structured/twin/customer-same-value",
+        "us-ssn/us/structured/twin/docs-same-value",
+        "us-ssn/us/structured/twin/patient-same-value"
+      ],
+      "changed": [],
+      "removed": []
+    },
+    "counts": {
+      "cases": {
+        "candidate": 118,
+        "delta": 69,
+        "previous": 49
+      },
+      "fixtures": {
+        "candidate": 285,
+        "delta": 146,
+        "previous": 139
+      }
+    },
+    "decisions": [
+      {
+        "disposition": "reject",
+        "id": "case-strengthening/assignable-ssn-itin-near-shapes",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/covered-holder-and-other-jurisdictions",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/csv-and-crlf-new-projector-templates",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/deeper-nesting-and-serialization-chains",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/discriminator-class-and-cross-kind-record-schema",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/documentation-ip-ranges",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/domestic-bank-card-phone-collisions",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/ein-near-shape",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/encoding-and-decoded-span-schema",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "case-strengthening/historical-specimen-or-advertising-identifiers",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "case-strengthening/label-overrides-shape-policy",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "case-strengthening/label-swap-generation",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/masked-sensitivity-role-mailbox-and-localhost-decisions",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/negative-carrier-projection",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/non-medical-context-profiles",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/payment-card-iban-carrier-expansion",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/quoted-printable-html-base64-double-encoding",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/real-shaped-degenerate-digit-placeholders",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/redaction-tokens",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "case-strengthening/remaining-kind-absence-duplicates",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "case-strengthening/reserved-means-non-sensitive",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/sensitive-pointer-context-twins",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/text-level-no-value-enum-and-negative-regions",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "case-strengthening/tsv-unix-delimiters-formula-prefixes",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "email/global/basic/ambiguous/json-unicode-escaped-at-sign",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/ambiguous/masked-local-part",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "email/global/basic/ambiguous/percent-encoded-at-sign",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/ambiguous/role-address-reserved-domain",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/ambiguous/single-label-localhost-domain",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/ambiguous/trailing-ideographic-full-stop",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/negative/all-x-placeholder",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/negative/span-less-prompt-prose",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/negative/template-domain-token",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/negative/template-variable-token",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/billing-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/csv-crlf-record-end",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/csv-doubled-quote-field",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/csv-quoted-field",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/customer-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/docs-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/json-escaped-quote-adjacent",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/json-nested-string",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "email/global/basic/twin/logfmt-quoted-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "health-plan-member-id/us/member-field/collision/group-number-label",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "health-plan-member-id/us/member-field/negative/span-less-pointer-to-elsewhere",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/ambiguous/masked-middle",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/negative/span-less-aggregate-statement",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/negative/x-placeholder",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/twin/billing-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/twin/customer-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/twin/docs-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "iban/global/basic/twin/patient-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "medical-record-number/us/labeled-field/collision/generic-patient-id-label",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "medical-record-number/us/labeled-field/collision/order-label-in-clinical-context",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "medical-record-number/us/labeled-field/negative/span-less-absence-statement",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/ambiguous/masked-first-six-last-four",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/collision/short-luhn-valid-reference",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/negative/span-less-redaction-notice",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/negative/x-placeholder-groups",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/twin/billing-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/twin/customer-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/twin/docs-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "payment-card/global/basic/twin/patient-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "phone/global/basic/ambiguous/form-plus-read-as-space",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/ambiguous/masked-keep-last-four",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/collision/dotted-groups-version-label",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/collision/epoch-seconds-timestamp",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/collision/order-number-label-same-digits",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/negative/nanp-letter-placeholder",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/negative/span-less-empty-labelled-field",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/twin/billing-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/twin/csv-quoted-field",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/twin/customer-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/twin/docs-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "phone/global/basic/twin/tel-label-same-digits",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "prescription-order-identifier/us/order-field/collision/order-label-without-prescription-wording",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/ambiguous/masked-keep-last-four",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/collision/dashed-part-number",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/negative/span-less-format-description",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/negative/x-placeholder",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/twin/billing-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/twin/customer-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/twin/docs-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "us-ssn/us/structured/twin/patient-same-value",
+        "ledger": "case-strengthening-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "admission-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "age-over-89",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "age-under-90",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "canada-social-insurance-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "claim-related-member-reference",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "company-registration-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "death-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "dependent-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "discharge-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "encounter-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "encounter-visit-order-reference",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "facility-bed-code",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "facility-department-code",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "facility-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "facility-local-code",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "facility-order-set-code",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "filler-order-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "finland-personal-identity-code",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "france-nir",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "germany-tax-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "group-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "health-plan-member-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "health-plan-organization-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "healthcare-claim-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "labeled-birth-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "locale-numeric-birth-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "medical-birth-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "medical-record-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "medicare-beneficiary-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "organization-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "other-eu-personal-identifiers",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "other-individual-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "patient-account-claim-reference",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "patient-account-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "patient-external-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "patient-internal-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "payer-organization-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "pharmacist-license-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "pharmacy-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "placer-order-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "plan-class-value",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "policy-coverage-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "prescription-order-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "provider-npi",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "provider-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "south-korea-resident-registration-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "spain-dni",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "spain-nie",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "state-practitioner-license",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "context-only",
+        "id": "subscriber-identifier",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "sweden-personnummer",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "add",
+        "id": "uk-national-insurance-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "unlabeled-generic-date",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "upin",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "us-employer-identification-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "us-individual-taxpayer-identification-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "reject",
+        "id": "vat-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "visit-number",
+        "ledger": "coverage-expansion-adjudication"
+      },
+      {
+        "disposition": "defer",
+        "id": "year-only-birth-value",
+        "ledger": "coverage-expansion-adjudication"
+      }
+    ],
+    "kinds": {
+      "added": [
+        "date-of-birth/global/labeled-field",
+        "uk-nino/uk/structured"
+      ],
+      "changed": [
+        "health-claim-identifier/us/claim-field",
+        "health-plan-member-id/us/member-field",
+        "medical-record-number/us/labeled-field",
+        "national-id/unresolved/placeholder",
+        "prescription-order-identifier/us/order-field"
+      ],
+      "removed": []
+    },
+    "ledgers": [
+      {
+        "id": "case-strengthening-adjudication",
+        "sha256": "492179752cfffc1d0525cb3b4ae1e8c2cdd207823e2ea12337e1c68ea0c7b59a"
+      },
+      {
+        "id": "coverage-expansion-adjudication",
+        "sha256": "174964aa7743a0290ec4cc4f233463883e4983f2c22370b4218acacd598647c9"
+      }
+    ]
+  },
+  "exclusions": {
+    "cases": [
+      {
+        "id": "email/global/basic/ambiguous/json-unicode-escaped-at-sign",
+        "reasons": [
+          "adjudication: defer in case-strengthening-adjudication"
+        ]
+      },
+      {
+        "id": "email/global/basic/ambiguous/percent-encoded-at-sign",
+        "reasons": [
+          "adjudication: defer in case-strengthening-adjudication"
+        ]
+      },
+      {
+        "id": "iban/global/basic/ambiguous/masked-middle",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-print-groups"
+        ]
+      },
+      {
+        "id": "iban/global/basic/collision/alphanumeric-product-key",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/adjacent-transposition",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/check-digits-altered",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/country-code-swapped",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/lowercase-form",
+        "reasons": [
+          "cites excluded source iban/swift-registry",
+          "cites excluded claim iban/registry-authority"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/nbsp-grouping",
+        "reasons": [
+          "cites excluded source iban/swift-registry",
+          "cites excluded claim iban/registry-authority"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/over-34-characters",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/mutation/truncated-last-character",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/negative/span-less-aggregate-statement",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/negative/x-placeholder",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-print-groups"
+        ]
+      },
+      {
+        "id": "iban/global/basic/positive/gb-electronic",
+        "reasons": [
+          "relates to excluded case iban/global/basic/mutation/lowercase-form"
+        ]
+      },
+      {
+        "id": "iban/global/basic/positive/gb-json-field",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/positive/gb-print-groups",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic",
+          "relates to excluded case iban/global/basic/mutation/nbsp-grouping"
+        ]
+      },
+      {
+        "id": "iban/global/basic/twin/billing-same-value",
+        "reasons": [
+          "relates to excluded case iban/global/basic/twin/patient-same-value",
+          "relates to excluded case iban/global/basic/twin/customer-same-value",
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/twin/customer-same-value",
+        "reasons": [
+          "relates to excluded case iban/global/basic/twin/patient-same-value",
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/twin/docs-same-value",
+        "reasons": [
+          "relates to excluded case iban/global/basic/twin/patient-same-value",
+          "relates to excluded case iban/global/basic/twin/customer-same-value",
+          "relates to excluded case iban/global/basic/twin/billing-same-value",
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "iban/global/basic/twin/patient-same-value",
+        "reasons": [
+          "relates to excluded case iban/global/basic/positive/gb-electronic"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/ambiguous/masked-first-six-last-four",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/collision/epoch-milliseconds",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/collision/order-number-sixteen-digits",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/collision/short-luhn-valid-reference",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/collision/order-number-sixteen-digits"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/mutation/adjacent-transposition",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/mastercard-test-spaced"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/mutation/check-digit-altered",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/mutation/fullwidth-digits",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/mutation/twenty-digit-run",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/mutation/wrong-length-for-prefix",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/negative/span-less-redaction-notice",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/visa-test-plain"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/negative/x-placeholder-groups",
+        "reasons": [
+          "relates to excluded case payment-card/global/basic/positive/mastercard-test-spaced"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/positive/mastercard-test-spaced",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/positive/visa-test-hyphenated",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/positive/visa-test-plain",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/twin/billing-same-value",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/twin/customer-same-value",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/twin/docs-same-value",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/twin/patient-same-value",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "payment-card/global/basic/twin/tracking-label-twin",
+        "reasons": [
+          "cites excluded source payment-card/stripe-testing",
+          "cites excluded claim payment-card/stripe-test-numbers"
+        ]
+      },
+      {
+        "id": "phone/global/basic/ambiguous/form-plus-read-as-space",
+        "reasons": [
+          "adjudication: defer in case-strengthening-adjudication"
+        ]
+      },
+      {
+        "id": "phone/global/basic/ambiguous/local-seven-digit",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/ambiguous/masked-keep-last-four",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-parenthesized"
+        ]
+      },
+      {
+        "id": "phone/global/basic/collision/dotted-groups-version-label",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/dotted-groups"
+        ]
+      },
+      {
+        "id": "phone/global/basic/collision/epoch-seconds-timestamp",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/collision/iso-timestamp-digits",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/collision/zip-plus-four",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/mutation/fullwidth-digits",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-parenthesized"
+        ]
+      },
+      {
+        "id": "phone/global/basic/mutation/overlong-digit-run",
+        "reasons": [
+          "cites excluded source phone/itu-e164",
+          "cites excluded claim phone/e164-maximum-length"
+        ]
+      },
+      {
+        "id": "phone/global/basic/mutation/truncated-line-number",
+        "reasons": [
+          "cites excluded source phone/itu-e164",
+          "cites excluded claim phone/e164-maximum-length"
+        ]
+      },
+      {
+        "id": "phone/global/basic/negative/nanp-letter-placeholder",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-parenthesized"
+        ]
+      },
+      {
+        "id": "phone/global/basic/negative/span-less-empty-labelled-field",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/positive/dotted-groups",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/positive/e164-compact",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/positive/e164-spaced",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed",
+          "relates to excluded case phone/global/basic/mutation/overlong-digit-run"
+        ]
+      },
+      {
+        "id": "phone/global/basic/positive/nanp-dashed",
+        "reasons": [
+          "relates to excluded case phone/global/basic/mutation/truncated-line-number"
+        ]
+      },
+      {
+        "id": "phone/global/basic/positive/nanp-parenthesized",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/nanp-dashed"
+        ]
+      },
+      {
+        "id": "phone/global/basic/twin/csv-quoted-field",
+        "reasons": [
+          "relates to excluded case phone/global/basic/positive/e164-spaced"
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "id": "iban/registry-authority",
+        "reasons": [
+          "depends on excluded source iban/swift-registry"
+        ]
+      },
+      {
+        "id": "payment-card/stripe-test-numbers",
+        "reasons": [
+          "depends on excluded source payment-card/stripe-testing"
+        ]
+      },
+      {
+        "id": "phone/e164-maximum-length",
+        "reasons": [
+          "depends on excluded source phone/itu-e164"
+        ]
+      }
+    ],
+    "fixtureCount": 165,
+    "rule": [
+      "A source is included only if scripts/lint-provenance.mjs derives public-safe for it (the --public-release condition); otherwise it is excluded with the lint reasons.",
+      "A claim is included only if its source is included and its review state is not rejected.",
+      "A case is excluded if any source or claim it cites is excluded or its review state is rejected.",
+      "Existing authored cases explicitly deferred or rejected by the project research adjudication are excluded, with the disposition and ledger identity recorded as reasons. Deferred role proposals do not exclude accepted ambiguity or collision controls.",
+      "Exclusion propagates across case relationships to a fixed point: a case that relates to an excluded case is excluded, so no included case points at a missing case. Relationships carry no direction, so this is deliberately conservative.",
+      "A fixture rule is excluded if any case in its justifiedBy is excluded or its review state is rejected; fixtures exist only for included cases projected through included rules.",
+      "Taxonomy entries are copied as taxonomy, not corpus. The only change is removing references to excluded claims, each recorded under taxonomyClaimRefsRemoved.",
+      "Cases that cite no source are not gated by sources. They are included with their evidenceClass (including research-needed) and authored expectation unchanged; research-needed cases assert only not-established.",
+      "No record is edited. Excluded records are not copied; their ids and reasons are listed in the manifest."
+    ],
+    "rules": [],
+    "sources": [
+      {
+        "id": "iban/swift-registry",
+        "reasons": [
+          "provenance: evidenceClass is research-needed",
+          "provenance: redistribution unknown"
+        ]
+      },
+      {
+        "id": "payment-card/stripe-testing",
+        "reasons": [
+          "provenance: redistribution unknown"
+        ]
+      },
+      {
+        "id": "phone/itu-e164",
+        "reasons": [
+          "provenance: redistribution unknown"
+        ]
+      }
+    ],
+    "taxonomyClaimRefsRemoved": [
+      {
+        "claim": "iban/registry-authority",
+        "entry": "iban/global/basic"
+      },
+      {
+        "claim": "payment-card/stripe-test-numbers",
+        "entry": "payment-card/global/basic"
+      },
+      {
+        "claim": "phone/e164-maximum-length",
+        "entry": "phone/global/basic"
+      }
+    ]
+  },
+  "files": [
+    {
+      "bytes": 179867,
+      "path": "cases.jsonl",
+      "records": 118,
+      "sha256": "56d21fcc60773cd2d0f3a3dc5b14a0e1e02e2bf27807ee87a216108e715f5468"
+    },
+    {
+      "bytes": 53745,
+      "path": "claims.jsonl",
+      "records": 54,
+      "sha256": "582c472ad2ad2f04646710483a603862b804495450de7192d02faf49efd4b95e"
+    },
+    {
+      "bytes": 11570,
+      "path": "fixture-rules.jsonl",
+      "records": 10,
+      "sha256": "696974e589ad8fb19d39332fe7443e7d7558bbcd89b03cb85c838cd155537f0d"
+    },
+    {
+      "bytes": 249053,
+      "path": "fixtures.jsonl",
+      "records": 285,
+      "sha256": "f45a131a183d16fc5528a133d8f18027b9ae6bdaad21cb7054f80ddca086fe56"
+    },
+    {
+      "bytes": 7780,
+      "path": "skipped.jsonl",
+      "records": 18,
+      "sha256": "759f1a678f16612a16871e53700d50bbc0360245d414aea84a7bbd4a37f1d65d"
+    },
+    {
+      "bytes": 24806,
+      "path": "sources.jsonl",
+      "records": 28,
+      "sha256": "0230e2c92daefe0292284c5e61ebd520585ced52be96e77484dd23340a54a82f"
+    },
+    {
+      "bytes": 6604,
+      "path": "taxonomy/contexts.json",
+      "sha256": "821b07d65eccfcd5ffd45bed81f73e946ab8af44ccc1670d4da8766f2eead87d"
+    },
+    {
+      "bytes": 1363,
+      "path": "taxonomy/jurisdictions.json",
+      "sha256": "8f7d62493a0fdebe73e1493709e3b352ca381f61354b897d965e2e5dd9267944"
+    },
+    {
+      "bytes": 16281,
+      "path": "taxonomy/privacy-kinds.json",
+      "sha256": "61da802c91932797aa262bfb4ecf316b888caf9066c164e4c6b47e9b2d02fac7"
+    }
+  ],
+  "fixtureGenerator": {
+    "name": "pii-evidence-fixture-projector",
+    "version": "1.0.0"
+  },
+  "generator": {
+    "name": "pii-evidence-snapshot-builder",
+    "version": "1.2.0"
+  },
+  "id": "public-pii-phi/2026-10-08/ee61c7afc32d",
+  "kind": "snapshot-manifest",
+  "population": "public",
+  "schemaVersion": "1",
+  "schemaVersions": {
+    "case": "1",
+    "claim": "1",
+    "contexts": "1",
+    "fixture-projection": "1",
+    "fixture-rule": "1",
+    "fixture-skip": "1",
+    "jurisdictions": "1",
+    "privacy-kinds": "1",
+    "snapshot-manifest": "1",
+    "source": "1"
+  },
+  "snapshotDate": "2026-10-08",
+  "sourceManifestDigest": "0230e2c92daefe0292284c5e61ebd520585ced52be96e77484dd23340a54a82f",
+  "taxonomyVersion": "0.1.0",
+  "validation": {
+    "checks": [
+      {
+        "name": "population: every record is public; no protected or mixed population",
+        "status": "passed"
+      },
+      {
+        "name": "validate: schema, references, ids and lineage over the included set (npm run validate semantics)",
+        "status": "passed"
+      },
+      {
+        "detail": "28 sources, all public-safe",
+        "name": "lint-provenance --public-release over the included sources",
+        "status": "passed"
+      },
+      {
+        "name": "fixtures:materialize:check semantics: two projections byte-identical and valid against cases and rules",
+        "status": "passed"
+      },
+      {
+        "detail": "16 files scanned",
+        "name": "lint-safe-data over the included evidence and the published snapshot bytes",
+        "status": "passed"
+      },
+      {
+        "name": "neutrality: no scanner, detector, support-state, threshold or score field in any record",
+        "status": "passed"
+      },
+      {
+        "name": "snapshot:verify standalone checks over the assembled directory",
+        "status": "passed"
+      }
+    ],
+    "privacy": "passed",
+    "provenance": "passed",
+    "schema": "passed"
+  }
+}

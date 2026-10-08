@@ -23,3 +23,7 @@ Materialize existing deterministic carrier rules for accepted Cases; no standalo
 ## Verification
 
 Ledger source and claim references checked against the working tree. Local schema/reference validation is run for this promotion; full npm checks and candidate snapshot verification are performed by the integrating orchestrator. No formatter exists.
+
+## Explicit locale follow-up
+
+Observed 2026-10-08: the context-only numeric-date decision now includes two bounded explicit-locale contexts and same-digit DOB Cases, backed by Unicode CLDR 48.0.0. Locale is stated in the input and never inferred from country jurisdiction. The original unspecified-locale Case stays ambiguous; role validity does not establish actual DOB assignment. This adds one source, two claims, two contexts and two Cases without accepting any broader age/date kind. See [DOB research](date-of-birth.md) and the updated machine ledger.

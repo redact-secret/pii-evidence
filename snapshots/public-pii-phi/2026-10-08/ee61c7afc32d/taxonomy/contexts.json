@@ -44,6 +44,34 @@
       "openQuestions": [
         "Which labels are documented per kind? Labels need cited sources before being listed."
       ]
+    },
+    {
+      "addsDomains": [],
+      "applicability": "Bounded date-of-birth field with explicitly declared CLDR locale; does not establish a generic date detector or add phi.",
+      "boundedBy": "The literal locale=en-GB declaration applying to the DOB field in the input; locale is never inferred from jurisdiction or from the date digits.",
+      "claims": [
+        "dob-cldr/gb-numeric-date-order"
+      ],
+      "evidenceClass": "standards-body",
+      "id": "date-locale/global/en-gb",
+      "label": "Explicit en-GB Gregorian numeric date locale",
+      "openQuestions": [
+        "CLDR formatting order is not a universal parser contract or country requirement. Alternative calendars, user overrides and unspecified locales remain outside this context."
+      ]
+    },
+    {
+      "addsDomains": [],
+      "applicability": "Bounded date-of-birth field with explicitly declared CLDR locale; does not establish a generic date detector or add phi.",
+      "boundedBy": "The literal locale=en-US declaration applying to the DOB field in the input; locale is never inferred from jurisdiction or from the date digits.",
+      "claims": [
+        "dob-cldr/us-numeric-date-order"
+      ],
+      "evidenceClass": "standards-body",
+      "id": "date-locale/global/en-us",
+      "label": "Explicit en-US Gregorian numeric date locale",
+      "openQuestions": [
+        "CLDR formatting order is not a universal parser contract or country requirement. Alternative calendars, user overrides and unspecified locales remain outside this context."
+      ]
     }
   ],
   "description": "Occurrence-level context profiles and the rule for composing an occurrence from kind, contexts and domains.",

@@ -75,6 +75,17 @@ The manifest lists every exclusion under `exclusions` with reasons: `sources`, `
 
 Exclusion is not a finding about the evidence. It records that provenance was unresolved or depended on something unresolved at snapshot time. A later snapshot may include more.
 
+## Optional promotion summary
+
+A later snapshot may include `manifest.coverageDelta`: the exact earlier released
+baseline id and manifest SHA-256, added/removed/changed kind and Case ids, signed
+Case/fixture count changes, and project-maintained research dispositions bound by
+ledger SHA-256. It describes evidence promotion, never consumer mapping or product
+policy. Detailed contexts, source/review changes and unresolved reasons remain in
+the companion delta report that pins this manifest. A consumer may ignore this additive
+optional field under version 1. Registering the candidate never changes this
+summary: the baseline is a strictly earlier dated release.
+
 ## 6. Versioning
 
 `consumerContractVersion` is `"1"`. A change that removes or reinterprets a field, the digest algorithm or the id derivation is a new contract version and a new `consumerContract` handling path in the consumer. Additive optional fields do not bump it. A consumer rejects a contract version it does not know.

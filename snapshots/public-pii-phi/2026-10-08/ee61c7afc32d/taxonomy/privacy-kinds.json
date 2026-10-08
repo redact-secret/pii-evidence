@@ -390,6 +390,22 @@
           "context": "field-label/global/general",
           "effect": "supports-identification",
           "evidenceClass": "research-needed"
+        },
+        {
+          "claims": [
+            "dob-cldr/gb-numeric-date-order"
+          ],
+          "context": "date-locale/global/en-gb",
+          "effect": "supports-identification",
+          "evidenceClass": "standards-body"
+        },
+        {
+          "claims": [
+            "dob-cldr/us-numeric-date-order"
+          ],
+          "context": "date-locale/global/en-us",
+          "effect": "supports-identification",
+          "evidenceClass": "standards-body"
         }
       ],
       "domains": [
@@ -407,7 +423,7 @@
       "label": "Date of birth",
       "openQuestions": [
         "A birth date is recognized by label and date notation, never by a bare date; generic date detection is out of scope for this kind.",
-        "Numeric day/month order by locale is not source-documented; the order-ambiguity case rests on project inference.",
+        "CLDR 48 en-GB and en-US inherited Gregorian order is source-documented only when locale is explicitly declared. Unspecified locale and application overrides remain ambiguous; no date assignment is inferred.",
         "Age (including over 89), year-only birth values and other individual dates (admission, discharge, death) are not modeled; docs/research/date-of-birth.md records recommendations.",
         "Whether a birth date alone is PHI outside a medical context is holder-dependent and unsettled."
       ]

@@ -25,15 +25,27 @@
   "examples": [
     {
       "id": "structured-identifier-only",
-      "occurrence": { "kind": "email/global/basic", "contexts": [], "domains": ["pii"], "classification": "resolved" }
+      "occurrence": {
+        "kind": "email/global/basic",
+        "contexts": [],
+        "domains": [
+          "pii"
+        ],
+        "classification": "resolved"
+      }
     },
     {
       "id": "contextual-phi",
       "description": "Ordinary structured pii that becomes phi through medical context (patient-email in the issue vocabulary).",
       "occurrence": {
         "kind": "email/global/basic",
-        "contexts": ["medical/global/general"],
-        "domains": ["pii", "phi"],
+        "contexts": [
+          "medical/global/general"
+        ],
+        "domains": [
+          "pii",
+          "phi"
+        ],
         "classification": "unresolved"
       },
       "note": "unresolved because the context claim is research-needed in privacy-kinds.json"
@@ -42,8 +54,13 @@
       "id": "health-specific-identifier",
       "occurrence": {
         "kind": "medical-record-number/us/labeled-field",
-        "contexts": ["field-label/global/general"],
-        "domains": ["pii", "phi"],
+        "contexts": [
+          "field-label/global/general"
+        ],
+        "domains": [
+          "pii",
+          "phi"
+        ],
         "classification": "unresolved"
       },
       "note": "unresolved because the kind's context claim is research-needed; resolved once sourced"
@@ -53,9 +70,15 @@
       "description": "Not a canonical case. Shows the shape of a composition that references ner-evidence.",
       "occurrence": {
         "kind": null,
-        "contexts": ["medical/global/general"],
+        "contexts": [
+          "medical/global/general"
+        ],
         "externalRefs": [
-          { "repository": "redact-secret/ner-evidence", "snapshot": "<pinned snapshot id>", "entity": "<entity id>" }
+          {
+            "repository": "redact-secret/ner-evidence",
+            "snapshot": "<pinned snapshot id>",
+            "entity": "<entity id>"
+          }
         ]
       }
     }
@@ -64,11 +87,15 @@
     {
       "id": "medical/global/general",
       "label": "Medical or clinical context",
-      "addsDomains": ["phi"],
+      "addsDomains": [
+        "phi"
+      ],
       "applicability": "any structured kind whose contextClaims lists this context",
       "boundedBy": "a documented, inspectable signal such as a labeled field or a stated clinical setting; the signals are not defined yet",
       "evidenceClass": "research-needed",
-      "claims": ["phi-hhs-164-514-b-2-i/electronic-mail-and-telephone"],
+      "claims": [
+        "phi-hhs-164-514-b-2-i/electronic-mail-and-telephone"
+      ],
       "openQuestions": [
         "Which bounded signals qualify (field labels, document type, adjacent clinical terms)?",
         "Which jurisdictions' definitions of health information apply, and do they differ?",
@@ -78,11 +105,15 @@
     {
       "id": "health-plan/us/general",
       "label": "Health plan or claims context",
-      "addsDomains": ["phi"],
+      "addsDomains": [
+        "phi"
+      ],
       "applicability": "kinds whose contextClaims lists this context",
       "boundedBy": "not defined yet",
       "evidenceClass": "research-needed",
-      "claims": ["phi-hhs-164-514-b-2-i/health-plan-beneficiary-numbers"],
+      "claims": [
+        "phi-hhs-164-514-b-2-i/health-plan-beneficiary-numbers"
+      ],
       "openQuestions": [
         "Does insurance or claims context alone make an occurrence phi, or is it jurisdiction- and holder-dependent? Classification is not established."
       ]
@@ -96,6 +127,34 @@
       "evidenceClass": "research-needed",
       "openQuestions": [
         "Which labels are documented per kind? Labels need cited sources before being listed."
+      ]
+    },
+    {
+      "id": "date-locale/global/en-gb",
+      "label": "Explicit en-GB Gregorian numeric date locale",
+      "addsDomains": [],
+      "applicability": "Bounded date-of-birth field with explicitly declared CLDR locale; does not establish a generic date detector or add phi.",
+      "boundedBy": "The literal locale=en-GB declaration applying to the DOB field in the input; locale is never inferred from jurisdiction or from the date digits.",
+      "evidenceClass": "standards-body",
+      "claims": [
+        "dob-cldr/gb-numeric-date-order"
+      ],
+      "openQuestions": [
+        "CLDR formatting order is not a universal parser contract or country requirement. Alternative calendars, user overrides and unspecified locales remain outside this context."
+      ]
+    },
+    {
+      "id": "date-locale/global/en-us",
+      "label": "Explicit en-US Gregorian numeric date locale",
+      "addsDomains": [],
+      "applicability": "Bounded date-of-birth field with explicitly declared CLDR locale; does not establish a generic date detector or add phi.",
+      "boundedBy": "The literal locale=en-US declaration applying to the DOB field in the input; locale is never inferred from jurisdiction or from the date digits.",
+      "evidenceClass": "standards-body",
+      "claims": [
+        "dob-cldr/us-numeric-date-order"
+      ],
+      "openQuestions": [
+        "CLDR formatting order is not a universal parser contract or country requirement. Alternative calendars, user overrides and unspecified locales remain outside this context."
       ]
     }
   ]
