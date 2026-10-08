@@ -11,6 +11,10 @@ The exact content, source-manifest and archive digests are in
 285 fixtures and 18 skipped pairs**. The [coverage delta](snapshot-v2-delta.md)
 reports all denominator changes and unresolved research decisions.
 
+The dated masked-email rationale has a [source-backed erratum](case-strengthening-adjudication.md#rationale-erratum-2026-10-08):
+RFC 5322 permits a literal asterisk in `atext`; masking interpretation remains
+unresolved. The correction changes no candidate expectation or pinned bytes.
+
 ## Deterministic candidate and release state
 
 Two independent pack runs produced byte-identical tar.gz archives. The tar
