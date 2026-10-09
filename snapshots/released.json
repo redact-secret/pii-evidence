@@ -30,6 +30,34 @@
       },
       "snapshotDate": "2026-10-07",
       "status": "released"
+    },
+    {
+      "archive": {
+        "name": "pii-evidence-public-pii-phi-2026-10-08-ee61c7afc32d.tar.gz",
+        "tarGzSha256": "e86648cf7c54fd6fcc62a17e58859aa334557b6cb9ba30954d12a42cc087c626",
+        "tarSha256": "ae0324a180361a70bd6f225859fe46f7fde6f02f4d9d317a2336ae432c0a2e36"
+      },
+      "contentDigest": "ee61c7afc32db4db320e57051ff762eee5ca70942a7b740a383a1d8e54e397bb",
+      "files": {
+        "cases.jsonl": "56d21fcc60773cd2d0f3a3dc5b14a0e1e02e2bf27807ee87a216108e715f5468",
+        "claims.jsonl": "582c472ad2ad2f04646710483a603862b804495450de7192d02faf49efd4b95e",
+        "fixture-rules.jsonl": "696974e589ad8fb19d39332fe7443e7d7558bbcd89b03cb85c838cd155537f0d",
+        "fixtures.jsonl": "f45a131a183d16fc5528a133d8f18027b9ae6bdaad21cb7054f80ddca086fe56",
+        "manifest.json": "acf14bf012740f25083a6c50134afffa406605061138208bbe83d7f83ad8eb0b",
+        "skipped.jsonl": "759f1a678f16612a16871e53700d50bbc0360245d414aea84a7bbd4a37f1d65d",
+        "sources.jsonl": "0230e2c92daefe0292284c5e61ebd520585ced52be96e77484dd23340a54a82f",
+        "taxonomy/contexts.json": "821b07d65eccfcd5ffd45bed81f73e946ab8af44ccc1670d4da8766f2eead87d",
+        "taxonomy/jurisdictions.json": "8f7d62493a0fdebe73e1493709e3b352ca381f61354b897d965e2e5dd9267944",
+        "taxonomy/privacy-kinds.json": "61da802c91932797aa262bfb4ecf316b888caf9066c164e4c6b47e9b2d02fac7"
+      },
+      "id": "public-pii-phi/2026-10-08/ee61c7afc32d",
+      "manifestSha256": "acf14bf012740f25083a6c50134afffa406605061138208bbe83d7f83ad8eb0b",
+      "release": {
+        "tag": "snapshot-public-pii-phi-2026-10-08-ee61c7afc32d",
+        "url": "https://github.com/redact-secret/pii-evidence/releases/tag/snapshot-public-pii-phi-2026-10-08-ee61c7afc32d"
+      },
+      "snapshotDate": "2026-10-08",
+      "status": "released"
     }
   ]
 }

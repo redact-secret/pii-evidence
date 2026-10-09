@@ -367,6 +367,8 @@ test("promotion manifest binds earlier release and dispositions without changing
   const root = tempRoot();
   try {
     const registry = readRegistry(REPO_ROOT);
+    // This test authors a fresh snapshot; only its baseline is released in the sandbox.
+    registry.snapshots = [registry.snapshots[0]];
     const baseline = registry.snapshots[0];
     cpSync(path.join(REPO_ROOT, "snapshots", baseline.id), path.join(root, "snapshots", baseline.id), { recursive: true });
     writeFileSync(path.join(root, REGISTRY_FILE), registryText(registry));
